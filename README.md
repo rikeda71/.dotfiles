@@ -1,7 +1,7 @@
 # .dotfiles 
-##$B35MW(B 
-vim,zsh$B$N@_Dj%U%!%$%k(B 
-##$B@_DjJ}K!(B 
+##概要 
+vim,zshの設定ファイル 
+##設定方法 
     git clone https://github.com/s14t284/.dotfiles.git
     cd .dotfiles
     sh setup.sh
