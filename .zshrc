@@ -1,39 +1,39 @@
-# http://qiita.com/d-dai/items/d7f329b7d82e2165dab3$B$+$iGR<Z(B
-# $BG[?'8+$d$9$/(B
+# http://qiita.com/d-dai/items/d7f329b7d82e2165dab3から拝借
+# 配色見やすく
 local GREEN=$'%{\e[1;32m%}'
 local YELLOW=$'%{\e[1;33m%}'
 local BLUE=$'%{\e[1;34m%}'
 local DEFAULT=$'%{\e[1;m%}'
 PROMPT=$'\n'$GREEN'${USER}@${HOSTNAME} '$YELLOW'%~ '$'\n'$DEFAULT'%(!.#.$) '
 
-# $BF|K\8l$r;HMQ(B
+# 日本語を使用
 export LANG=ja_JP.UTF-8
 
-# $B?'$r;HMQ(B
+# 色を使用
  autoload -Uz colors
  colors
 
-# $BJd40(B
+# 補完
 autoload -Uz compinit
 compinit
 
-# vim$B%-!<%P%$%s%I(B
+# vimキーバインド
 bindkey -v
 
-# $BB>$N%?!<%_%J%k$H%R%9%H%j!<$r6&M-(B
+# 他のターミナルとヒストリーを共有
 setopt share_history
 
-# $B%R%9%H%j!<$K=EJ#$rI=<($7$J$$(B
+# ヒストリーに重複を表示しない
 setopt histignorealldups
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-# $B%3%^%s%I%_%9$r=$@5(B
+# コマンドミスを修正
 setopt correct
 
-# history$B$KF|IU$rI=<((B
+# historyに日付を表示
 alias h='fc -lt '%F %T' 1'
 alias cp='cp -i'
 alias rm='rm -i'
@@ -42,38 +42,38 @@ alias ..='c ../'
 alias back='pushd'
 alias diff='diff -U1'
 
-# backspace,delete$B%-!<$r;H$($k$h$&$K(B
+# backspace,deleteキーを使えるように
 stty erase ^H
 bindkey "^[[3~" delete-char
 
-# cd$B$N8e$K(Bls$B$r<B9T(B
+# cdの後にlsを実行
 chpwd() { ls --color=auto }
 
-# $B6h@Z$jJ8;z$N@_Dj(B
+# 区切り文字の設定
 autoload -Uz select-word-style
 select-word-style default
 zstyle ':zle:*' word-chars "_-./;@"
 zstyle ':zle:*' word-style unspecified
 
-# $BJd408e!"%a%K%e!<A*Br%b!<%I$K$J$j:81&%-!<$G0\F0$,=PMh$k(B
+# 補完後、メニュー選択モードになり左右キーで移動が出来る
 zstyle ':completion:*:default' menu select=2
 
-# $BJd40$GBgJ8;z$K$b%^%C%A(B
+# 補完で大文字にもマッチ
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# Ctrl+r$B$G%R%9%H%j!<$N%$%s%/%j%a%s%?%k%5!<%A!"(BCtrl+s$B$G5U=g(B
+# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
-# $B%3%^%s%I$rESCf$^$GF~NO8e!"(Bhistory$B$+$i9J$j9~$_(B
-# $BNc(B ls $B$^$GBG$C$F(BCtrl+p$B$G(Bls$B%3%^%s%I$r$5$+$N$\$k!"(BCtrl+b$B$G5U=g(B
+# コマンドを途中まで入力後、historyから絞り込み
+# 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+bで逆順
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
-# git$B@_Dj(B
+# git設定
 RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
 autoload -Uz vcs_info
 setopt prompt_subst
