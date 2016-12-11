@@ -54,3 +54,6 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+" backspace使用可
+set backspace=indent,eol,start
+noremap!  
