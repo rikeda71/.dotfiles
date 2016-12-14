@@ -10,8 +10,8 @@ PROMPT=$'\n'$GREEN'${USER}@${HOSTNAME} '$YELLOW'%~ '$'\n'$DEFAULT'%(!.#.$) '
 export LANG=ja_JP.UTF-8
 
 # 色を使用
- autoload -Uz colors
- colors
+autoload -Uz colors
+colors
 
 # 補完
 autoload -Uz compinit
@@ -48,6 +48,22 @@ bindkey "^[[3~" delete-char
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
+
+# lsの自動カラー表示設定
+case "${OSTYPE}" in
+darwin*)
+ # Mac
+ alias ls="ls -GF"
+ ;;
+linux*)
+ # Linux
+ alias ls='ls --color'
+ ;;
+cygwin*)
+ # cygwin
+ alias ls='ls --color'
+ ;;
+esac
 
 # 区切り文字の設定
 autoload -Uz select-word-style
