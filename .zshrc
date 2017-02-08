@@ -100,3 +100,7 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
+# java設定
+alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
+alias javac='javac -J-Dfile.encoding=UTF-8'
