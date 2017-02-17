@@ -1,2 +1,2 @@
-PATH=$PATH:/home/user/.rbenv/bin
-
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
