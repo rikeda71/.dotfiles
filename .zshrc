@@ -101,6 +101,10 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
+# powerline
+powerline-daemon -q
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 # java設定
 alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
 alias javac='javac -J-Dfile.encoding=UTF-8'
