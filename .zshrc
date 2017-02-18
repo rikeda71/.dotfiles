@@ -73,7 +73,7 @@ esac
 autoload -Uz select-word-style
 select-word-style default
 zstyle ':zle:*' word-chars "_-./;@"
-style ':zle:*' word-style unspecified
+zstyle ':zle:*' word-style unspecified
 
 # 補完後、メニュー選択モードになり左右キーで移動が出来る
 zstyle ':completion:*:default' menu select=2
