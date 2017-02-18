@@ -1,4 +1,6 @@
 " setting
+" 構文ハイライトを有効
+syntax enable
 "文字コードをUFT-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
@@ -57,3 +59,64 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " backspace使用可
 set backspace=indent,eol,start
 noremap!  
+
+" 256色対応
+set t_Co=256
+
+" powerline設定
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+"NeoBundle Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath^=/home/riked/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('/home/riked/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" solarized
+NeoBundle 'altercation/vim-colors-solarized'
+
+" molokai
+NeoBundle 'tomasr/molokai'
+
+" hybrid
+NeoBundle 'w0ng/vim-hybrid'
+
+" Required:
+call neobundle#end()
+
+"colorscheme
+colorscheme hybrid_material
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+

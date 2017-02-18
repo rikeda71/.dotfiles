@@ -33,6 +33,9 @@ SAVEHIST=1000
 # コマンドミスを修正
 setopt correct
 
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
+
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
 alias cp='cp -i'
@@ -108,3 +111,7 @@ powerline-daemon -q
 # java設定
 alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
 alias javac='javac -J-Dfile.encoding=UTF-8'
+
+# ruby設定
+export PATH="$HOME/.rbenv/bin:$PATH" 
+eval "$(rbenv init - zsh)"
