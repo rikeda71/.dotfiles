@@ -107,6 +107,9 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 # powerline
 powerline-daemon -q
 . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+POWERLINE_HIDE_HOST_NAME="true"
+POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
+POWERLINE_SHOW_GIT_ON_RIGHT="true"
 
 # java設定
 alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
