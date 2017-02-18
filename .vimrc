@@ -77,10 +77,14 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=/home/riked/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('/home/riked/.vim/bundle'))
+let OSTYPE = system('uname')
+if OSTYPE == "Linux\n"
+  set runtimepath^=/home/user/.vim/bundle/neobundle.vim/
+  call neobundle#begin(expand('/home/user/.vim/bundle'))
+else
+  set runtimepath^=/home/riked/.vim/bundle/neobundle.vim/
+  call neobundle#begin(expand('/home/riked/.vim/bundle'))
+endif
 
 " Let NeoBundle manage NeoBundle
 " Required:
