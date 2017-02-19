@@ -126,6 +126,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # ↓ 代用(rbenv rehash をしない)
 source .dotfiles/.rbenv_init
 
+
 #profile
 #if type zprof > /dev/null 2>&1; then
 #  zprof  | less
