@@ -15,11 +15,10 @@ colors
 
 # 補完
 autoload -Uz compinit
-compinit
-zstyle ':completion:*:default' menu select=1
+compinit -C
 
 # vimキーバインド
-bindkey -v
+#bindkey -v
 
 # 他のターミナルとヒストリーを共有
 setopt share_history
@@ -106,8 +105,16 @@ precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # powerline
-powerline-daemon -q
-. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# cygwinだとバグが起こるので
+case ${OSTYPE} in
+  cygwin*)
+  #source fonts/sol.dark
+  ;;
+  linux*)
+  powerline-daemon -q
+  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+  ;;
+esac
 
 # java設定
 alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
@@ -115,4 +122,11 @@ alias javac='javac -J-Dfile.encoding=UTF-8'
 
 # ruby設定
 export PATH="$HOME/.rbenv/bin:$PATH" 
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
+# ↓ 代用(rbenv rehash をしない)
+source .dotfiles/.rbenv_init
+
+#profile
+#if type zprof > /dev/null 2>&1; then
+#  zprof  | less
+#fi
