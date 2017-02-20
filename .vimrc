@@ -108,11 +108,14 @@ NeoBundle 'tomasr/molokai'
 " hybrid
 NeoBundle 'w0ng/vim-hybrid'
 
+"railscasts
+NeoBundle 'jpo/vim-railscasts-theme'
+
 " Required:
 call neobundle#end()
 
 "colorscheme
-colorscheme hybrid_material
+colorscheme railscasts
 
 " Required:
 filetype plugin indent on
