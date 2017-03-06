@@ -1,6 +1,15 @@
-export PATH="/home/riked/.rbenv/shims:${PATH}"
-export RBENV_SHELL=zsh
-source '/home/riked/.rbenv/libexec/../completions/rbenv.zsh'
+case ${OSTYPE} in
+  cygwin*)
+  export PATH="/home/riked/.rbenv/shims:${PATH}"
+  export RBENV_SHELL=zsh
+  source '/home/riked/.rbenv/libexec/../completions/rbenv.zsh'
+  ;;
+  linux*)
+  export PATH="/home/user/.rbenv/shims:${PATH}"
+  export RBENV_SHELL=zsh
+  source '/home/user/.rbenv/libexec/../completions/rbenv.zsh'
+  ;;
+esac
 # command rbenv rehash 2>/dev/null
 rbenv() {
   local command
