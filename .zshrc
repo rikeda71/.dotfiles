@@ -63,7 +63,7 @@ linux*)
  alias ls='ls --color'
  ;;
 cygwin*)
- # cygwin
+ #ucygwin
  alias ls='ls --color'
  ;;
 esac
@@ -117,10 +117,16 @@ case ${OSTYPE} in
 esac
 
 # ruby設定
-export PATH="$HOME/.rbenv/bin:$PATH" 
+case ${OSTYPE} in
+  linux*)
 # eval "$(rbenv init - zsh)"
 # ↓ 代用(rbenv rehash をしない)
-source .rbenv_init
+  source .rbenv_init
+  export PATH="$HOME/.rbenv/bin:$PATH" 
+  ;;
+  cygwin*)
+  ;;
+esac
 
 
 #profile
