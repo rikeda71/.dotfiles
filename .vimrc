@@ -63,6 +63,9 @@ noremap!  
 " 256色対応
 set t_Co=256
 
+" rubyが遅くならないように対策
+set re=1
+
 " powerline設定
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)

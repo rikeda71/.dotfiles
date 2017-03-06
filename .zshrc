@@ -18,7 +18,7 @@ autoload -Uz compinit
 compinit -C
 
 # vimキーバインド
-#bindkey -v
+bindkey -v
 
 # 他のターミナルとヒストリーを共有
 setopt share_history
@@ -116,15 +116,11 @@ case ${OSTYPE} in
   ;;
 esac
 
-# java設定
-alias java='java -Duser.language=ja -Dfile.encoding=UTF-8'
-alias javac='javac -J-Dfile.encoding=UTF-8'
-
 # ruby設定
 export PATH="$HOME/.rbenv/bin:$PATH" 
 # eval "$(rbenv init - zsh)"
 # ↓ 代用(rbenv rehash をしない)
-source .dotfiles/.rbenv_init
+source .rbenv_init
 
 
 #profile
