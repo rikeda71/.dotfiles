@@ -9,4 +9,8 @@ git config --global color.branch auto
 #git config --global push.default simple
 git config --global core.precomposeunicode true
 git config --global core.quotepath false
+# 以下「~/.netrc」に記述
+# machine github.com
+# login account_name
+# password account_pass
 
