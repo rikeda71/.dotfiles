@@ -3,12 +3,14 @@
 # powerlineの導入
 apt-get install automake
 apt-get install libtool
-curl -0 https://bootstrap.pypa.io/get-pip.py
-python get-pip
+curl -O https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
 git clone https://github.com/powerline/fonts.git
 cp -r ~/fonts /usr/share/
 fc-cache -fv
 pip install --user git+git://github.com/powerline/powerline
-sudo apt-get install socat
-sudo pip install psutil
-sudo pip install pyuv
+apt-get install socat
+pip install psutil
+pip install pyuv
+sh /usr/share/fonts/install.sh
+find ~/.local/lib/ -type d -exec chmod 755 {} \;
