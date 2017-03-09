@@ -121,12 +121,27 @@ case ${OSTYPE} in
   linux*)
 # eval "$(rbenv init - zsh)"
 # ↓ 代用(rbenv rehash をしない)
-  source .rbenv_init
-  export PATH="$HOME/.rbenv/bin:$PATH" 
+  export RBENV_ROOT=/usr/local/.rbenv
+  export PATH="${RBENV_ROOT}/shims:${RBENV_ROOT}/bin:${PATH}"
+  eval "$(rbenv init -)"
   ;;
   cygwin*)
   ;;
 esac
+
+# python設定
+case ${OSTYPE} in
+  linux*)
+  export PYENV_ROOT=/usr/local/.pyenv
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  ;;
+esac
+
+#sudoでパスの環境を効かせる
+PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
+alias sudo='sudo env PATH=$PATH'
 
 
 #profile
