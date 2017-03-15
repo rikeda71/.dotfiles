@@ -4,7 +4,7 @@ local GREEN=$'%{\e[1;32m%}'
 local YELLOW=$'%{\e[1;33m%}'
 local BLUE=$'%{\e[1;34m%}'
 local DEFAULT=$'%{\e[1;m%}'
-PROMPT=$'\n'$GREEN'${USER}@${HOSTNAME} '$YELLOW'%~ '$'\n'$DEFAULT'%(!.#.$) '
+PROMPT=$'\n'$GREEN'${USER}@ '$YELLOW'[${HOSTNAME}%~]'$'\n'$DEFAULT'%(!.#.$) '
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
@@ -105,16 +105,15 @@ precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # powerline
-# cygwinだとバグが起こるので
-case ${OSTYPE} in
-  cygwin*)
-  #source fonts/sol.dark
-  ;;
-  linux*)
-  powerline-daemon -q
-  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-  ;;
-esac
+#case ${OSTYPE} in
+#  cygwin*)
+#  #source fonts/sol.dark
+#  ;;
+#  linux*)
+#  powerline-daemon -q
+#  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#  ;;
+#esac
 
 # ruby設定
 case ${OSTYPE} in
@@ -145,6 +144,8 @@ alias sudo='sudo env PATH=$PATH'
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
+
+# プロンプトの改行
 
 #profile
 #if type zprof > /dev/null 2>&1; then
