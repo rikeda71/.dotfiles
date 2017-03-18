@@ -1,10 +1,17 @@
 # http://qiita.com/d-dai/items/d7f329b7d82e2165dab3から拝借
 # 配色見やすく
-local GREEN=$'%{\e[1;32m%}'
-local YELLOW=$'%{\e[1;33m%}'
+case "$OSTYPE" in
+  cygwin*)
+    local USERCOLOR=$'%{\e[1;32m%}'
+    ;;
+  linux*)
+    local USERCOLOR=$'%{\e[1;36m%}'
+    ;;
+esac
+local HOSTCOLOR=$'%{\e[1;33m%}'
 local BLUE=$'%{\e[1;34m%}'
 local DEFAULT=$'%{\e[1;m%}'
-PROMPT=$'\n'$GREEN'${USER}@ '$YELLOW'[${HOSTNAME}%~]'$'\n'$DEFAULT'%(!.#.$) '
+PROMPT=$'\n'$USERCOLOR'${USER}@ '$HOSTCOLOR'[${HOSTNAME}% ]'$'\n'$DEFAULT'%(!.#.$) '
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
@@ -41,7 +48,7 @@ alias h='fc -lt '%F %T' 1'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
-alias ..='c ../'
+alias ..='cd ../'
 alias back='pushd'
 alias diff='diff -U1'
 
