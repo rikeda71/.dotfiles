@@ -145,10 +145,6 @@ case ${OSTYPE} in
   ;;
 esac
 
-# sudoでパスの環境を効かせる
-PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
-alias sudo='sudo env PATH=$PATH'
-
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
 
