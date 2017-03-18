@@ -3,15 +3,16 @@
 case "$OSTYPE" in
   cygwin*)
     local USERCOLOR=$'%{\e[1;32m%}'
+    local HOSTCOLOR=$'%{\e[1;33m%}'
     ;;
   linux*)
     local USERCOLOR=$'%{\e[1;35m%}'
+    local HOSTCOLOR=$'%{\e[1;36m%}'
     ;;
 esac
-local HOSTCOLOR=$'%{\e[1;33m%}'
 local BLUE=$'%{\e[1;34m%}'
 local DEFAULT=$'%{\e[1;m%}'
-PROMPT=$'\n'$USERCOLOR'${USER}@ '$HOSTCOLOR'[${HOST}% ]'$'\n'$DEFAULT'%(!.#.$) '
+PROMPT=$'\n'$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$'\n'$DEFAULT'%(!.#.$) '
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
