@@ -5,13 +5,13 @@ case "$OSTYPE" in
     local USERCOLOR=$'%{\e[1;32m%}'
     ;;
   linux*)
-    local USERCOLOR=$'%{\e[1;36m%}'
+    local USERCOLOR=$'%{\e[1;35m%}'
     ;;
 esac
 local HOSTCOLOR=$'%{\e[1;33m%}'
 local BLUE=$'%{\e[1;34m%}'
 local DEFAULT=$'%{\e[1;m%}'
-PROMPT=$'\n'$USERCOLOR'${USER}@ '$HOSTCOLOR'[${HOSTNAME}% ]'$'\n'$DEFAULT'%(!.#.$) '
+PROMPT=$'\n'$USERCOLOR'${USER}@ '$HOSTCOLOR'[${HOST}% ]'$'\n'$DEFAULT'%(!.#.$) '
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
