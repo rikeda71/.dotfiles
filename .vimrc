@@ -33,7 +33,7 @@ nnoremap j gj
 nnoremap k gk
 
 " 不可視文字を可視化
-set list listchars=tab:\▸\-
+set list listchars=tab:»-,trail:-,nbsp:%,eol:↲
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅
