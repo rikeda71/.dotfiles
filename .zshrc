@@ -124,27 +124,30 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 #esac
 
 # ruby設定
-case ${OSTYPE} in
-  linux*)
+# vmの場合
+if [ test ${hostname} = "ubuntu" ]
+then
+  export RBENV_ROOT=/usr/local/.rbenv
+# それ以外
+else
+  export RBENV_ROOT=~/.rbenv
+fi
+export PATH="${RBENV_ROOT}/shims:${RBENV_ROOT}/bin:${PATH}"
 # eval "$(rbenv init - zsh)"
 # ↓ 代用(rbenv rehash をしない)
-  export RBENV_ROOT=/usr/local/.rbenv
-  export PATH="${RBENV_ROOT}/shims:${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-  ;;
-  cygwin*)
-  ;;
-esac
+eval "$(rbenv init -)"
 
 # python設定
-case ${OSTYPE} in
-  linux*)
+# vmの場合
+if [ test ${hostname} = "ubuntu" ]
+then
   export PYENV_ROOT=/usr/local/.pyenv
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  ;;
-esac
+else
+  export PYENV_ROOT=~/.pyenv
+fi
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"

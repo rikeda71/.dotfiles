@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sh ~/.dotfiles/install.sh
+#sh ~/.dotfiles/install.sh
 
 DOT_FILES=( .vimrc .zshrc .zshenv .tmux.conf .rbenv_init )
 

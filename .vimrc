@@ -33,8 +33,7 @@ nnoremap j gj
 nnoremap k gk
 
 " 不可視文字を可視化
-set list listchars=tab:»-,trail:-,nbsp:%,eol:↲
-" Tab文字を半角スペースにする
+set list listchars=tab:»-,trail:-,nbsp:%, " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅
 set tabstop=2
@@ -67,8 +66,8 @@ set t_Co=256
 set re=1
 
 " powerline設定
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" set showtabline=2 " Always display the tabline, even if there is only one tab
+" set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 "NeoBundle Scripts-----------------------------
 if &compatible
@@ -76,14 +75,8 @@ if &compatible
 endif
 
 " Required:
-let OSTYPE = system('uname')
-if OSTYPE == "Linux\n"
-  set runtimepath^=/home/user/.vim/bundle/neobundle.vim/
-  call neobundle#begin(expand('/home/user/.vim/bundle'))
-else
-  set runtimepath^=/home/riked/.vim/bundle/neobundle.vim/
-  call neobundle#begin(expand('/home/riked/.vim/bundle'))
-endif
+set runtimepath^=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -100,7 +93,7 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
 " powerline
-NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
+" NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
 
 " solarized
 NeoBundle 'altercation/vim-colors-solarized'

@@ -1,4 +1,4 @@
 #profile
 #zmodload zsh/zprof
 #powerline
-export PATH=~/.local/bin/:$PATH
+#export PATH=~/.local/bin/:$PATH
