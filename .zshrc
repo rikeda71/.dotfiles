@@ -123,28 +123,25 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 #  ;;
 #esac
 
-# ruby設定
+# envの保存位置
 # vmの場合
-if [ test ${hostname} = "ubuntu" ]
+if [ $HOST = "ubuntu" ]
 then
-  export RBENV_ROOT=/usr/local/.rbenv
+  env_path=/usr/local
 # それ以外
 else
-  export RBENV_ROOT=~/.rbenv
+  env_path=$HOME
 fi
+
+# ruby設定
+export RBENV_ROOT=$env_path/.rbenv
 export PATH="${RBENV_ROOT}/shims:${RBENV_ROOT}/bin:${PATH}"
 # eval "$(rbenv init - zsh)"
 # ↓ 代用(rbenv rehash をしない)
 eval "$(rbenv init -)"
 
 # python設定
-# vmの場合
-if [ test ${hostname} = "ubuntu" ]
-then
-  export PYENV_ROOT=/usr/local/.pyenv
-else
-  export PYENV_ROOT=~/.pyenv
-fi
+export PYENV_ROOT=$env_path/.pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
