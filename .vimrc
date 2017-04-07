@@ -65,6 +65,9 @@ set t_Co=256
 " rubyが遅くならないように対策
 set re=1
 
+" python
+let $PATH = "/usr/local/.pyenv/shims:".$PATH
+
 " powerline設定
 " set showtabline=2 " Always display the tabline, even if there is only one tab
 " set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -107,6 +110,11 @@ NeoBundle 'w0ng/vim-hybrid'
 "railscasts
 NeoBundle 'jpo/vim-railscasts-theme'
 
+" jedi-vim
+if $HOST == 'ubuntu'
+  NeoBundle 'davidhalter/jedi-vim'
+endif
+
 " Required:
 call neobundle#end()
 
@@ -120,5 +128,3 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
-
-
