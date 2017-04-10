@@ -135,14 +135,12 @@ fi
 
 # ruby設定
 export RBENV_ROOT=$env_path/.rbenv
-export PATH="${RBENV_ROOT}/shims:${RBENV_ROOT}/bin:${PATH}"
-# eval "$(rbenv init - zsh)"
-# ↓ 代用(rbenv rehash をしない)
+export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init -)"
 
 # python設定
 export PYENV_ROOT=$env_path/.pyenv
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
