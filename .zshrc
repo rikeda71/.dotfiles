@@ -1,11 +1,11 @@
 # http://qiita.com/d-dai/items/d7f329b7d82e2165dab3から拝借
 # 配色見やすく
 case "$OSTYPE" in
-  cygwin*)
+  linux*)
     local USERCOLOR=$'%{\e[1;32m%}'
     local HOSTCOLOR=$'%{\e[1;33m%}'
     ;;
-  linux*)
+  cygwin*)
     local USERCOLOR=$'%{\e[1;35m%}'
     local HOSTCOLOR=$'%{\e[1;36m%}'
     ;;
