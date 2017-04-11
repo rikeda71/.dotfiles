@@ -114,9 +114,6 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # powerline
 #case ${OSTYPE} in
-#  cygwin*)
-#  #source fonts/sol.dark
-#  ;;
 #  linux*)
 #  powerline-daemon -q
 #  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
@@ -136,16 +133,21 @@ fi
 # ruby設定
 export RBENV_ROOT=$env_path/.rbenv
 export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$PATH"
-eval "$(rbenv init -)"
+if which rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 # python設定
 export PYENV_ROOT=$env_path/.pyenv
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if which pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
+
 
 #profile
 #if type zprof > /dev/null 2>&1; then
