@@ -8,4 +8,4 @@ vim,zsh(etc... の設定ファイル
 --------
     $ git clone --recursive https://github.com/s14t284/.dotfiles.git
     $ cd .dotfiles
-    $ sudo sh setup.sh
+    $ ./sh setup.sh
