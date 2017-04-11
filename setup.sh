@@ -1,8 +1,6 @@
 #!/bin/sh
 
-sh ~/.dotfiles/install.sh
-
-DOT_FILES=( .vimrc .zshrc .zshenv .tmux.conf .rbenv_init)
+DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim)
 
 for file in ${DOT_FILES[@]}
 do
