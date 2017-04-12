@@ -106,8 +106,8 @@ autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{220}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{196}+"
-zstyle ':vcs_info:*' formats "%F{009}%c%u[%b]%f"
+zstyle ':vcs_info:git:*' unstagedstr "%F{009}+"
+zstyle ':vcs_info:*' formats "%F{002}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
@@ -139,11 +139,6 @@ fi
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
-
-function powerline_precmd() {
-    PS1="$(~/powerline-shell.py $? --shell zsh 2> /dev/null)"
-}
-
 
 #profile
 #if type zprof > /dev/null 2>&1; then
