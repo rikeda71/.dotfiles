@@ -106,8 +106,8 @@ autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{220}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{196}+"
-zstyle ':vcs_info:*' formats "%F{009}%c%u[%b]%f"
+zstyle ':vcs_info:git:*' unstagedstr "%F{009}+"
+zstyle ':vcs_info:*' formats "%F{002}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
