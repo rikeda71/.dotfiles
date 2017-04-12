@@ -113,16 +113,16 @@ precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # powerline
-#case ${OSTYPE} in
-#  linux*)
-#  powerline-daemon -q
-#  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#  ;;
-#esac
+case ${OSTYPE} in
+  linux*)
+  powerline-daemon -q
+  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+  ;;
+esac
 
 # envの保存位置
 # vmの場合
-if [ $HOST = "ubuntu" ]
+if vmware-toolbox-cmd -v > /dev/null 2>&1
 then
   env_path=/usr/local
 # それ以外
@@ -147,7 +147,6 @@ fi
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
-
 
 #profile
 #if type zprof > /dev/null 2>&1; then
