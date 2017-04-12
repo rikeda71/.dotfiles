@@ -2,17 +2,17 @@
 # 配色見やすく
 case "$OSTYPE" in
   linux*)
-    local USERCOLOR=$'%{\e[1;32m%}'
-    local HOSTCOLOR=$'%{\e[1;33m%}'
+    local USERCOLOR=%F{082}
+    local HOSTCOLOR=%F{006}
     ;;
   cygwin*)
-    local USERCOLOR=$'%{\e[1;35m%}'
-    local HOSTCOLOR=$'%{\e[1;36m%}'
+    local USERCOLOR=%F{162}
+    local HOSTCOLOR=%F{208}
     ;;
 esac
-local BLUE=$'%{\e[1;34m%}'
-local DEFAULT=$'%{\e[1;m%}'
-PROMPT=$'\n'$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$'\n'$DEFAULT'%(!.#.$) '
+local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
+#PROMPT=$'\n'$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$'\n'$DEFAULT'%(!.#.$) '
+PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
@@ -101,24 +101,16 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
 # git設定
-RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
+RPROMPT="%{${reset_color}%}"
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:git:*' stagedstr "%F{220}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{196}+"
+zstyle ':vcs_info:*' formats "%F{009}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
-# powerline
-case ${OSTYPE} in
-  linux*)
-  powerline-daemon -q
-  . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-  ;;
-esac
 
 # envの保存位置
 # vmの場合
@@ -147,6 +139,11 @@ fi
 
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
+
+function powerline_precmd() {
+    PS1="$(~/powerline-shell.py $? --shell zsh 2> /dev/null)"
+}
+
 
 #profile
 #if type zprof > /dev/null 2>&1; then

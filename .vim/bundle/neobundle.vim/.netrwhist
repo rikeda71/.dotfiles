@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/tmp/ruby-build.20170308150034.11146'
-let g:netrw_dirhist_2='/home/user/.dotfiles'
-let g:netrw_dirhist_3='/home/user/Documents/NLP100/05/__pycache__'
-let g:netrw_dirhist_4='/usr/locale/da/LC_MESSAGES'
-let g:netrw_dirhist_5='/home/user/.vim'
-let g:netrw_dirhist_6='/home/user/.dotfiles'
-let g:netrw_dirhist_7='/home/user/install_file'
-let g:netrw_dirhist_8='/home/user'
-let g:netrw_dirhist_9='/home/user/.dotfiles/.vim/bundle/ctrlp.vim'
+let g:netrw_dirhist_cnt =0
