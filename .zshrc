@@ -140,11 +140,6 @@ fi
 # tmux起動時に色が変わらないように
 export "TERM=xterm-256color"
 
-function powerline_precmd() {
-    PS1="$(~/powerline-shell.py $? --shell zsh 2> /dev/null)"
-}
-
-
 #profile
 #if type zprof > /dev/null 2>&1; then
 #  zprof  | less
