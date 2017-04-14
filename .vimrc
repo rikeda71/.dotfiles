@@ -89,21 +89,8 @@ NeoBundle 'flazz/vim-colorschemes'
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
-" powerline
-" NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
-
-" solarized
-NeoBundle 'altercation/vim-colors-solarized'
-
-" molokai
-NeoBundle 'tomasr/molokai'
-
-" hybrid
-NeoBundle 'w0ng/vim-hybrid'
-
-"railscasts
+"railscasts"
 NeoBundle 'jpo/vim-railscasts-theme'
-
 " jedi-vim
 if has('python') && has('python3')
   NeoBundle 'davidhalter/jedi-vim'
