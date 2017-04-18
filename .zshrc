@@ -1,4 +1,3 @@
-# http://qiita.com/d-dai/items/d7f329b7d82e2165dab3から拝借
 # 配色見やすく
 case "$OSTYPE" in
   linux*)

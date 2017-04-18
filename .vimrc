@@ -13,7 +13,6 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
 " 行番号を表示
 set number
 " 現在の行を強調表示
@@ -62,9 +61,8 @@ noremap!  
 " 256色対応
 set t_Co=256
 
-" powerline設定
-" set showtabline=2 " Always display the tabline, even if there is only one tab
-" set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" clipboardとヤンクを結びつけ
+set clipboard=unnamed,autoselect
 
 "NeoBundle Scripts-----------------------------
 if &compatible
