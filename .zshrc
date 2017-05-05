@@ -1,16 +1,7 @@
 # 配色見やすく
-case "$OSTYPE" in
-  linux*)
-    local USERCOLOR=%F{082}
-    local HOSTCOLOR=%F{006}
-    ;;
-  cygwin*)
-    local USERCOLOR=%F{162}
-    local HOSTCOLOR=%F{208}
-    ;;
-esac
+local USERCOLOR=%F{082}
+local HOSTCOLOR=%F{006}
 local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
-#PROMPT=$'\n'$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$'\n'$DEFAULT'%(!.#.$) '
 PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
 
 # 日本語を使用
@@ -32,7 +23,6 @@ setopt share_history
 
 # ヒストリーに重複を表示しない
 setopt histignorealldups
-
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -43,14 +33,15 @@ setopt correct
 # 開始と終了を記録
 setopt EXTENDED_HISTORY
 
-# historyに日付を表示
-alias h='fc -lt '%F %T' 1'
+# alias
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
-alias ..='cd ../'
-alias back='pushd'
 alias diff='diff -U1'
+alias ll='ls -l'
+alias la='ls -a'
+alias grep='grep --color'
+alias ps='ps --sort=start_time'
 
 # backspace,deleteキーを使えるように
 stty erase ^H
@@ -67,10 +58,6 @@ darwin*)
  ;;
 linux*)
  # Linux
- alias ls='ls --color'
- ;;
-cygwin*)
- #ucygwin
  alias ls='ls --color'
  ;;
 esac
@@ -140,21 +127,11 @@ fi
 export "TERM=xterm-256color"
 
 # tmux自動起動
-if [[ ! -n $TMUX && $- == *l* ]]; then
-  # get the IDs
-  ID="`tmux list-sessions`"
-  if [[ -z "$ID" ]]; then
-    tmux new-session
-  fi
-  create_new_session="Create New Session"
-  ID="$ID\n${create_new_session}:"
-  ID="`echo $ID | $PERCOL | cut -d: -f1`"
-  if [[ "$ID" = "${create_new_session}" ]]; then
-    tmux new-session
-  elif [[ -n "$ID" ]]; then
-    tmux attach-session -t "$ID"
+if [ -z $TMUX ]; then
+  if $(tmux has-session); then
+    tmux attach
   else
-    :  # Start terminal normally
+    tmux
   fi
 fi
 
