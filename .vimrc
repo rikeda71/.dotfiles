@@ -99,15 +99,43 @@ NeoBundle 'flazz/vim-colorschemes'
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
+" unite.vim
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc', {
+  \ "build": {
+  \   "windows"   : "make -f make_mingw32.mak",
+  \   "cygwin"    : "make -f make_cygwin.mak",
+  \   "mac"       : "make -f make_mac.mak",
+  \   "unix"      : "make -f make_unix.mak",
+  \ }}
+
 "railscasts"
 NeoBundle 'jpo/vim-railscasts-theme'
+
+" neocomplcache
+NeoBundle 'Shougo/neocomplcache'
+
 " jedi-vim
 if has('python') && has('python3')
   NeoBundle 'davidhalter/jedi-vim'
   NeoBundle 'ervandew/supertab'
   autocmd FileType python setlocal completeopt-=preview
+  autocmd FileType python setlocal omnifunc=jedi#completions
+  let g:jedi#auto_vim_configuration = 0
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
   let g:jedi#show_call_signatures=2
+  let g:jedi#force_py_version=3
+  set omnifunc=jedi#completions
+  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 endif
+
+" pep8
+NeoBundle "andviro/flake8-vim"
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = "pep8"
+NeoBundle "hynek/vim-python-pep8-indent"
 
 " Required:
 call neobundle#end()
