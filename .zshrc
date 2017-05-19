@@ -127,13 +127,13 @@ fi
 export "TERM=xterm-256color"
 
 # tmux自動起動
-if [ -z $TMUX ]; then
+if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" && -z $TMUX ]]; then
   if $(tmux has-session); then
-    tmux attach
-  else
-    tmux
+    option="attach"
   fi
+  tmux $option && exit
 fi
+
 
 #profile
 #if type zprof > /dev/null 2>&1; then
