@@ -74,12 +74,10 @@ zstyle ':completion:*:default' menu select=2
 # 補完で大文字にもマッチ
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
+# Ctrl+rでヒストリーサーチ
 bindkey '^r' history-incremental-pattern-search-backward
-bindkey '^s' history-incremental-pattern-search-forward
 
 # コマンドを途中まで入力後、historyから絞り込み
-# 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+bで逆順
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -98,25 +96,15 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-# envの保存位置
-# vmの場合
-if vmware-toolbox-cmd -v > /dev/null 2>&1
-then
-  env_path=/usr/local
-# それ以外
-else
-  env_path=$HOME
-fi
-
 # ruby設定
-export RBENV_ROOT=$env_path/.rbenv
+export RBENV_ROOT=~/.rbenv
 export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$PATH"
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
 # python設定
-export PYENV_ROOT=$env_path/.pyenv
+export PYENV_ROOT=~/.pyenv
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 if which pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
