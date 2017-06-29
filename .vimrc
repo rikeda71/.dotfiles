@@ -1,70 +1,28 @@
-" setting
+"============================
+" 基本設定
+"============================
+
 " 構文ハイライトを有効
 syntax enable
-"文字コードをUFT-8に設定
+
+" UTF-8
 set fenc=utf-8
-" バックアップファイルを作らない
-set nobackup
-" スワップファイルを作らない
-set noswapfile
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" バッファが編集中でもその他のファイルを開けるように
-set hidden
-" 入力中のコマンドをステータスに表示する
-set showcmd
+
 " 行番号を表示
 set number
+
 " 現在の行を強調表示
 set cursorline
-" 行末の1文字先までカーソルを移動できるように
+
+" 行末の1文字先までカーソルを移動可能に
 set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" ファイル名表示
-set statusline=%F
-" 変更チェック表示
-set statusline+=%m
-" 読み込み専用かどうか表示
-set statusline+=%r
-" これ以降は右寄せ表示
-set statusline+=%=
-" file encoding
-set statusline+=[ENC=%{&fileencoding}]
-" 現在行数/全行数
- set statusline+=[LOW=%l/%L]
+
 " コマンドラインの補完
 set wildmode=list:longest
+
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
-
-" 不可視文字を可視化
-set list listchars=tab:»-,trail:-,nbsp:%, " Tab文字を半角スペースにする
-set expandtab
-" 行頭以外のTab文字の表示幅
-set tabstop=2
-" 行頭でのTab文字の表示幅
-set shiftwidth=2
-" 改行時に自動でインデントを行う
-set autoindent
-
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
-" ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " backspace使用可
 set backspace=indent,eol,start
@@ -76,9 +34,110 @@ set t_Co=256
 " clipboardとヤンクを結びつけ
 set clipboard=unnamed,autoselect
 
-"NeoBundle Scripts-----------------------------
+" 最後に開いた位置を保持
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent loadview
+
+
+"============================
+" 表示
+"============================
+
+" 入力中のコマンドをステータスに表示
+set showcmd
+
+" 括弧入力時の対応する括弧を表示
+set showmatch
+
+" ステータスラインを常に表示
+set laststatus=2
+
+" ファイル名表示
+set statusline=%F
+
+" 変更チェック表示
+set statusline+=%m
+
+" 読み込み専用かどうか表示
+set statusline+=%r
+
+" これ以降は右寄せ表示
+set statusline+=%=
+
+" file encoding
+set statusline+=[ENC=%{&fileencoding}]
+
+" 現在行数/全行数
+set statusline+=[LOW=%l/%L]
+
+" 不可視文字を可視化
+set list listchars=tab:»-,trail:-,nbsp:%, 
+
+
+"============================
+" indent, tab
+"============================
+
+" スマートインデント
+set smartindent
+
+" tabを空白に
+set expandtab
+
+" 行頭以外のTab文字の表示幅
+set tabstop=2
+
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
+
+" 改行時に自動でインデント
+set autoindent
+
+
+"============================
+" ファイル関連
+"============================
+
+" ファイルを作らない
+set nobackup
+set noswapfile
+
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
+
+" バッファが編集中でもその他のファイルを開けるように
+set hidden
+
+
+"============================
+" 検索
+"============================
+
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+
+" 検索語をハイライト表示
+set hlsearch
+
+" ESC連打でハイライト解除
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+
+"============================
+" NeoBundle
+"============================
+
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
 " Required:
@@ -137,16 +196,14 @@ let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = "pep8"
 NeoBundle "hynek/vim-python-pep8-indent"
 
+
 " Required:
 call neobundle#end()
-
-"colorscheme
-colorscheme railscasts
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
+" colorscheme
+colorscheme railscasts
+
 NeoBundleCheck
-"End NeoBundle Scripts-------------------------
