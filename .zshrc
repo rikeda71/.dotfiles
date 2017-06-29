@@ -1,22 +1,31 @@
-# 配色見やすく
-local USERCOLOR=%F{082}
-local HOSTCOLOR=%F{006}
-local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
-PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
+#====================
+# 基本設定
+#====================
 
 # 日本語を使用
 export LANG=ja_JP.UTF-8
 
-# 色を使用
-autoload -Uz colors
-colors
-
-# 補完
-autoload -Uz compinit
-compinit -C
-
 # vimキーバインド
 bindkey -v
+
+# backspace,deleteキーを使えるように
+stty erase ^H
+bindkey "^[[3~" delete-char
+
+# コマンドミスを修正
+setopt correct
+
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
+
+# 区切り文字の設定
+autoload -Uz select-word-style
+select-word-style default
+zstyle ':zle:*' word-chars "_-./;@"
+zstyle ':zle:*' word-style unspecified
+
+# Ctrl+rでヒストリーサーチ
+bindkey '^r' history-incremental-pattern-search-backward
 
 # 他のターミナルとヒストリーを共有
 setopt share_history
@@ -27,11 +36,10 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-# コマンドミスを修正
-setopt correct
 
-# 開始と終了を記録
-setopt EXTENDED_HISTORY
+#====================
+# コマンド
+#====================
 
 # alias
 alias cp='cp -i'
@@ -42,10 +50,6 @@ alias ll='ls -l'
 alias la='ls -a'
 alias grep='grep --color'
 alias ps='ps --sort=start_time'
-
-# backspace,deleteキーを使えるように
-stty erase ^H
-bindkey "^[[3~" delete-char
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
@@ -62,21 +66,6 @@ linux*)
  ;;
 esac
 
-# 区切り文字の設定
-autoload -Uz select-word-style
-select-word-style default
-zstyle ':zle:*' word-chars "_-./;@"
-zstyle ':zle:*' word-style unspecified
-
-# 補完後、メニュー選択モードになり左右キーで移動が出来る
-zstyle ':completion:*:default' menu select=2
-
-# 補完で大文字にもマッチ
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# Ctrl+rでヒストリーサーチ
-bindkey '^r' history-incremental-pattern-search-backward
-
 # コマンドを途中まで入力後、historyから絞り込み
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -84,7 +73,43 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
-# git設定
+
+#====================
+# 色
+#====================
+
+# 配色見やすく
+local USERCOLOR=%F{082}
+local HOSTCOLOR=%F{006}
+local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
+PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
+
+
+# 色を使用
+autoload -Uz colors
+colors
+
+
+#====================
+# 補完
+#====================
+
+# 補完
+autoload -Uz compinit
+compinit -C
+
+# 補完後、メニュー選択モードになり左右キーで移動が出来る
+zstyle ':completion:*:default' menu select=2
+
+# 補完で大文字にもマッチ
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+
+#====================
+# git
+#====================
+
+# プロンプトへの表示設定
 RPROMPT="%{${reset_color}%}"
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -96,14 +121,19 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-# ruby設定
+
+#====================
+# パス設定
+#====================
+
+# ruby
 export RBENV_ROOT=~/.rbenv
 export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$PATH"
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-# python設定
+# python
 export PYENV_ROOT=~/.pyenv
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 if which pyenv >/dev/null 2>&1; then
@@ -111,19 +141,18 @@ if which pyenv >/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-# tmux起動時に色が変わらないように
+
+#====================
+# tmux
+#====================
+
+# 起動時に色が変わらないように
 export "TERM=xterm-256color"
 
-# tmux自動起動
+# 自動起動
 if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" && -z $TMUX ]]; then
   if $(tmux has-session); then
     option="attach"
   fi
   tmux $option && exit
 fi
-
-
-#profile
-#if type zprof > /dev/null 2>&1; then
-#  zprof  | less
-#fi
