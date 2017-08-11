@@ -168,6 +168,9 @@ NeoBundle 'Shougo/vimproc', {
   \   "unix"      : "make -f make_unix.mak",
   \ }}
 
+" NERDTree
+NeoBundle 'scrooloose/nerdtree'
+
 "railscasts"
 NeoBundle 'jpo/vim-railscasts-theme'
 
