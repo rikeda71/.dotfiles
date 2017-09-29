@@ -168,11 +168,11 @@ NeoBundle 'Shougo/vimproc', {
   \   "unix"      : "make -f make_unix.mak",
   \ }}
 
-"railscasts"
-NeoBundle 'jpo/vim-railscasts-theme'
-
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
+
+"molokai"
+NeoBundle 'tomasr/molokai'
 
 " jedi-vim
 if has('python') && has('python3')
@@ -204,6 +204,7 @@ call neobundle#end()
 filetype plugin indent on
 
 " colorscheme
-colorscheme railscasts
+set background=dark
+colorscheme molokai
 
 NeoBundleCheck
