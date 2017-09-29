@@ -168,10 +168,13 @@ NeoBundle 'Shougo/vimproc', {
   \   "unix"      : "make -f make_unix.mak",
   \ }}
 
+" NERDTree
+NeoBundle 'scrooloose/nerdtree'
+
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
 
-"molokai"
+" molokai
 NeoBundle 'tomasr/molokai'
 
 " jedi-vim
