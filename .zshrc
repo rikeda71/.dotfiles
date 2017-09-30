@@ -150,7 +150,7 @@ fi
 export "TERM=xterm-256color"
 
 # 自動起動
-if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" && -z $TMUX ]]; then
+if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ] && [ $HOST != "candy" ]; then
   if $(tmux has-session); then
     option="attach"
   fi
