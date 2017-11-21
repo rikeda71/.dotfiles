@@ -50,6 +50,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias grep='grep --color'
 alias ps='ps --sort=start_time'
+alias note='jupyter notebook'
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
