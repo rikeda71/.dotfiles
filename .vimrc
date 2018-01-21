@@ -52,6 +52,12 @@ set showmatch
 " ステータスラインを常に表示
 set laststatus=2
 
+" コマンドをステータスラインの下に表示
+set showcmd
+
+" ステータスラインの右側にカーソルの現在位置を表示する
+set ruler
+
 " ファイル名表示
 set statusline=%F
 
@@ -72,6 +78,9 @@ set statusline+=[LOW=%l/%L]
 
 " 不可視文字を可視化
 set list listchars=tab:»-,trail:-,nbsp:%, 
+
+" 文字崩れの解消
+set ambiwidth=double
 
 
 "====================
@@ -173,6 +182,15 @@ NeoBundle 'scrooloose/nerdtree'
 
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
+
+" lightline
+NeoBundle 'itchyny/lightline.vim'
+
+" 末尾の空白文字のハイライト
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+" インデントの可視化
+NeoBundle 'Yggdroot/indentLine'
 
 " molokai
 NeoBundle 'tomasr/molokai'
