@@ -217,6 +217,11 @@ let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = "pep8"
 NeoBundle "hynek/vim-python-pep8-indent"
 
+" Syntastic
+NeoBundle 'scrooloose/syntastic.git'
+
+" quickrun
+NeoBundle 'thinca/vim-quickrun'
 
 " Required:
 call neobundle#end()
