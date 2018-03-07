@@ -51,6 +51,7 @@ alias la='ls -a'
 alias grep='grep --color'
 alias ps='ps --sort=start_time'
 alias note='jupyter notebook'
+alias tmux='tmux -u'
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
