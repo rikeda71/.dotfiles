@@ -77,7 +77,7 @@ set statusline+=[ENC=%{&fileencoding}]
 set statusline+=[LOW=%l/%L]
 
 " 不可視文字を可視化
-set list listchars=tab:»-,trail:-,nbsp:%, 
+set list listchars=tab:»-,trail:-,nbsp:%
 
 " 文字崩れの解消
 set ambiwidth=double
@@ -205,7 +205,7 @@ if has('python') && has('python3')
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
-  let g:jedi#show_call_signatures=2
+  let g:jedi#show_call_signatures=1
   let g:jedi#force_py_version=3
   set omnifunc=jedi#completions
   let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
@@ -216,9 +216,6 @@ NeoBundle "andviro/flake8-vim"
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = "pep8"
 NeoBundle "hynek/vim-python-pep8-indent"
-
-" Syntastic
-NeoBundle 'scrooloose/syntastic.git'
 
 " quickrun
 NeoBundle 'thinca/vim-quickrun'
