@@ -51,7 +51,11 @@ alias la='ls -a'
 alias grep='grep --color'
 alias ps='ps --sort=start_time'
 alias note='jupyter notebook'
-alias tmux='tmux -u'
+alias tmux='tmux -u -2'
+# vin -> nvim
+if [[ ! $(echo $(which nvim)) == "nvim not found" ]] then
+  alias vim='nvim'
+fi
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
@@ -143,6 +147,9 @@ if which pyenv >/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+# nvim
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
 
 #====================
 # tmux
