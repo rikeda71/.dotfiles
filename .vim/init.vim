@@ -1,0 +1,1 @@
+/home/s14t284/.vimrc
