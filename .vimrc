@@ -2,6 +2,14 @@
 " 基本設定
 "====================
 
+" 文字コード
+set encoding=utf-8
+scriptencoding utf-8
+
+if &compatible
+  set nocompatible
+endif
+
 " 構文ハイライトを有効
 syntax enable
 
@@ -31,13 +39,19 @@ noremap!  
 " 256色対応
 set t_Co=256
 
-" clipboardとヤンクを結びつけ
-set clipboard=unnamed,autoselect
-
 " 最後に開いた位置を保持
 autocmd BufWinLeave ?* silent mkview
 autocmd BufWinEnter ?* silent loadview
 
+" コマンドの補完
+set wildmenu
+set history=1000
+
+augroup MyAutoCmd
+  autocmd!
+  autocmd BufWrite * mkview
+  autocmd BufRead * silent! loadview
+augroup end
 
 "====================
 " 表示
@@ -140,94 +154,39 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-
 "====================
-" NeoBundle
+" dein.vim
 "====================
 
-if &compatible
-  set nocompatible
-endif
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" Required:
-set runtimepath^=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" unite.vim
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc', {
-  \ "build": {
-  \   "windows"   : "make -f make_mingw32.mak",
-  \   "cygwin"    : "make -f make_cygwin.mak",
-  \   "mac"       : "make -f make_mac.mak",
-  \   "unix"      : "make -f make_unix.mak",
-  \ }}
-
-" NERDTree
-NeoBundle 'scrooloose/nerdtree'
-
-" neocomplcache
-NeoBundle 'Shougo/neocomplcache'
-
-" lightline
-NeoBundle 'itchyny/lightline.vim'
-
-" 末尾の空白文字のハイライト
-NeoBundle 'bronson/vim-trailing-whitespace'
-
-" インデントの可視化
-NeoBundle 'Yggdroot/indentLine'
-
-" molokai
-NeoBundle 'tomasr/molokai'
-
-" jedi-vim
-if has('python') && has('python3')
-  NeoBundle 'davidhalter/jedi-vim'
-  NeoBundle 'ervandew/supertab'
-  autocmd FileType python setlocal completeopt-=preview
-  autocmd FileType python setlocal omnifunc=jedi#completions
-  let g:jedi#auto_vim_configuration = 0
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
+" dein.vim 自体のインストール
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.cim/Shougo/dein.vim' s:dein_repo_dir
   endif
-  let g:jedi#show_call_signatures=1
-  let g:jedi#force_py_version=3
-  set omnifunc=jedi#completions
-  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-" pep8
-NeoBundle "andviro/flake8-vim"
-let g:PyFlakeOnWrite = 1
-let g:PyFlakeCheckers = "pep8"
-NeoBundle "hynek/vim-python-pep8-indent"
+" setting
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-" quickrun
-NeoBundle 'thinca/vim-quickrun'
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-" Required:
-call neobundle#end()
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-" Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" 未インストールのプラグインをインストール
+if dein#check_install()
+  call dein#install()
+endif
+
 filetype plugin indent on
-
-" colorscheme
-set background=dark
-colorscheme molokai
-
-NeoBundleCheck

@@ -1,0 +1,34 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# colorscheme
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
+
+# toml syntax
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+# vimproc
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+# views
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+# neosnippet-snippets
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
