@@ -1,13 +1,14 @@
 #!/bin/bash
 
-DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim )
+DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc )
 
 for file in ${DOT_FILES[@]}
 do
   if [ ! -e "$HOME/$file" ]; then
-    ln -s $HOME/.dotfiles/$file $HOME/$file
+    ln -fs $HOME/.dotfiles/$file $HOME
   fi
 done
 
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+ln -fsdT ~/.dotfiles/.vim/ ~/.vim
+ln -fsdT ~/.vim ~/.config/nvim
+ln -fs ~/.vimrc ~/.config/nvim/init.vim
