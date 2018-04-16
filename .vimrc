@@ -39,18 +39,15 @@ noremap!  
 " 256色対応
 set t_Co=256
 
-" 最後に開いた位置を保持
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
-
 " コマンドの補完
 set wildmenu
 set history=1000
 
+" 最後に開いた位置を保持
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent! loadview
 augroup MyAutoCmd
   autocmd!
-  autocmd BufWrite * mkview
-  autocmd BufRead * silent! loadview
 augroup end
 
 "====================
@@ -131,6 +128,12 @@ set autoread
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
 
+" clipboard setting
+if has('nvim')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed,autoselect
+endif
 
 "====================
 " 検索
@@ -158,6 +161,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " dein.vim
 "====================
 
+let s:dein_enabled = 1
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 

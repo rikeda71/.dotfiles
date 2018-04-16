@@ -1,7 +1,12 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+if = 'has("python3")'
+if = 'has("nvim")'
+on_i = 1
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#auto_complete_delay = 0
+  let g:deoplete#auto_complete_start_length = 1
   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
@@ -9,12 +14,12 @@ hook_source = '''
 hook_post_source = '''
   let g:deoplete#omni_patterns = {}
 '''
-on_i = 1
-if = 'has("python3")'
-if = 'has("nvim")'
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
+on_i  = 1
 hook_source = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -23,31 +28,16 @@ hook_source = '''
     set conceallevel=2 concealcursor=niv
   endif
 '''
-on_i  = 1
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']
 
 # python setting
 # deoplete-jedi
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
+on_i = 1
 hook_add = '''
   let g:deoplete#sources#jedi#python_path=system('echo -n $(which python3)')
-  let g:python_host_prog=system('echo -n $(which python)')
-  let g:python3_host_prog=system('echo -n $(which python3)')
+  let g:python_host_prog=system('echo -n $PYENV_ROOT/versions/2.7.6/python')
+  let g:python3_host_prog=system('echo -n $PYENV_ROOT/versions/3.6.0/python3')
 '''
 
-# pep8
-[[plugins]]
-repo = 'andviro/flake8-vim'
-hook_add = '''
-  let g:PyFlakeOnWrite = 1
-  let g:PyFlakeCheckers = "pep8"
-'''
-[[plugins]]
-repo = 'hynek/vim-python-pep8-indent'
-
-[[plugins]]
-repo = 'ervandew/supertab'
-of_i = 1
