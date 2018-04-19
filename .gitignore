@@ -1,2 +1,5 @@
 .vim/view
+.vim/plugged
+.vim/autoload/*
+!.vim/autoload/init/
 .netrwhist
