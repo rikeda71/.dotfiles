@@ -9,11 +9,6 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 
-# toml syntax
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
 # views
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -27,8 +22,8 @@ repo = 'Yggdroot/indentLine'
 # neosnippet-snippets
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
-on_i = 1
 
+# code checker
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
@@ -40,7 +35,3 @@ hook_add = '''
     \ 'python': ['flake8'],
   \}
 '''
-
-[[plugins]]
-repo = 'ervandew/supertab'
-of_i = 1
