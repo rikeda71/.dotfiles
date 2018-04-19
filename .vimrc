@@ -16,9 +16,6 @@ syntax enable
 " UTF-8
 set fenc=utf-8
 
-" 行番号を表示
-set number
-
 " 現在の行を強調表示
 set cursorline
 
@@ -46,11 +43,7 @@ set history=1000
 " 最後に開いた位置を保持
 autocmd BufWinLeave ?* silent mkview
 autocmd BufWinEnter ?* silent! loadview
-augroup MyAutoCmd
-  autocmd!
-augroup end
 
-"====================
 " 表示
 "====================
 
@@ -92,7 +85,6 @@ set list listchars=tab:»-,trail:-,nbsp:%
 
 " 文字崩れの解消
 set ambiwidth=double
-
 
 "====================
 " indent, tab
@@ -157,40 +149,49 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+
 "====================
-" dein.vim
+" vim-plug
 "====================
 
-let s:dein_enabled = 1
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+call plug#begin('~/.vim/plugged')
 
-" dein.vim 自体のインストール
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+" colorscheme
+Plug 'tomasr/molokai'
+
+" view
+Plug 'itchyny/lightline.vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'Yggdroot/indentLine'
+
+" auto indent
+Plug 'cohama/lexima.vim'
+
+" python ide
+if has('python') && has('python3')
+  Plug 'davidhalter/jedi-vim'
+  Plug 'ervandew/supertab'
+  let g:jedi#auto_vim_configuration = 0
+  let g:jedi#show_call_signatures=1
+  let g:jedi#force_py_version=3
 endif
 
-" setting
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+Plug 'andviro/flake8-vim'
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8'
+Plug 'hynek/vim-python-pep8-indent'
 
-  let g:rc_dir    = expand('~/.vim/rc')
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+" other
+Plug 'Shougo/vimproc.vim'
+Plug 'scrooloose/nerdtree'
 
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+call plug#end()
 
-  call dein#end()
-  call dein#save_state()
-endif
 
-" 未インストールのプラグインをインストール
-if dein#check_install()
-  call dein#install()
-endif
+source ~/.vim/autoload/init/python.vim
 
 filetype plugin indent on
+colorscheme molokai
+
+" 行番号
+set relativenumber

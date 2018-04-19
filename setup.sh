@@ -9,6 +9,5 @@ do
   fi
 done
 
-ln -fsdT ~/.dotfiles/.vim/ ~/.vim
-ln -fsdT ~/.vim ~/.config/nvim
-ln -fs ~/.vimrc ~/.config/nvim/init.vim
+curl -flo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
