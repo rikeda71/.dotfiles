@@ -131,9 +131,6 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 # tmux
 #====================
 
-# 起動時に色が変わらないように
-export TERM=screen-256color
-
 # 自動起動
 if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ] && [ $HOST != "candy" ]; then
   if $(tmux has-session); then
