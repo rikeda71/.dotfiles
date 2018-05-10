@@ -16,7 +16,3 @@ if which pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
-
-# nvim setting
-export XDG_CONFIG_HOME=~/.config
-export XDG_CACHE_HOME=~/.cache

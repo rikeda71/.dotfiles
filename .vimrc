@@ -38,7 +38,7 @@ set t_Co=256
 
 " コマンドの補完
 set wildmenu
-set history=1000
+set history=10000
 
 " 最後に開いた位置を保持
 autocmd BufWinLeave ?* silent mkview
@@ -167,12 +167,13 @@ Plug 'Yggdroot/indentLine'
 " auto indent
 Plug 'cohama/lexima.vim'
 
-" python ide
+" python
 if has('python') && has('python3')
   Plug 'davidhalter/jedi-vim'
   Plug 'ervandew/supertab'
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#show_call_signatures=1
+  let g:jedi#popup_select_first=1
   let g:jedi#force_py_version=3
 endif
 

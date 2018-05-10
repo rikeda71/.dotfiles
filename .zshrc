@@ -52,10 +52,7 @@ alias grep='grep --color'
 alias ps='ps --sort=start_time'
 alias note='jupyter notebook'
 alias tmux='tmux -u -2'
-# vin -> nvim
-if [[ ! $(echo $(which nvim)) == "nvim not found" ]] then
-  alias vim='nvim'
-fi
+alias pe='pipenv'
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
@@ -110,6 +107,7 @@ zstyle ':completion:*:default' menu select=2
 # 補完で大文字にもマッチ
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+eval "$(pipenv --completion)"
 
 #====================
 # git
