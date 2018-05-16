@@ -10,6 +10,7 @@ if which rbenv >/dev/null 2>&1; then
 fi
 
 # python
+export PIPENV_VENV_IN_PROJECT=true
 export PYENV_ROOT=~/.pyenv
 export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 if which pyenv >/dev/null 2>&1; then
