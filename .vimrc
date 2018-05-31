@@ -44,6 +44,18 @@ set history=10000
 autocmd BufWinLeave ?* silent mkview
 autocmd BufWinEnter ?* silent! loadview
 
+" F2 で貼り付けモードに入る
+set pastetoggle=<f2>
+
+" jj escape
+function! ImInActivate()
+  call system('fcitx-remote -c')
+endfunction
+
+inoremap <silent> jj <ESC>
+inoremap <silent> っｊ <ESC>:call ImInActivate()<CR>
+
+"====================
 " 表示
 "====================
 
@@ -93,18 +105,17 @@ set ambiwidth=double
 " スマートインデント
 set smartindent
 
-" tabを空白に
-set expandtab
-
 " 行頭以外のTab文字の表示幅
-set tabstop=2
+set tabstop=4
 
 " 行頭でのTab文字の表示幅
-set shiftwidth=2
+set shiftwidth=4
 
 " 改行時に自動でインデント
 set autoindent
 
+" tabを空白に
+set expandtab
 
 "====================
 " ファイル関連
@@ -149,7 +160,6 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-
 "====================
 " vim-plug
 "====================
@@ -175,7 +185,10 @@ if has('python') && has('python3')
   let g:jedi#show_call_signatures=1
   let g:jedi#popup_select_first=1
   let g:jedi#force_py_version=3
+  let g:SuperTabContextDefaultCompletionType="context"
+  let g:SuperTabDefaultCompletionType="<c-n>"
 endif
+
 
 Plug 'andviro/flake8-vim'
 let g:PyFlakeOnWrite = 1
