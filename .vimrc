@@ -47,6 +47,8 @@ autocmd BufWinEnter ?* silent! loadview
 " F2 で貼り付けモードに入る
 set pastetoggle=<f2>
 
+set viminfo=
+
 " jj escape
 function! ImInActivate()
   call system('fcitx-remote -c')
@@ -110,6 +112,9 @@ set tabstop=4
 
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
+
+" tabでのインデント
+set softtabstop=4
 
 " 改行時に自動でインデント
 set autoindent
@@ -202,7 +207,7 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 
-source ~/.vim/autoload/init/python.vim
+source ~/.vim/autoload/init/filetype.vim
 
 filetype plugin indent on
 colorscheme molokai
