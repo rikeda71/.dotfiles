@@ -2,6 +2,10 @@
 " 基本設定
 "====================
 
+" 一旦ファイルタイプ関連を無効化
+filetype off
+filetype plugin indent off
+
 " 文字コード
 set encoding=utf-8
 scriptencoding utf-8
@@ -9,9 +13,6 @@ scriptencoding utf-8
 if &compatible
   set nocompatible
 endif
-
-" 構文ハイライトを有効
-syntax enable
 
 " UTF-8
 set fenc=utf-8
@@ -108,13 +109,13 @@ set ambiwidth=double
 set smartindent
 
 " 行頭以外のTab文字の表示幅
-set tabstop=4
+set tabstop=2
 
 " 行頭でのTab文字の表示幅
-set shiftwidth=4
+set shiftwidth=2
 
 " tabでのインデント
-set softtabstop=4
+set softtabstop=2
 
 " 改行時に自動でインデント
 set autoindent
@@ -169,6 +170,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " vim-plug
 "====================
 
+
 call plug#begin('~/.vim/plugged')
 
 " colorscheme
@@ -182,35 +184,71 @@ Plug 'Yggdroot/indentLine'
 " auto indent
 Plug 'cohama/lexima.vim'
 
-" python
+" other
+Plug 'Shougo/vimproc.vim'
+Plug 'scrooloose/nerdtree'
+
+if has('python3') && v:version >= 800
+
+  "deoplete setting
+  Plug 'Shougo/deoplete.nvim', {'for': ['cpp', 'ruby']}
+  Plug 'roxma/nvim-yarp', {'for': ['cpp', 'ruby']}
+  Plug 'roxma/vim-hug-neovim-rpc', {'for': ['cpp', 'ruby']}
+  let g:deoplete#enable_at_startup = 1
+
+  " intellisence
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+  " SuperTab like snippets behavior.
+  imap <expr><TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ neosnippet#expandable_or_jumpable() ?
+  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
+  "set snippet file dir
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+
+  " cpp settings
+  Plug 'zchee/deoplete-clang', {'for': 'cpp'}
+  let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+
+endif
+
+" python settings
 if has('python') && has('python3')
-  Plug 'davidhalter/jedi-vim'
-  Plug 'ervandew/supertab'
+  Plug 'davidhalter/jedi-vim', {'for': 'python'}
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#show_call_signatures=1
   let g:jedi#popup_select_first=1
   let g:jedi#force_py_version=3
   let g:SuperTabContextDefaultCompletionType="context"
   let g:SuperTabDefaultCompletionType="<c-n>"
-endif
-
-
-Plug 'andviro/flake8-vim'
+Plug 'andviro/flake8-vim', {'for': 'python'}
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = 'pep8'
-Plug 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 
-" other
-Plug 'Shougo/vimproc.vim'
-Plug 'scrooloose/nerdtree'
+endif
 
 call plug#end()
 
-
-source ~/.vim/autoload/init/filetype.vim
-
+filetype on
 filetype plugin indent on
-colorscheme molokai
+
+
+syntax enable
 
 " 行番号
 set relativenumber
+
+colorscheme molokai
