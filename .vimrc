@@ -234,11 +234,10 @@ if has('python') && has('python3')
   let g:jedi#force_py_version=3
   let g:SuperTabContextDefaultCompletionType="context"
   let g:SuperTabDefaultCompletionType="<c-n>"
-Plug 'andviro/flake8-vim', {'for': 'python'}
-let g:PyFlakeOnWrite = 1
-let g:PyFlakeCheckers = 'pep8'
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-
+  Plug 'andviro/flake8-vim', {'for': 'python'}
+  let g:PyFlakeOnWrite = 1
+  let g:PyFlakeCheckers = 'pep8'
+  Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 endif
 
 call plug#end()
