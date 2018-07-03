@@ -187,13 +187,14 @@ Plug 'cohama/lexima.vim'
 " other
 Plug 'Shougo/vimproc.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'ervandew/supertab'
 
 if has('python3') && v:version >= 800
 
   "deoplete setting
-  Plug 'Shougo/deoplete.nvim', {'for': ['cpp', 'ruby']}
-  Plug 'roxma/nvim-yarp', {'for': ['cpp', 'ruby']}
-  Plug 'roxma/vim-hug-neovim-rpc', {'for': ['cpp', 'ruby']}
+  Plug 'Shougo/deoplete.nvim', {'for': ['c', 'cpp', 'ruby']}
+  Plug 'roxma/nvim-yarp', {'for': ['c', 'cpp', 'ruby']}
+  Plug 'roxma/vim-hug-neovim-rpc', {'for': ['c', 'cpp', 'ruby']}
   let g:deoplete#enable_at_startup = 1
 
   " intellisence
@@ -219,7 +220,7 @@ if has('python3') && v:version >= 800
   let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
   " cpp settings
-  Plug 'zchee/deoplete-clang', {'for': 'cpp'}
+  Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
   let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
 
 endif
