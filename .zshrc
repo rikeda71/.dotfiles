@@ -53,6 +53,7 @@ alias ps='ps --sort=start_time'
 alias note='jupyter notebook'
 alias tmux='tmux -u -2'
 alias pe='pipenv'
+alias be='bundle exec'
 
 # cdの後にlsを実行
 chpwd() { ls --color=auto }
@@ -136,3 +137,5 @@ if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ] && [ $HOST != "candy"
   fi
   tmux $option && exit
 fi
+
+setopt no_beep

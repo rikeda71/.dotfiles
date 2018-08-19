@@ -48,7 +48,11 @@ autocmd BufWinEnter ?* silent! loadview
 " F2 で貼り付けモードに入る
 set pastetoggle=<f2>
 
-set viminfo=
+" viminfoを作成しない
+set viminfofile=NONE
+
+" beep off
+set belloff=all
 
 " jj escape
 function! ImInActivate()
@@ -216,12 +220,13 @@ if has('python3') && v:version >= 800
   if has('conceal')
     set conceallevel=2 concealcursor=i
   endif
-  "set snippet file dir
+  " set snippet file dir
   let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
   " cpp settings
-  Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-  let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+  " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+  " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+  " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang-6.0.so.1'
 
 endif
 
