@@ -56,18 +56,27 @@ alias pe='pipenv'
 alias be='bundle exec'
 
 # cdの後にlsを実行
-chpwd() { ls --color=auto }
+case "${OSTYPE}" in
+  darwin*)
+    # Mac
+    chpwd() { ls -GF }
+    ;;
+  linux*)
+    # Linux
+    chpwd() { ls --color }
+    ::
+esac
 
 # lsの自動カラー表示設定
 case "${OSTYPE}" in
-darwin*)
- # Mac
- alias ls="ls -GF"
- ;;
-linux*)
- # Linux
- alias ls='ls --color'
- ;;
+  darwin*)
+   # Mac
+   alias ls="ls -GF"
+   ;;
+  linux*)
+   # Linux
+   alias ls='ls --color'
+   ;;
 esac
 
 # コマンドを途中まで入力後、historyから絞り込み
