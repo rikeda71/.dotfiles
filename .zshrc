@@ -64,7 +64,7 @@ case "${OSTYPE}" in
   linux*)
     # Linux
     chpwd() { ls --color }
-    ::
+    ;;
 esac
 
 # lsの自動カラー表示設定
