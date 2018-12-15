@@ -196,9 +196,9 @@ Plug 'ervandew/supertab'
 if has('python3') && v:version >= 800
 
   "deoplete setting
-  Plug 'Shougo/deoplete.nvim', {'for': ['c', 'cpp', 'ruby']}
-  Plug 'roxma/nvim-yarp', {'for': ['c', 'cpp', 'ruby']}
-  Plug 'roxma/vim-hug-neovim-rpc', {'for': ['c', 'cpp', 'ruby']}
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
   let g:deoplete#enable_at_startup = 1
 
   " intellisence
@@ -228,11 +228,10 @@ if has('python3') && v:version >= 800
   " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
   " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang-6.0.so.1'
 
-endif
-
-" python settings
-if has('python') && has('python3')
+  " python settings
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'zchee/deoplete-jedi'
+  let g:jedi#completions_enabled = 0
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#show_call_signatures=1
   let g:jedi#popup_select_first=1
@@ -243,6 +242,7 @@ if has('python') && has('python3')
   let g:PyFlakeOnWrite = 1
   let g:PyFlakeCheckers = 'pep8'
   Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+
 endif
 
 call plug#end()

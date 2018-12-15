@@ -11,3 +11,5 @@ done
 
 curl -flo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+pip install -r requirements.txt
