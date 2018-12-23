@@ -231,8 +231,11 @@ if has('python3') && v:version >= 800
   " python settings
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
   Plug 'zchee/deoplete-jedi'
-  let g:jedi#completions_enabled = 0
+  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:jedi#auto_initialization = 0
   let g:jedi#auto_vim_configuration = 0
+  let g:jedi#smart_auto_mappings = 0
+  let g:jedi#completions_enabled = 0
   let g:jedi#show_call_signatures=1
   let g:jedi#popup_select_first=1
   let g:jedi#force_py_version=3
