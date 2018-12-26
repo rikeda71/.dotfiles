@@ -92,7 +92,14 @@ bindkey "^b" history-beginning-search-forward-end
 #====================
 
 # 配色見やすく
-local USERCOLOR=%F{082}
+case "${OSTYPE}" in
+  darwin*)
+    local USERCOLOR=%F{175}
+  ;;
+  linux*)
+    local USERCOLOR=%F{082}
+  ;;
+esac
 local HOSTCOLOR=%F{006}
 local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
 PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
