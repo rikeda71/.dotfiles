@@ -81,24 +81,6 @@ set showcmd
 " ステータスラインの右側にカーソルの現在位置を表示する
 set ruler
 
-" ファイル名表示
-set statusline=%F
-
-" 変更チェック表示
-set statusline+=%m
-
-" 読み込み専用かどうか表示
-set statusline+=%r
-
-" これ以降は右寄せ表示
-set statusline+=%=
-
-" file encoding
-set statusline+=[ENC=%{&fileencoding}]
-
-" 現在行数/全行数
-set statusline+=[LOW=%l/%L]
-
 " 不可視文字を可視化
 set list listchars=tab:»-,trail:-,nbsp:%
 
@@ -179,9 +161,13 @@ call plug#begin('~/.vim/plugged')
 
 " colorscheme
 Plug 'tomasr/molokai'
+Plug 'micha/vim-colors-solarized'
 
 " view
 Plug 'itchyny/lightline.vim'
+let g:lightline = {
+  \ 'colorscheme': 'powerline',
+  \ }
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
 
@@ -195,58 +181,71 @@ Plug 'ervandew/supertab'
 
 if has('python3') && v:version >= 800
 
-  "deoplete setting
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  let g:deoplete#enable_at_startup = 1
-
-  " intellisence
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-  " SuperTab like snippets behavior.
-  imap <expr><TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ neosnippet#expandable_or_jumpable() ?
-  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-  " For conceal markers.
-  if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
-  " set snippet file dir
-  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
-
-  " cpp settings
-  " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-  " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
-  " let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang-6.0.so.1'
-
   " python settings
-  Plug 'davidhalter/jedi-vim', {'for': 'python'}
-  Plug 'zchee/deoplete-jedi'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-  let g:jedi#auto_initialization = 0
-  let g:jedi#auto_vim_configuration = 0
-  let g:jedi#smart_auto_mappings = 0
-  let g:jedi#completions_enabled = 0
-  let g:jedi#show_call_signatures=1
-  let g:jedi#popup_select_first=1
-  let g:jedi#force_py_version=3
-  let g:SuperTabContextDefaultCompletionType="context"
-  let g:SuperTabDefaultCompletionType="<c-n>"
-  Plug 'andviro/flake8-vim', {'for': 'python'}
-  let g:PyFlakeOnWrite = 1
-  let g:PyFlakeCheckers = 'pep8'
-  Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  let g:lsp_diagnostics_enabled = 0
+  augroup MyLsp
+  autocmd!
+  " pip install python-language-server
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> ['pyls'] },
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {
+        \   'pycodestyle': {'enabled': v:false},
+        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
+        \})
+    autocmd FileType python call s:configure_lsp()
+  endif
+  augroup END
+  function! s:configure_lsp() abort
+    setlocal omnifunc=lsp#complete
+    nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
+    nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+    nnoremap <buffer> gD :<C-u>LspReferences<CR>
+    nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+    nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+    nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+    vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+    nnoremap <buffer> K :<C-u>LspHover<CR>
+    nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+    nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+  endfunction
+  let g:lsp_diagnostics_enabled = 0
 endif
+
+" tex
+Plug 'lervag/vimtex', {'for': 'tex'}
+let g:vimtex_compiler_latexmk_engines={'_': '-pdfdvi'}
+let g:vimtex_compiler_latexmk = {
+    \ 'background': 1,
+    \ 'build_dir': '',
+    \ 'continuous': 1,
+    \ 'options': [
+    \    '-pdfdvi',
+    \    '-verbose',
+    \    '-file-line-error',
+    \    '-synctex=1',
+    \    '-interaction=nonstopmode',
+    \],
+    \}
+
+let g:vimtex_view_general_viewer
+      \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+" コンパイル結果のエラーメッセージにerrorがなくwarningだけである場合、メッセージを表示しない
+let g:vimtex_quickfix_open_on_warning = 0
+let g:SuperTabContextDefaultCompletionType="context"
+let g:SuperTabDefaultCompletionType="<c-n>"
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'scrooloose/syntastic'
+let g:syntastic_python_checkers = ["flake8"]
+Plug 'chase/vim-ansible-yaml'
+Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
 
@@ -255,8 +254,12 @@ filetype plugin indent on
 
 
 syntax enable
+set background=dark
 
 " 行番号
 set relativenumber
 
 colorscheme molokai
+"colorscheme solarized
+let g:solarized_termcolors=256
+
