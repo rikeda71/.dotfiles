@@ -51,9 +51,8 @@ alias la='ls -a'
 alias grep='grep --color'
 alias ps='ps --sort=start_time'
 alias note='jupyter notebook'
+alias note='jupyter lab'
 alias tmux='tmux -u -2'
-alias pe='pipenv'
-alias be='bundle exec'
 
 # cdの後にlsを実行
 case "${OSTYPE}" in
@@ -123,8 +122,6 @@ zstyle ':completion:*:default' menu select=2
 
 # 補完で大文字にもマッチ
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-eval "$(pipenv --completion)"
 
 #====================
 # git
