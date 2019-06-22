@@ -19,5 +19,10 @@ if which pyenv >/dev/null 2>&1; then
 fi
 
 # java
-# export JAVA_HOME=`/usr/libexec/java_home -v 11.0.1`
-export JAVA_HOME="/Library/Java/Home"
+case ${OSTYPE} in
+  darwin*)
+    export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+    ;;
+  linux*)
+    ;;
+esac

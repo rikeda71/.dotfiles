@@ -49,7 +49,14 @@ alias diff='diff -U1'
 alias ll='ls -l'
 alias la='ls -a'
 alias grep='grep --color'
-alias ps='ps --sort=start_time'
+case "${OSTYPE}" in
+  darwin*)
+    alias  ps='ps auxwm'
+    ;;
+  linux*)
+    alias ps='ps --sort=start_time -rss'
+    ;;
+esac
 alias note='jupyter notebook'
 alias note='jupyter lab'
 alias tmux='tmux -u -2'
