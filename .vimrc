@@ -253,13 +253,14 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \  'python': ['black', 'isort'],
   \ }
-let g:ale_python_auto_pipenv=1
-let g:ale_python_flake8_auto_pipenv=1
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_flake8_auto_pipenv = 1
 let g:ale_python_flake8_options = '-m flake8 --max-line-length=88'
-let g:ale_python_black_auto_pipenv=1
+let g:ale_python_black_auto_pipenv = 1
 let g:ale_python_black_use_global = 0
-let g:ale_python_black_options = '-m black --skip-string-normalization'
-let g:ale_python_mypy_auto_pipenv=1
+"let g:ale_python_black_options = '-m black --skip-string-normalization'
+let g:ale_python_mypy_auto_pipenv = 1
+let g:ale_python_mypy_options='--warn-unused-ignores'
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
