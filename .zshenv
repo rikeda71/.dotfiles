@@ -18,11 +18,10 @@ if which pyenv >/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-# java
-case ${OSTYPE} in
-  darwin*)
-    export JAVA_HOME=$(/usr/libexec/java_home -v 11)
-    ;;
-  linux*)
-    ;;
-esac
+# go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# libpq
+export LDFLAGS="-L/usr/local/opt/libpq/lib"
+export CPPFLAGS="-I/usr/local/opt/libpq/include"

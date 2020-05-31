@@ -9,5 +9,7 @@ do
   fi
 done
 
+mkdir -p ~/.jenv/versions
+
 curl -flo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
