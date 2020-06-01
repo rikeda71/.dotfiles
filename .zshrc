@@ -1,15 +1,16 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 #====================
 # 基本設定
 #====================
-
-# 日本語を使用
-export LANG=ja_JP.UTF-8
 
 # vimキーバインド
 bindkey -v
 
 # backspace,deleteキーを使えるように
-stty erase ^H
 bindkey "^[[3~" delete-char
 
 # コマンドミスを修正
@@ -24,19 +25,14 @@ select-word-style default
 zstyle ':zle:*' word-chars "_-./;@"
 zstyle ':zle:*' word-style unspecified
 
-# Ctrl+rでヒストリーサーチ
-bindkey '^r' history-incremental-pattern-search-backward
-
 # 他のターミナルとヒストリーを共有
 setopt share_history
 
 # ヒストリーに重複を表示しない
 setopt histignorealldups
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-
-
+HISTSIZE=100000
+SAVEHIST=100000
 #====================
 # コマンド
 #====================
@@ -58,8 +54,12 @@ case "${OSTYPE}" in
     ;;
 esac
 alias note='jupyter notebook'
-alias note='jupyter lab'
+alias lab='jupyter lab'
 alias tmux='tmux -u -2'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='gig push'
 
 # cdの後にlsを実行
 case "${OSTYPE}" in
@@ -92,88 +92,37 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
+# anyenv settings
+if [[ "${+commands[anyenv]}" == 1 ]]
+then
+  eval "$(anyenv init - zsh)"
+fi
 
-#====================
-# 色
-#====================
-
-# 配色見やすく
-case "${OSTYPE}" in
-  darwin*)
-    local USERCOLOR=%F{175}
-  ;;
-  linux*)
-    local USERCOLOR=%F{082}
-  ;;
-esac
-local HOSTCOLOR=%F{006}
-local DEFAULT=$'\n'%F{250}'%(!.#.$) '%f
-PROMPT=$USERCOLOR'%n@%m '$HOSTCOLOR'[%~]'$DEFAULT
-
-
-# 色を使用
-autoload -Uz colors
-colors
-
-
-#====================
-# 補完
-#====================
-
-# 補完
-autoload -Uz compinit
-compinit -C
-
-# 補完後、メニュー選択モードになり左右キーで移動が出来る
-zstyle ':completion:*:default' menu select=2
-
-# 補完で大文字にもマッチ
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-#====================
-# git
-#====================
-
-# プロンプトへの表示設定
-RPROMPT="%{${reset_color}%}"
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{220}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{009}+"
-zstyle ':vcs_info:*' formats "%F{002}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
-#====================
-# tmux
-#====================
-
-# 自動起動
-if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ] && [ $HOST != "candy" ]; then
+# tmux settings
+if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ]; then
   if $(tmux has-session); then
     option="attach"
   fi
   tmux $option && exit
 fi
 
-setopt no_beep
+# peco setting
+function peco-history-selection() {
+    BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$LBUFFER")
+    CURSOR=${#BUFFER}
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
+# use cool-peco
+FPATH="$FPATH:$HOME/.dotfiles/cool-peco"
+autoload -Uz cool-peco
+cool-peco
+bindkey '^r' cool-peco-history
 
-# java
-export JENV_ROOT="$HOME/.jenv"
-if [ -d "${JENV_ROOT}" ]; then
-  export PATH="$JENV_ROOT/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/rikeda/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# === cool-peco init ===
+FPATH="$FPATH:/Users/rikeda/.dotfiles/cool-peco"
+autoload -Uz cool-peco
+cool-peco
+# ======================

@@ -1,0 +1,62 @@
+zstyle ':prezto:*:*' color 'yes'
+
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'git' \
+  'completion' \
+  'syntax-highlighting' \
+  'autosuggestions' \
+  'prompt'
+
+# Set the key mapping style to 'emacs' or 'vi'.
+zstyle ':prezto:module:editor' key-bindings 'vi'
+
+zstyle ':prezto:module:prompt' theme 'sorin'
+
+# Python
+#
+
+# Auto switch the Python virtualenv on directory change.
+# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+
+# Automatically initialize virtualenvwrapper if pre-requisites are met.
+# zstyle ':prezto:module:python:virtualenv' initialize 'yes'
+
+
+#
+# Terminal
+#
+
+# Auto set the tab and window titles.
+# zstyle ':prezto:module:terminal' auto-title 'yes'
+
+# Set the window title format.
+# zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+
+# Set the tab title format.
+# zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+
+# Set the terminal multiplexer title format.
+# zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
+
+#
+# Tmux
+#
+
+# Auto start a session when Zsh is launched in a local terminal.
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+
+# Auto start a session when Zsh is launched in a SSH connection.
+zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+
+# Integrate with iTerm2.
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+
+# Set the default session name:
+zstyle ':prezto:module:tmux:session' name 'YOUR DEFAULT SESSION NAME'
