@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # add submodule
 git submodule update --init --recursive
@@ -23,5 +23,8 @@ mkdir -p ~/.jenv/versions
 curl -flo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+chsh -s $(which zsh)
+
 source ~/.dotfiles/.zshrc
 source ~/.dotfiles/.zpreztorc
+

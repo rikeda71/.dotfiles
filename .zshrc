@@ -114,15 +114,3 @@ function peco-history-selection() {
 }
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
-
-# use cool-peco
-FPATH="$FPATH:$HOME/.dotfiles/cool-peco"
-autoload -Uz cool-peco
-cool-peco
-bindkey '^r' cool-peco-history
-
-# === cool-peco init ===
-FPATH="$FPATH:/Users/rikeda/.dotfiles/cool-peco"
-autoload -Uz cool-peco
-cool-peco
-# ======================

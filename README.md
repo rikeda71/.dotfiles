@@ -15,5 +15,5 @@ vim, zsh (etc... の設定ファイル
 ```shell
 $ git clone https://github.com/s14t284/.dotfiles.git ~/.dotfiles
 $ cd .dotfiles
-$ bash setup.sh
+$ zsh setup.sh
 ```
