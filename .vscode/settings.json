@@ -1,0 +1,101 @@
+{
+  "editor.renderWhitespace": "all",
+  "files.trimTrailingWhitespace": true,
+  "window.zoomLevel": 0,
+  "python.formatting.provider": "autopep8",
+  "python.venvPath": ".venv",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length",
+    "88"
+  ],
+  "python.linting.enabled": true,
+  "python.sortImports.args": [
+    "-rc",
+    "--atomic"
+  ],
+  "C_Cpp.updateChannel": "Insiders",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "workbench.iconTheme": "material-icon-theme",
+  "autoDocstring.docstringFormat": "google",
+  "explorer.confirmDelete": false,
+  "editor.suggestSelection": "first",
+  "workbench.colorTheme": "Monokai",
+  "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Google, ColumnLimit: 0}",
+  "[c]": {
+    "editor.wordBasedSuggestions": false
+  },
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.cStandard": "c11",
+  "C_Cpp.default.intelliSenseMode": "clang-x86",
+  "eslint.enable": true,
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+  },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+  },
+  "go.useLanguageServer": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.variables": {
+    "lang": "ja"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "python.jediEnabled": false,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

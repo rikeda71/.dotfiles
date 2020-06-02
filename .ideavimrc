@@ -1,0 +1,20 @@
+inoremap jj <Esc>
+
+set clipboard+=unnamed
+
+" active ideajoin
+set ideajoin
+
+" active vim-surround
+set surround
+
+" jump
+nnoremap / :<C-u>action Find<CR>
+nnoremap <C-o> :<C-u>action Back<CR>
+nnoremap <C-i> :<C-u>action Forward<CR>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-S-i> <C-i>
+nnoremap [m :<C-u>action MethodUp<CR>
+nnoremap ]m :<C-u>action MethodDown<CR>
+nnoremap [c :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :<C-u>action VcsShowNextChangeMarker<CR>
