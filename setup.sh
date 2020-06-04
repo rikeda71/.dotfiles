@@ -15,6 +15,7 @@ DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .zpreztorc .zprezto
 for file in ${DOT_FILES[@]}
 do
   if [ ! -e "$HOME/$file" ]; then
+    rm -rf $HOME/$file
     ln -fs $HOME/.dotfiles/$file $HOME
   fi
 done
