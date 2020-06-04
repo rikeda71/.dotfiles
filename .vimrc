@@ -14,9 +14,6 @@ if &compatible
   set nocompatible
 endif
 
-" UTF-8
-set fenc=utf-8
-
 " 現在の行を強調表示
 set cursorline
 
