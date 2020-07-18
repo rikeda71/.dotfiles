@@ -7,9 +7,6 @@ fi
 # 基本設定
 #====================
 
-# vimキーバインド
-bindkey -v
-
 # backspace,deleteキーを使えるように
 bindkey "^[[3~" delete-char
 
@@ -95,7 +92,7 @@ bindkey "^b" history-beginning-search-forward-end
 # anyenv settings
 if [[ "${+commands[anyenv]}" == 1 ]]
 then
-  eval "$(anyenv init - zsh)"
+  eval "$(anyenv init - --no-rehash zsh)"
 fi
 
 # tmux settings

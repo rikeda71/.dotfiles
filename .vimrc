@@ -181,6 +181,7 @@ if has('python3') && v:version >= 800
   " python settings
   Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/async.vim'
+  Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   let g:lsp_preview_autoclose = 1
