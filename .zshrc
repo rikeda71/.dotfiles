@@ -111,3 +111,6 @@ function peco-history-selection() {
 }
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
+export PATH="/usr/local/opt/krb5/bin:$PATH"
+export PATH="/usr/local/opt/krb5/sbin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"

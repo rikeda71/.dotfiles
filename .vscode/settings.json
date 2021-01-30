@@ -29,7 +29,6 @@
   "C_Cpp.default.cppStandard": "c++17",
   "C_Cpp.default.cStandard": "c11",
   "C_Cpp.default.intelliSenseMode": "clang-x86",
-  "eslint.enable": true,
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
