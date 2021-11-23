@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# use Starship
+echo "install 'Starship' prompt"
+echo "press 'y' key!"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
 # symbolic links
 DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc .gitconfig )
 

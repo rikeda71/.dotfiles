@@ -90,18 +90,6 @@ alias ga='git a'
 alias gc='git c'
 alias gp='git p'
 
-# cdの後にlsを実行
-case "${OSTYPE}" in
-  darwin*)
-    # Mac
-    chpwd() { ls -GF }
-    ;;
-  linux*)
-    # Linux
-    chpwd() { ls --color }
-    ;;
-esac
-
 # lsの自動カラー表示設定
 case "${OSTYPE}" in
   darwin*)
@@ -111,6 +99,18 @@ case "${OSTYPE}" in
   linux*)
     # Linux
     alias ls='ls --color'
+    ;;
+esac
+
+# cdの後にlsを実行
+case "${OSTYPE}" in
+  darwin*)
+    # Mac
+    chpwd() { ls -GF }
+    ;;
+  linux*)
+    # Linux
+    chpwd() { ls --color }
     ;;
 esac
 
@@ -146,3 +146,7 @@ bindkey '^R' peco-history-selection
 export PATH="/usr/local/opt/krb5/bin:$PATH"
 export PATH="/usr/local/opt/krb5/sbin:$PATH"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+# starship
+eval "$(starship init zsh)"
