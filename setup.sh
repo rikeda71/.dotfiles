@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# use homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# install from Brewfile
+brew bundle
+
 # use Starship
 echo "install 'Starship' prompt"
 echo "press 'y' key!"
@@ -31,8 +36,6 @@ case "${OSTYPE}" in
     fi
     ;;
 esac
-
-mkdir -p ~/.jenv/versions
 
 curl -flo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
