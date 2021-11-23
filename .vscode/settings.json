@@ -2,6 +2,7 @@
   "editor.renderWhitespace": "all",
   "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, Hack Nerd Font",
   "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
   "window.zoomLevel": 0,
   "python.formatting.provider": "autopep8",
   "python.venvPath": ".venv",

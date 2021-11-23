@@ -153,7 +153,6 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " vim-plug
 "====================
 
-
 call plug#begin('~/.vim/plugged')
 
 " colorscheme
@@ -161,7 +160,6 @@ Plug 'tomasr/molokai'
 Plug 'micha/vim-colors-solarized'
 
 " view
-" Plug 'itchyny/lightline.vim'
 let g:lightline = {
   \ 'colorscheme': 'powerline',
   \ }
@@ -176,97 +174,6 @@ Plug 'Shougo/vimproc.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 
-if has('python3') && v:version >= 800
-
-  " python settings
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/async.vim'
-  Plug 'mattn/vim-lsp-settings'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  let g:lsp_preview_autoclose = 1
-  let g:lsp_diagnostics_echo_cursor = 1
-  let g:lsp_highlight_references_enabled = 1
-  let g:asyncomplete_auto_popup = 1
-  augroup MyLsp
-  autocmd!
-  " pip install python-language-server
-  if executable('pyls')
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': { server_info -> ['pyls'] },
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {
-        \   'pycodestyle': {'enabled': v:false},
-        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
-        \})
-    autocmd FileType python call s:configure_lsp()
-  endif
-  augroup END
-  function! s:configure_lsp() abort
-    setlocal omnifunc=lsp#complete
-    nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
-    nnoremap <buffer> gd :<C-u>LspDefinition<CR>
-    nnoremap <buffer> gD :<C-u>LspReferences<CR>
-    nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
-    nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
-    nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
-    vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
-    nnoremap <buffer> K :<C-u>LspHover<CR>
-    nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
-    nnoremap <buffer> <F2> :<C-u>LspRename<CR>
-  endfunction
-  let g:lsp_diagnostics_enabled = 0
-  let g:lsp_diagnostics_echo_cursor = 0
-  highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
-endif
-
-" tex
-Plug 'lervag/vimtex', {'for': 'tex'}
-let g:vimtex_compiler_latexmk_engines={'_': '-pdfdvi'}
-let g:vimtex_compiler_latexmk = {
-    \ 'background': 1,
-    \ 'build_dir': '',
-    \ 'continuous': 1,
-    \ 'options': [
-    \    '-pdfdvi',
-    \    '-verbose',
-    \    '-file-line-error',
-    \    '-synctex=1',
-    \    '-interaction=nonstopmode',
-    \],
-    \}
-
-let g:vimtex_view_general_viewer
-      \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
-" コンパイル結果のエラーメッセージにerrorがなくwarningだけである場合、メッセージを表示しない
-let g:vimtex_quickfix_open_on_warning = 0
-let g:SuperTabContextDefaultCompletionType="context"
-let g:SuperTabDefaultCompletionType="<c-n>"
-Plug 'dense-analysis/ale'
-let g:ale_linters = {
-  \ 'python': ['flake8', 'mypy'],
-  \ }
-let g:ale_fixers = {
-  \  'python': ['black', 'isort'],
-  \ }
-let g:ale_python_auto_pipenv = 1
-let g:ale_python_flake8_auto_pipenv = 1
-let g:ale_python_flake8_options = '-m flake8 --max-line-length=88'
-let g:ale_python_black_auto_pipenv = 1
-let g:ale_python_black_use_global = 0
-"let g:ale_python_black_options = '-m black --skip-string-normalization'
-let g:ale_python_mypy_auto_pipenv = 1
-let g:ale_python_mypy_options='--warn-unused-ignores'
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_completion_enabled = 1
-let g:ale_history_enabled = 1
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'chase/vim-ansible-yaml'
 Plug 'mechatroner/rainbow_csv'
 Plug 'vim-airline/vim-airline'
@@ -275,7 +182,6 @@ call plug#end()
 
 filetype on
 filetype plugin indent on
-
 
 syntax enable
 set background=dark
@@ -286,4 +192,3 @@ set relativenumber
 colorscheme molokai
 "colorscheme solarized
 let g:solarized_termcolors=256
-

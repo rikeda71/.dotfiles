@@ -36,7 +36,7 @@ brew "protobuf"
 brew "rbenv"
 brew "rpm"
 brew "stern"
-brew "terraform"
+brew "tfenv"
 brew "tmux"
 brew "tree"
 brew "vim", link: false
