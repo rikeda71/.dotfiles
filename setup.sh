@@ -1,16 +1,7 @@
 #!/bin/zsh
 
-# add submodule
-git submodule update --init --recursive
-
-# prezto
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
 # symbolic links
-DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .zpreztorc .zprezto .ideavimrc )
+DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc .gitconfig )
 
 for file in ${DOT_FILES[@]}
 do
@@ -40,5 +31,3 @@ curl -flo ~/.vim/autoload/plug.vim --create-dirs \
 chsh -s $(which zsh)
 
 source ~/.dotfiles/.zshrc
-source ~/.dotfiles/.zpreztorc
-
