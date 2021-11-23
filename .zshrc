@@ -63,6 +63,12 @@ setopt histignorealldups
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+
+# 補完
+autoload -U compinit && compinit -u
+## 小文字でも大文字ディレクトリ、ファイルを補完できるようにする
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 #====================
 # コマンド
 #====================
@@ -150,3 +156,4 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE=1
 # starship
 eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.dotfiles/starship.toml

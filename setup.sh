@@ -16,6 +16,10 @@ do
   fi
 done
 
+# symbolic link of starship config
+mkdir -p ~/.config
+ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
+
 # vscode settings
 case "${OSTYPE}" in
   darwin*)
