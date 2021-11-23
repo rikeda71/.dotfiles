@@ -30,8 +30,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 # user settings
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions                  # コマンド補完
+zinit light zsh-users/zsh-autosuggestions              # コマンド入力履歴の補完
+zinit light zdharma-continuum/fast-syntax-highlighting # zsh のシンタックスハイライト
 
 ### End of Zinit's installer chunk
 
@@ -82,13 +83,12 @@ case "${OSTYPE}" in
     alias ps='ps --sort=start_time -rss'
     ;;
 esac
-alias note='jupyter notebook'
-alias lab='jupyter lab'
 alias tmux='tmux -u -2'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gp='gig push'
+
+alias gs='git s'
+alias ga='git a'
+alias gc='git c'
+alias gp='git p'
 
 # cdの後にlsを実行
 case "${OSTYPE}" in

@@ -1,0 +1,12 @@
+[alias]
+    a = add
+    br = branch
+    c = commit
+    d = diff --word-diff
+    log = log --oneline --graph
+    p = push -u origin HEAD
+    s = status
+    sw = switch
+[user]
+	email = rikeda71@gmail.com
+	name = s14t284

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # symbolic links
-DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc )
+DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc .gitconfig )
 
 for file in ${DOT_FILES[@]}
 do
