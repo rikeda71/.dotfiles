@@ -63,6 +63,12 @@ setopt histignorealldups
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+
+# 補完
+autoload -U compinit && compinit -u
+## 小文字でも大文字ディレクトリ、ファイルを補完できるようにする
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 #====================
 # コマンド
 #====================
@@ -83,24 +89,11 @@ case "${OSTYPE}" in
     alias ps='ps --sort=start_time -rss'
     ;;
 esac
-alias tmux='tmux -u -2'
 
 alias gs='git s'
 alias ga='git a'
 alias gc='git c'
 alias gp='git p'
-
-# cdの後にlsを実行
-case "${OSTYPE}" in
-  darwin*)
-    # Mac
-    chpwd() { ls -GF }
-    ;;
-  linux*)
-    # Linux
-    chpwd() { ls --color }
-    ;;
-esac
 
 # lsの自動カラー表示設定
 case "${OSTYPE}" in
@@ -111,6 +104,18 @@ case "${OSTYPE}" in
   linux*)
     # Linux
     alias ls='ls --color'
+    ;;
+esac
+
+# cdの後にlsを実行
+case "${OSTYPE}" in
+  darwin*)
+    # Mac
+    chpwd() { ls -GF }
+    ;;
+  linux*)
+    # Linux
+    chpwd() { ls --color }
     ;;
 esac
 
@@ -127,14 +132,6 @@ then
   eval "$(anyenv init - --no-rehash zsh)"
 fi
 
-# tmux settings
-if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && [ -z $TMUX ]; then
-  if $(tmux has-session); then
-    option="attach"
-  fi
-  tmux $option && exit
-fi
-
 # peco setting
 function peco-history-selection() {
     BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$LBUFFER")
@@ -146,3 +143,10 @@ bindkey '^R' peco-history-selection
 export PATH="/usr/local/opt/krb5/bin:$PATH"
 export PATH="/usr/local/opt/krb5/sbin:$PATH"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
+# homebrew を勝手に更新しない
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# starship
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.dotfiles/starship.toml
