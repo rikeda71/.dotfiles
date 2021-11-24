@@ -96,25 +96,16 @@ alias gc='git c'
 alias gp='git p'
 
 # lsの自動カラー表示設定
-case "${OSTYPE}" in
-  darwin*)
-    # Mac
-    alias ls="ls -GF"
-    ;;
-  linux*)
-    # Linux
-    alias ls='ls --color'
-    ;;
-esac
-
 # cdの後にlsを実行
 case "${OSTYPE}" in
   darwin*)
     # Mac
+    alias ls="ls -GF"
     chpwd() { ls -GF }
     ;;
   linux*)
     # Linux
+    alias ls='ls --color'
     chpwd() { ls --color }
     ;;
 esac
@@ -125,12 +116,6 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
-
-# anyenv settings
-if [[ "${+commands[anyenv]}" == 1 ]]
-then
-  eval "$(anyenv init - --no-rehash zsh)"
-fi
 
 # peco setting
 function peco-history-selection() {
@@ -150,3 +135,15 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # starship
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.dotfiles/starship.toml
+
+case "${OSTYPE}" in
+  darwin*)
+    # Mac
+    ## asdf を使う
+    . /usr/local/opt/asdf/libexec/asdf.sh
+    source `brew --prefix asdf`/asdf.sh
+
+    # coreutils のエイリアス
+    alias date='gdate'
+    ;;
+esac
