@@ -1,3 +1,28 @@
+[user]
+  name = Ryuya Ikeda
+  email = rikeda71@gmail.com
+[core]
+  editor = vim -c \"set fenc=utf-8\"
+  precomposeunicode = true
+  quotepath = false
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[push]
+  default = simple
+[url "github:"]
+  InsteadOf = https://github.com
+  InsteadOf = git@github.com
+[pull]
+  rebase = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[init]
+  defaultBranch = master
 [alias]
 	a = add
 	br = branch
@@ -7,6 +32,3 @@
 	p = push -u origin HEAD
 	s = status
 	sw = switch
-[user]
-	email = rikeda71@gmail.com
-	name = s14t284
