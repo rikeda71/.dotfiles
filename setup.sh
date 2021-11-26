@@ -40,6 +40,13 @@ esac
 curl -flo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-chsh -s $(which zsh)
+
+case "${OSTYPE}" in
+  linux*)
+    chsh -s $(which zsh)
+    ;;
+esac
+
+echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
 
 source ~/.dotfiles/.zshrc
