@@ -8,7 +8,7 @@
   "python.venvPath": ".venv",
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--max-line-length", "88"],
+  "python.linting.flake8Args": ["--max-line-length", "120"],
   "python.linting.enabled": true,
   "python.sortImports.args": ["-rc", "--atomic"],
   "vim.insertModeKeyBindings": [
@@ -74,6 +74,9 @@
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
     "editor.formatOnType": true
+  },
+  "[terraform]": {
+    "editor.tabSize": 2
   },
   "go.useLanguageServer": true,
   "emmet.triggerExpansionOnTab": true,

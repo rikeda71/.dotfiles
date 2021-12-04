@@ -1,6 +1,8 @@
 [user]
   name = Ryuya Ikeda
   email = rikeda71@gmail.com
+[includeIf "gitdir:~/Desktop/ghe/"]
+  path = ~/.gitconfig.ghe
 [core]
   editor = vim -c \"set fenc=utf-8\"
   precomposeunicode = true
