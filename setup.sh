@@ -5,11 +5,6 @@
 # install from Brewfile
 brew bundle
 
-# use Starship
-echo "install 'Starship' prompt"
-echo "press 'y' key!"
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-
 # symbolic links
 DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc .gitconfig )
 
@@ -22,6 +17,7 @@ do
 done
 
 # symbolic link of starship config
+curl -sS https://starship.rs/install.sh | sh
 mkdir -p ~/.config
 ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
 
@@ -47,6 +43,7 @@ case "${OSTYPE}" in
     ;;
 esac
 
+mkdir -p ~/.gnupg
 echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
 
 source ~/.dotfiles/.zshrc
