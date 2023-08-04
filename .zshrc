@@ -117,33 +117,80 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
-# peco setting
-function peco-history-selection() {
-    BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$LBUFFER")
-    CURSOR=${#BUFFER}
-    zle reset-prompt
+# fzf setting
+function fzf_incremental_search_history() {
+  selected=`history -E 1 | fzf | cut -b 25-`
+  BUFFER=`[ ${#selected} -gt 0 ] && echo $selected || echo $BUFFER`
+  CURSOR=${#BUFFER}
+  zle redisplay
 }
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-export PATH="/usr/local/opt/krb5/bin:$PATH"
-export PATH="/usr/local/opt/krb5/sbin:$PATH"
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+zle -N fzf_incremental_search_history
+bindkey "^R" fzf_incremental_search_history
 
-# homebrew を勝手に更新しない
-export HOMEBREW_NO_AUTO_UPDATE=1
+fzf-ghq() {
+  local repo=$(ghq list | fzf --preview "ghq list --full-path --exact {} | xargs exa -h --long --icons --classify --git --no-permissions --no-user --no-filesize --git-ignore --sort modified --reverse --tree --level 2")
+  if [ -n "$repo" ]; then
+    repo=$(ghq list --full-path --exact $repo)
+    BUFFER="cd ${repo}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N fzf-ghq
+bindkey '^G' fzf-ghq
+export FZF_DEFAULT_OPTS='--layout=reverse --border --exit-0'
 
-# starship
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.dotfiles/starship.toml
+
+typeset -U path PATH
+path=(
+  /opt/homebrew/bin(N-/)
+  /opt/homebrew/sbin(N-/)
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /Library/Apple/usr/bin
+)
 
 case "${OSTYPE}" in
   darwin*)
     # Mac
     ## asdf を使う
-    . /usr/local/opt/asdf/libexec/asdf.sh
-    source `brew --prefix asdf`/asdf.sh
+    # source $(brew --prefix asdf)/bin/asdf.sh
+    . $(brew --prefix asdf)/libexec/asdf.sh
 
     # coreutils のエイリアス
     alias date='gdate'
     ;;
 esac
+
+# exports
+export PATH="/usr/local/opt/krb5/bin:$PATH"
+export PATH="/usr/local/opt/krb5/sbin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+## homebrew を勝手に更新しない
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+# starship
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.dotfiles/starship.toml
+# flutterfire
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+# adb
+export PATH="$PATH":"/Users/rikeda/Library/Android/sdk/platform-tools"
+# google-cloud-sdk
+source '/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/opt/homebrew/share/zsh/site-functions/_google-cloud-sdk'
+# kubectl
+source <(kubectl completion zsh)
+alias k=kubectl
+complete -F __start_kubectl k
+# poetry
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+# terraform
+export PATH="$PATH":"$HOME/.tfenv/bin"
+export PATH="$PATH":"$HOME/.tgenv/bin"
+
+. ~/.asdf/plugins/java/set-java-home.zsh
