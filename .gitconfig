@@ -34,3 +34,5 @@
 	p = push -u origin HEAD
 	s = status
 	sw = switch
+[ghq]
+  root = /Users/rikeda/ghq

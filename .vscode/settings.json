@@ -1,6 +1,6 @@
 {
   "editor.renderWhitespace": "all",
-  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, Hack Nerd Font",
+  "editor.fontFamily": "Hack Nerd Font",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "window.zoomLevel": 0,
@@ -11,6 +11,7 @@
   "python.linting.flake8Args": ["--max-line-length", "120"],
   "python.linting.enabled": true,
   "python.sortImports.args": ["-rc", "--atomic"],
+  "dart.lineLength": 100,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "j"],
@@ -22,7 +23,6 @@
   "autoDocstring.docstringFormat": "google",
   "explorer.confirmDelete": false,
   "editor.suggestSelection": "first",
-  "workbench.colorTheme": "Monokai",
   "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Google, ColumnLimit: 0}",
   "[c]": {
     "editor.wordBasedSuggestions": false
@@ -31,22 +31,19 @@
   "C_Cpp.default.cStandard": "c11",
   "C_Cpp.default.intelliSenseMode": "clang-x86",
   "[javascript]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false
   },
   "[javascriptreact]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
-    "editor.formatOnType": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.formatOnType": false
   },
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
-    "editor.formatOnType": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.formatOnType": false
   },
   "typescript.preferences.quoteStyle": "single",
   "[typescriptreact]": {
@@ -62,11 +59,17 @@
   "[markdown]": {
     "editor.tabSize": 2,
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "editor.formatOnPaste": false,
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.formatOnType": false,
-    "editor.letterSpacing": -1
+    "editor.letterSpacing": -1,
+    "files.trimTrailingWhitespace": false,
+    "editor.defaultFormatter": "unifiedjs.vscode-remark"
   },
   "[python]": {
     "editor.tabSize": 4,
@@ -87,9 +90,7 @@
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+  "editor.codeActionsOnSave": ["source.organizeImpors", "source.fixAll.eslint"],
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWxcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltcIjAwMDAwMFwiXSxcImZvcm1hdFdpZHRoXCI6MjQwLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODI3LFwiaGVpZ2h0XCI6MTE2OX0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
@@ -97,5 +98,50 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true
+  "workbench.colorTheme": "GitHub Dark",
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "redhat.telemetry.enabled": true,
+  "go.toolsManagement.autoUpdate": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "githubPullRequests.pullBranch": "never"
 }
