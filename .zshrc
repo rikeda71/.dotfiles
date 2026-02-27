@@ -157,9 +157,6 @@ path=(
 case "${OSTYPE}" in
   darwin*)
     # Mac
-    ## asdf を使う
-    # source $(brew --prefix asdf)/bin/asdf.sh
-    . $(brew --prefix asdf)/libexec/asdf.sh
 
     # coreutils のエイリアス
     alias date='gdate'
@@ -175,22 +172,54 @@ export HOMEBREW_NO_INSTALL_UPGRADE=1
 # starship
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.dotfiles/starship.toml
-# flutterfire
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-# adb
-export PATH="$PATH":"/Users/rikeda/Library/Android/sdk/platform-tools"
-# google-cloud-sdk
-source '/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/opt/homebrew/share/zsh/site-functions/_google-cloud-sdk'
-# kubectl
-source <(kubectl completion zsh)
-alias k=kubectl
-complete -F __start_kubectl k
 # poetry
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 # terraform
 export PATH="$PATH":"$HOME/.tfenv/bin"
 export PATH="$PATH":"$HOME/.tgenv/bin"
+# golangci-lint
+export PATH="$PATH":"$HOME/go/bin"
 
 . ~/.asdf/plugins/java/set-java-home.zsh
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# difft
+# https://github.com/Wilfred/difftastic
+export GIT_EXTERNAL_DIFF=difft
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for a currently running instance of the agent
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+   ssh-add $HOME/.ssh/id_ed25519 2> /dev/null
+fi
+eval "$(~/.local/bin/mise activate zsh)"
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+eval $(/opt/homebrew/bin/brew shellenv)
+
+. "/Users/rikeda/.deno/env"
+# Added by Antigravity
+export PATH="/Users/rikeda/.antigravity/antigravity/bin:$PATH"
+
+# git wt
+eval "$(git wt --init zsh)"
+wt() {
+  git wt "$(git wt | tail -n +2 | fzf | awk '{print $(NF-1)}')"
+}
+
+# terminal color
+# コマンド実行直前に呼ばれる
+precmd() {
+    printf "\e]11;#1E1E2E\a"
+}
+

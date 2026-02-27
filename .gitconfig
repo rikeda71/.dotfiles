@@ -13,9 +13,6 @@
   branch = auto
 [push]
   default = simple
-[url "github:"]
-  InsteadOf = https://github.com
-  InsteadOf = git@github.com
 [pull]
   rebase = true
 [filter "lfs"]
@@ -36,3 +33,7 @@
 	sw = switch
 [ghq]
   root = /Users/rikeda/ghq
+[diff]
+	algorithm = histogram
+[wt]
+	basedir = .worktrees
