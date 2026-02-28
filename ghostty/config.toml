@@ -1,0 +1,3 @@
+[keybinds]
+"cmd+t" = "split:vertical; split:horizontal; focus:left; split:horizontal"
+
