@@ -1,8 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "permissions": {
-    "defaultMode": "bypassPermissions"
-  },
   "cleanupPeriodDays": 876000,
   "env": {
     "DISABLE_MICROCOMPACT": "1",
@@ -17,7 +14,6 @@
   },
   "includeCoAuthoredBy": false,
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Read",
       "Write",
@@ -27,7 +23,6 @@
       "Task",
       "WebFetch",
       "WebSearch",
-
       "Bash(git status)",
       "Bash(git status *)",
       "Bash(git diff *)",
@@ -54,7 +49,6 @@
       "Bash(git grep *)",
       "Bash(git shortlog *)",
       "Bash(git describe *)",
-
       "Bash(gh pr *)",
       "Bash(gh issue *)",
       "Bash(gh repo *)",
@@ -65,7 +59,6 @@
       "Bash(gh api *)",
       "Bash(gh gist *)",
       "Bash(gh search *)",
-
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(node *)",
@@ -78,7 +71,6 @@
       "Bash(python3 *)",
       "Bash(cargo *)",
       "Bash(brew *)",
-
       "Bash(make *)",
       "Bash(tsc *)",
       "Bash(eslint *)",
@@ -88,7 +80,6 @@
       "Bash(aws *)",
       "Bash(mysql *)",
       "Bash(ghq *)",
-
       "Bash(ls *)",
       "Bash(ls)",
       "Bash(cat *)",
@@ -129,21 +120,9 @@
       "Bash(open *)",
       "Bash(pbcopy)",
       "Bash(pbpaste)"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.dotfiles/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "frontend-design@claude-code-plugins": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "showTurnDuration": true,
-  "language": "ja",
   "hooks": {
     "PreToolUse": [
       {
@@ -167,5 +146,19 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.dotfiles/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-code-plugins": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "language": "ja",
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "showTurnDuration": true,
+  "model": "opus"
 }
