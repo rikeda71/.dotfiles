@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 876000,
+  "env": {
+    "DISABLE_MICROCOMPACT": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "60000",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_AUTO_CONNECT_IDE": "0",
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
+    "CLAUDE_CODE_IDE_SKIP_VALID_CHECK": "1"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Task",
+      "WebFetch",
+      "WebSearch",
+
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git stash *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git pull *)",
+      "Bash(git fetch *)",
+      "Bash(git remote *)",
+      "Bash(git tag *)",
+      "Bash(git reset *)",
+      "Bash(git restore *)",
+      "Bash(git cherry-pick *)",
+      "Bash(git worktree *)",
+      "Bash(git config *)",
+      "Bash(git blame *)",
+      "Bash(git grep *)",
+      "Bash(git shortlog *)",
+      "Bash(git describe *)",
+
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(gh repo *)",
+      "Bash(gh release *)",
+      "Bash(gh run *)",
+      "Bash(gh workflow *)",
+      "Bash(gh auth status)",
+      "Bash(gh api *)",
+      "Bash(gh gist *)",
+      "Bash(gh search *)",
+
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(yarn *)",
+      "Bash(pnpm *)",
+      "Bash(go *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(cargo *)",
+      "Bash(brew *)",
+
+      "Bash(make *)",
+      "Bash(tsc *)",
+      "Bash(eslint *)",
+      "Bash(prettier *)",
+      "Bash(golangci-lint *)",
+      "Bash(protoc *)",
+      "Bash(aws *)",
+      "Bash(mysql *)",
+      "Bash(ghq *)",
+
+      "Bash(ls *)",
+      "Bash(ls)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(env)",
+      "Bash(printenv *)",
+      "Bash(mkdir *)",
+      "Bash(rm *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Bash(find *)",
+      "Bash(wc *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(cut *)",
+      "Bash(tr *)",
+      "Bash(jq *)",
+      "Bash(tree *)",
+      "Bash(fzf *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(date)",
+      "Bash(date *)",
+      "Bash(uname *)",
+      "Bash(df *)",
+      "Bash(du *)",
+      "Bash(ps *)",
+      "Bash(open *)",
+      "Bash(pbcopy)",
+      "Bash(pbpaste)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.dotfiles/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-code-plugins": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "showTurnDuration": true,
+  "language": "ja",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/validate-bash.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/notification.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

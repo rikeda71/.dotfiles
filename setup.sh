@@ -43,4 +43,17 @@ esac
 mkdir -p ~/.gnupg
 echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
 
+# claude code settings
+mkdir -p "$HOME/.claude/mcp-servers"
+ln -fs "$HOME/.dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
+ln -fs "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+ln -fs "$HOME/.dotfiles/.claude/mcp-servers/package.json" "$HOME/.claude/mcp-servers/package.json"
+ln -sfn "$HOME/.dotfiles/.claude/commands" "$HOME/.claude/commands"
+ln -sfn "$HOME/.dotfiles/.claude/agents" "$HOME/.claude/agents"
+chmod +x "$HOME/.dotfiles/.claude/hooks/"*.sh
+chmod +x "$HOME/.dotfiles/.claude/statusline.sh"
+(cd "$HOME/.claude/mcp-servers" && npm install)
+zsh "$HOME/.dotfiles/.claude/install-mcp.sh"
+zsh "$HOME/.dotfiles/.claude/install-skills.sh"
+
 source ~/.dotfiles/.zshrc

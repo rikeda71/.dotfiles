@@ -4,3 +4,4 @@
 .vim/autoload/*
 !.vim/autoload/init/
 .netrwhist
+.claude/mcp-servers/node_modules
