@@ -122,6 +122,14 @@
       "Bash(pbcopy)",
       "Bash(pbpaste)"
     ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Read(**/.env*)",
+      "Edit(**/.env*)",
+      "Write(**/.env*)",
+      "Read(**/*.key)",
+      "Read(**/*credential*)"
+    ],
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
