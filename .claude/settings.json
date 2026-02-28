@@ -122,6 +122,14 @@
       "Bash(pbcopy)",
       "Bash(pbpaste)"
     ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Read(**/.env*)",
+      "Edit(**/.env*)",
+      "Write(**/.env*)",
+      "Read(**/*.key)",
+      "Read(**/*credential*)"
+    ],
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
@@ -132,7 +140,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing"
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing",
+            "async": true
           }
         ]
       }
@@ -143,7 +152,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset",
+            "async": true
           }
         ]
       }
