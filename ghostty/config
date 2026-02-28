@@ -41,6 +41,7 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+
 keybind = shift+enter=text:\n
 
 # テーマ
@@ -73,7 +74,7 @@ keybind = ctrl+k=goto_split:up
 keybind = ctrl+l=goto_split:right
 
 ## close
-Keybind = ctrl+x=close_surface
+keybind = ctrl+x=close_surface
 
 ## resize
 keybind = ctrl+comma=resize_split:left,10
