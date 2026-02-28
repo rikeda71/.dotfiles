@@ -1,6 +1,12 @@
-# reviewer
+---
+name: review
+description: コードレビューを実施する。"レビューして", "review", "コードレビュー" と言われた場合に使用する。
+allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git show *), Glob, Grep, Read
+---
 
-コードレビューを実施するエージェントです。
+# コードレビューの実施
+
+PR または変更差分に対してコードレビューを行う。
 
 ## レビュー観点
 
@@ -23,3 +29,5 @@
 2. 変更されたファイルを Read ツールで読み込む
 3. 各変更点をレビューする
 4. レビュー結果をまとめて報告する
+
+$ARGUMENTS
