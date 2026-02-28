@@ -103,10 +103,4 @@ out="󰚩 ${model:-claude}"
 [ -n "$branch" ] && out="${out}  ${branch}"
 out="${out} | ${c}${tokens_display} (${pct}%)${r}"
 
-# Prepend ccusage cost if available (non-blocking)
-if command -v ccusage &>/dev/null; then
-  cost_line=$(ccusage statusline --cost-source local 2>/dev/null | head -1 || true)
-  [ -n "$cost_line" ] && out="${cost_line} | ${out}"
-fi
-
 printf "%b\n" "$out"
