@@ -42,3 +42,6 @@ brew "protobuf"
 brew "ffmpeg"
 brew "imagemagick"
 brew "plantuml"
+
+# Casks
+cask "ghostty"
