@@ -21,14 +21,6 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
 # user settings
 zinit light zsh-users/zsh-completions                  # コマンド補完
 zinit light zsh-users/zsh-autosuggestions              # コマンド入力履歴の補完
@@ -164,9 +156,6 @@ case "${OSTYPE}" in
 esac
 
 # exports
-export PATH="/usr/local/opt/krb5/bin:$PATH"
-export PATH="/usr/local/opt/krb5/sbin:$PATH"
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 ## homebrew を勝手に更新しない
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 # starship
@@ -174,14 +163,12 @@ eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.dotfiles/starship.toml
 # poetry
 fpath+=~/.zfunc
-autoload -Uz compinit && compinit
 # terraform
 export PATH="$PATH":"$HOME/.tfenv/bin"
 export PATH="$PATH":"$HOME/.tgenv/bin"
 # golangci-lint
 export PATH="$PATH":"$HOME/go/bin"
 
-. ~/.asdf/plugins/java/set-java-home.zsh
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
@@ -205,21 +192,13 @@ eval "$(~/.local/bin/mise activate zsh)"
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 
-eval $(/opt/homebrew/bin/brew shellenv)
-
 . "/Users/rikeda/.deno/env"
 # Added by Antigravity
-export PATH="/Users/rikeda/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # git wt
 eval "$(git wt --init zsh)"
 wt() {
   git wt "$(git wt | tail -n +2 | fzf | awk '{print $(NF-1)}')"
-}
-
-# terminal color
-# コマンド実行直前に呼ばれる
-precmd() {
-    printf "\e]11;#1E1E2E\a"
 }
 
