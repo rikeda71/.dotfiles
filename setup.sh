@@ -22,8 +22,8 @@ mkdir -p ~/.config
 ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
 
 # ghostty settings
-mkdir -p ~/.config/ghostty
-ln -fs "$HOME/.dotfiles/ghostty/config.toml" "$HOME/.config/ghostty/config.toml"
+mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"
+ln -fs "$HOME/.dotfiles/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 
 # vscode settings
 case "${OSTYPE}" in
