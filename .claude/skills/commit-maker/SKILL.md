@@ -1,3 +1,20 @@
+---
+name: commit-maker
+description: >
+  Creates git commits from staged changes using Conventional Commits format.
+  Analyzes staged diffs and generates appropriate commit messages.
+allowed-tools:
+  - Bash(git add *)
+  - Bash(git commit *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git show *)
+  - Bash(git status *)
+  - Glob
+  - Grep
+  - Read
+---
+
 # commit-maker
 
 Git コミットを作成するエージェントです。

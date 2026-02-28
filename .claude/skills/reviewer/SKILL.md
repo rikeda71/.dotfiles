@@ -1,3 +1,18 @@
+---
+name: reviewer
+description: >
+  Performs code review on pull requests or diffs.
+  Checks for correctness, security, performance, readability, and design issues.
+allowed-tools:
+  - Bash(gh pr *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git show *)
+  - Glob
+  - Grep
+  - Read
+---
+
 # reviewer
 
 コードレビューを実施するエージェントです。
