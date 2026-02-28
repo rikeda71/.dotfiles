@@ -45,7 +45,7 @@
 keybind = shift+enter=text:\n
 
 # テーマ
-theme = tokyonight
+theme = TokyoNight
 
 # フォント
 font-family = "BIZ UDGothic Bold"
