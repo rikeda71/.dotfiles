@@ -48,5 +48,7 @@ mkdir -p "$HOME/.claude/mcp-servers"
 ln -fs "$HOME/.dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
 ln -fs "$HOME/.dotfiles/.claude/mcp-servers/package.json" "$HOME/.claude/mcp-servers/package.json"
 (cd "$HOME/.claude/mcp-servers" && npm install)
+zsh "$HOME/.dotfiles/.claude/install-mcp.sh"
+zsh "$HOME/.dotfiles/.claude/install-skills.sh"
 
 source ~/.dotfiles/.zshrc
