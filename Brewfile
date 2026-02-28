@@ -1,12 +1,4 @@
-# Taps
-tap "fujiwara/tap"
-tap "go-task/tap"
 tap "homebrew/bundle"
-tap "kayac/tap"
-tap "leoafarias/fvm"
-tap "steipete/tap"
-tap "stripe/stripe-cli"
-tap "yakitrak/yakitrak"
 
 # CLI tools
 brew "coreutils"
@@ -44,23 +36,9 @@ brew "mysql-client"
 brew "postgresql@16"
 
 # Build tools
-brew "cmake"
-brew "gcc"
 brew "protobuf"
 
 # Media
 brew "ffmpeg"
 brew "imagemagick"
 brew "plantuml"
-
-# Tapped formulae
-brew "fujiwara/tap/apprun-cli"
-brew "go-task/tap/go-task"
-brew "kayac/tap/ecspresso"
-brew "leoafarias/fvm/fvm"
-brew "steipete/tap/gogcli"
-brew "stripe/stripe-cli/stripe"
-brew "yakitrak/yakitrak/obsidian-cli"
-
-# Casks
-cask "ghostty"
