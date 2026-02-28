@@ -43,4 +43,10 @@ esac
 mkdir -p ~/.gnupg
 echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
 
+# claude code settings
+mkdir -p "$HOME/.claude/mcp-servers"
+ln -fs "$HOME/.dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
+ln -fs "$HOME/.dotfiles/.claude/mcp-servers/package.json" "$HOME/.claude/mcp-servers/package.json"
+(cd "$HOME/.claude/mcp-servers" && npm install)
+
 source ~/.dotfiles/.zshrc
