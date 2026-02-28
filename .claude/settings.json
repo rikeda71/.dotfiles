@@ -140,7 +140,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing"
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing",
+            "async": true
           }
         ]
       }
@@ -151,7 +152,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset",
+            "async": true
           }
         ]
       }
