@@ -1,9 +1,12 @@
 #!/bin/bash
 # Change Ghostty background via OSC 11
 # Usage: ghostty-bg.sh [processing|reset]
+# - processing: set background to white (called by PreToolUse)
+# - reset: restore original theme background (called by Stop/Notification)
 
 mode="${1:-reset}"
 cache="/tmp/claude-ghostty-colors"
+tty_file="/tmp/claude-ghostty-tty"
 
 # Build color cache on first call
 if [ ! -f "$cache" ]; then
@@ -20,21 +23,23 @@ if [ ! -f "$cache" ]; then
   bg=$(grep '^background' "$theme_file" | head -1 | sed 's/^background[[:space:]]*=[[:space:]]*//' | tr -d '[:space:]')
   [ -z "$bg" ] && exit 0
 
-  processing_bg="#ffffff"
-
-  printf '%s\n%s\n' "$bg" "$processing_bg" > "$cache"
+  printf '%s\n%s\n' "$bg" "#ffffff" > "$cache"
 fi
 
-# Read cached colors
 bg=$(sed -n '1p' "$cache")
-processing_bg=$(sed -n '2p' "$cache")
 [ -z "$bg" ] && exit 0
 
-[ "$mode" = "processing" ] && color="$processing_bg" || color="$bg"
-
-# Send OSC 11 (with tmux passthrough if needed)
-if [ -n "$TMUX" ]; then
-  printf '\ePtmux;\e\e]11;%s\e\e\\\e\\' "$color" > /dev/tty 2>/dev/null || true
+if [ "$mode" = "processing" ]; then
+  # Save TTY device path via ps (tty command fails when stdin is piped)
+  tty_name=$(ps -o tty= -p $$ 2>/dev/null | tr -d ' ')
+  [ -n "$tty_name" ] && [ "$tty_name" != "??" ] && echo "/dev/$tty_name" > "$tty_file"
+  printf '\e]11;%s\e\\' "$(sed -n '2p' "$cache")" > /dev/tty 2>/dev/null || true
 else
-  printf '\e]11;%s\e\\' "$color" > /dev/tty 2>/dev/null || true
+  # Immediate reset: try /dev/tty first, fall back to saved TTY path
+  if printf '\e]11;%s\e\\' "$bg" > /dev/tty 2>/dev/null; then
+    :
+  else
+    tty_path=$(cat "$tty_file" 2>/dev/null)
+    [ -n "$tty_path" ] && [ -e "$tty_path" ] && printf '\e]11;%s\e\\' "$bg" > "$tty_path" 2>/dev/null
+  fi
 fi

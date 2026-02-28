@@ -124,6 +124,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -141,6 +142,17 @@
           {
             "type": "command",
             "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"
           }
         ]
       }
@@ -173,6 +185,5 @@
   "language": "ja",
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "showTurnDuration": true,
-  "model": "opus"
+  "showTurnDuration": true
 }

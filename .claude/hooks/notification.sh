@@ -1,6 +1,6 @@
 #!/bin/bash
 # Notification hook: macOS native notification
-# Triggered when Claude is waiting for user input or needs permission
+# Ghostty background reset is handled by settings.json hooks, not here
 
 input=$(cat)
 
@@ -13,7 +13,5 @@ except:
     print('Claude Code が入力を待っています')
 " 2>/dev/null || echo "Claude Code が入力を待っています")
 
-# Escape double quotes for osascript
 safe_message=$(echo "$message" | sed 's/"/\\"/g')
-
 osascript -e "display notification \"$safe_message\" with title \"Claude Code\" sound name \"Glass\"" 2>/dev/null || true

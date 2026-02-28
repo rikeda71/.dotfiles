@@ -1,28 +1,22 @@
 #!/bin/bash
 # PreToolUse hook: Bash tool validation
-# Blocks: git add -A / --all / .  and  git push
+# Blocks: git add -A / --all / .  and  git push (without --dry-run)
 # Exit 2 to block the tool call
 
 input=$(cat)
-
-tool_name=$(echo "$input" | python3 -c "
-import json, sys
-try:
-    print(json.load(sys.stdin).get('tool_name', ''))
-except:
-    print('')
-" 2>/dev/null)
-
-[ "$tool_name" != "Bash" ] && exit 0
 
 command=$(echo "$input" | python3 -c "
 import json, sys
 try:
     d = json.load(sys.stdin)
+    if d.get('tool_name') != 'Bash':
+        sys.exit(0)
     print(d.get('tool_input', {}).get('command', ''))
 except:
-    print('')
-" 2>/dev/null)
+    pass
+" 2>/dev/null) || exit 0
+
+[ -z "$command" ] && exit 0
 
 # Block: git add -A / --all / .
 if echo "$command" | grep -qE 'git\s+add\s+((-A|--all)|\.)(\s|$)'; then
