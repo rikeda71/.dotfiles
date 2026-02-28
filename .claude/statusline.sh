@@ -32,13 +32,30 @@ if [ -n "$cwd" ] && [ -d "$cwd" ]; then
   branch=$(git -C "$cwd" branch --show-current 2>/dev/null || true)
 fi
 
-# Check if Claude is actively processing (transcript file size still growing)
+# Check if Claude is actively processing
+# Track transcript size growth with cooldown: if size grew in this poll or
+# the last growth was within 5 seconds, consider it processing.
 is_processing=0
 if [ -n "$transcript_path" ] && [ -f "$transcript_path" ]; then
-  size1=$(stat -f %z "$transcript_path" 2>/dev/null || echo "0")
-  sleep 0.3
-  size2=$(stat -f %z "$transcript_path" 2>/dev/null || echo "0")
-  if [ "$size2" -gt "$size1" ]; then
+  state_file="/tmp/claude-statusline-$(basename "$transcript_path" .jsonl).state"
+  current_size=$(stat -f %z "$transcript_path" 2>/dev/null || echo "0")
+  now=$(date +%s)
+
+  prev_size=0
+  last_growth_time=0
+  if [ -f "$state_file" ]; then
+    prev_size=$(sed -n '1p' "$state_file" 2>/dev/null || echo "0")
+    last_growth_time=$(sed -n '2p' "$state_file" 2>/dev/null || echo "0")
+  fi
+
+  if [ "$current_size" -gt "$prev_size" ] && [ "$prev_size" -gt 0 ]; then
+    last_growth_time=$now
+  fi
+
+  printf '%s\n%s\n' "$current_size" "$last_growth_time" > "$state_file"
+
+  elapsed=$(( now - last_growth_time ))
+  if [ "$last_growth_time" -gt 0 ] && [ "$elapsed" -lt 5 ]; then
     is_processing=1
   fi
 fi
