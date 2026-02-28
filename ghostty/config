@@ -67,11 +67,15 @@ macos-titlebar-style = tabs
 macos-option-as-alt = true
 
 # Pane
-## splitter
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:down
-keybind = ctrl+k=goto_split:up
-keybind = ctrl+l=goto_split:right
+## split
+keybind = ctrl+j=new_split:down
+keybind = ctrl+l=new_split:right
+
+## navigate
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
 
 ## close
 keybind = ctrl+x=close_surface
@@ -83,5 +87,5 @@ keybind = ctrl+semicolon=resize_split:down,10
 keybind = ctrl+apostrophe=resize_split:up,10
 
 # scroll
-keybind = ctrl+shift+k=scroll_page_lines:-3
-keybind = ctrl+shift+j=scroll_page_lines:3
+keybind = ctrl+shift+u=scroll_page_lines:-3
+keybind = ctrl+shift+d=scroll_page_lines:3
