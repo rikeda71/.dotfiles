@@ -6,7 +6,7 @@
 brew bundle
 
 # symbolic links
-DOT_FILES=( .zshrc .zshenv .tmux.conf .vimrc .vim .latexmkrc .ideavimrc .gitconfig )
+DOT_FILES=( .zshrc .tmux.conf .vimrc .vim .ideavimrc .gitconfig )
 
 for file in ${DOT_FILES[@]}
 do
@@ -26,9 +26,6 @@ case "${OSTYPE}" in
   darwin*)
     if [ -e ~/Library/Application\ Support/Code/User ]; then
       ln -fs $HOME/.dotfiles/.vscode/settings.json ~/Library/Application\ Support/Code/User/
-      for extension in `cat ~/.dotfiles/.vscode/extensions`; do
-        code --install-extension $extension
-      done
     fi
     ;;
 esac

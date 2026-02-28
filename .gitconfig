@@ -32,7 +32,7 @@
 	s = status
 	sw = switch
 [ghq]
-  root = /Users/rikeda/ghq
+  root = ~/ghq
 [diff]
 	algorithm = histogram
 [wt]

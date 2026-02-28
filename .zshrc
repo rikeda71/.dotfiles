@@ -26,8 +26,6 @@ zinit light zsh-users/zsh-completions                  # コマンド補完
 zinit light zsh-users/zsh-autosuggestions              # コマンド入力履歴の補完
 zinit light zdharma-continuum/fast-syntax-highlighting # zsh のシンタックスハイライト
 
-### End of Zinit's installer chunk
-
 #====================
 # 基本設定
 #====================
