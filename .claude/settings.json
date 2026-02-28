@@ -128,15 +128,6 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/validate-bash.sh"
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
@@ -150,21 +141,6 @@
       {
         "matcher": "",
         "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/notification.sh"
-          },
           {
             "type": "command",
             "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"

@@ -2,11 +2,12 @@
 # Change Ghostty background via OSC 11
 # Usage: ghostty-bg.sh [processing|reset]
 # - processing: set background to white (called by PreToolUse)
-# - reset: restore original theme background (called by Stop/Notification)
+# - reset: restore original theme background (called by Stop)
 
 mode="${1:-reset}"
 cache="/tmp/claude-ghostty-colors"
-tty_file="/tmp/claude-ghostty-tty"
+# Use PPID to isolate TTY path per Claude Code instance (each pane has its own)
+tty_file="/tmp/claude-ghostty-tty.${PPID}"
 
 # Build color cache on first call
 if [ ! -f "$cache" ]; then

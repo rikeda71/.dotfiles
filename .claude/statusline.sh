@@ -63,8 +63,8 @@ tc="\033[32m"
 [ "$pct_int" -ge 90 ] && tc="\033[31m"
 
 out="\033[36m󰚩 ${model}${reset}"
-[ -n "$dir_name" ] && out="${out} | \033[33m ${dir_name}${reset}"
-[ -n "$branch" ]   && out="${out} | \033[35m ${branch}${reset}"
+[ -n "$dir_name" ] && out="${out} | \033[33m ${dir_name}${reset}"
+[ -n "$branch" ]   && out="${out} | \033[35m ${branch}${reset}"
 out="${out} | ${tc}󰆃 ${tokens_display} (${pct}%)${reset}"
 
 printf "%b\n" "$out"
