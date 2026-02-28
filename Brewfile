@@ -61,3 +61,6 @@ brew "leoafarias/fvm/fvm"
 brew "steipete/tap/gogcli"
 brew "stripe/stripe-cli/stripe"
 brew "yakitrak/yakitrak/obsidian-cli"
+
+# Casks
+cask "ghostty"
