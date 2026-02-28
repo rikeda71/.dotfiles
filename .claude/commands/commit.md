@@ -3,6 +3,6 @@ allowed-tools: Bash(git add *), Bash(git commit *), Bash(git diff *), Bash(git l
 description: ステージされた変更からコミットを作成する
 ---
 
-commit-maker エージェントを使ってコミットを作成してください。
+commit-maker スキルを使ってコミットを作成してください。
 
 $ARGUMENTS
