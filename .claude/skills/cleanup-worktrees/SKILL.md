@@ -1,7 +1,17 @@
 ---
 name: cleanup-worktrees
-description: 不要な .claude/worktrees 配下のディレクトリを削除する。"worktree を整理", "worktree を削除", "cleanup worktrees" と言われた場合に使用する。
-allowed-tools: Bash(git worktree *), Bash(git branch *), Bash(git push origin --delete *), Bash(gh pr *), Bash(rm -rf *), Bash(ls *), Glob, Read
+description: >
+  不要な .claude/worktrees 配下のディレクトリを削除する。
+  "worktree を整理", "worktree を削除", "cleanup worktrees" と言われた場合に使用する。
+allowed-tools:
+  - Bash(git worktree *)
+  - Bash(git branch *)
+  - Bash(git push origin --delete *)
+  - Bash(gh pr *)
+  - Bash(rm -rf *)
+  - Bash(ls *)
+  - Glob
+  - Read
 ---
 
 # 不要な worktree の削除

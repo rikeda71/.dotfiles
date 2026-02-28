@@ -1,7 +1,18 @@
 ---
 name: pr
-description: 現在のブランチの PR を作成する。"PR 作成", "プルリクエスト", "create PR" と言われた場合に使用する。
-allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git branch *), Bash(git push *), Bash(git status *), Glob, Grep, Read
+description: >
+  現在のブランチの PR を作成する。
+  "PR 作成", "プルリクエスト", "create PR" と言われた場合に使用する。
+allowed-tools:
+  - Bash(gh pr *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git branch *)
+  - Bash(git push *)
+  - Bash(git status *)
+  - Glob
+  - Grep
+  - Read
 ---
 
 # プルリクエストの作成

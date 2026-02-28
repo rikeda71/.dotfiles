@@ -1,7 +1,18 @@
 ---
 name: commit
-description: ステージされた変更からコミットを作成する。"コミットして", "commit", "変更をコミット" と言われた場合に使用する。
-allowed-tools: Bash(git add *), Bash(git commit *), Bash(git diff *), Bash(git log *), Bash(git show *), Bash(git status *), Glob, Grep, Read
+description: >
+  ステージされた変更からコミットを作成する。
+  "コミットして", "commit", "変更をコミット" と言われた場合に使用する。
+allowed-tools:
+  - Bash(git add *)
+  - Bash(git commit *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git show *)
+  - Bash(git status *)
+  - Glob
+  - Grep
+  - Read
 ---
 
 # Git コミットの作成

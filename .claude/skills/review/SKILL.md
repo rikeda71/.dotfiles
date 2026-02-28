@@ -1,7 +1,16 @@
 ---
 name: review
-description: コードレビューを実施する。"レビューして", "review", "コードレビュー" と言われた場合に使用する。
-allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git show *), Glob, Grep, Read
+description: >
+  コードレビューを実施する。
+  "レビューして", "review", "コードレビュー" と言われた場合に使用する。
+allowed-tools:
+  - Bash(gh pr *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git show *)
+  - Glob
+  - Grep
+  - Read
 ---
 
 # コードレビューの実施
