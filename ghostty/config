@@ -68,8 +68,8 @@ macos-option-as-alt = true
 
 # Pane
 ## split
-keybind = ctrl+j=new_split:down
-keybind = ctrl+l=new_split:right
+keybind = cmd+j=new_split:down
+keybind = cmd+l=new_split:right
 
 ## navigate
 keybind = ctrl+shift+h=goto_split:left
