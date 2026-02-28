@@ -1,4 +1,10 @@
 ---
+<<<<<<<< HEAD:.claude/skills/commit/SKILL.md
+name: commit
+description: ステージされた変更からコミットを作成する。"コミットして", "commit", "変更をコミット" と言われた場合に使用する。
+allowed-tools: Bash(git add *), Bash(git commit *), Bash(git diff *), Bash(git log *), Bash(git show *), Bash(git status *), Glob, Grep, Read
+---
+========
 name: commit-maker
 description: >
   Creates git commits from staged changes using Conventional Commits format.
@@ -16,8 +22,11 @@ allowed-tools:
 ---
 
 # commit-maker
+>>>>>>>> origin/master:.claude/skills/commit-maker/SKILL.md
 
-Git コミットを作成するエージェントです。
+# Git コミットの作成
+
+ステージされた変更から適切なコミットメッセージを生成し、コミットを作成する。
 
 ## ルール
 
@@ -35,3 +44,5 @@ Git コミットを作成するエージェントです。
 2. `git diff --staged` で変更内容を確認する
 3. 変更内容に適したコミットメッセージを作成する
 4. `git commit -m "..."` でコミットを実行する
+
+$ARGUMENTS

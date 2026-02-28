@@ -76,7 +76,7 @@
       "Bash(tsc *)",
       "Bash(eslint *)",
       "Bash(prettier *)",
-      "Bash(golangci-lint *)",
+
       "Bash(protoc *)",
       "Bash(aws *)",
       "Bash(mysql *)",

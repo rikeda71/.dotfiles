@@ -1,4 +1,10 @@
 ---
+<<<<<<<< HEAD:.claude/skills/pr/SKILL.md
+name: pr
+description: 現在のブランチの PR を作成する。"PR 作成", "プルリクエスト", "create PR" と言われた場合に使用する。
+allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git branch *), Bash(git push *), Bash(git status *), Glob, Grep, Read
+---
+========
 name: pr-maker
 description: >
   Creates GitHub pull requests from the current branch.
@@ -16,8 +22,11 @@ allowed-tools:
 ---
 
 # pr-maker
+>>>>>>>> origin/master:.claude/skills/pr-maker/SKILL.md
 
-プルリクエストを作成するエージェントです。
+# プルリクエストの作成
+
+現在のブランチの変更内容からプルリクエストを作成する。
 
 ## ルール
 
@@ -46,3 +55,5 @@ allowed-tools:
 ## テスト
 - [ ] <確認事項>
 ```
+
+$ARGUMENTS
