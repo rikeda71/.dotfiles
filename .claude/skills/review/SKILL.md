@@ -1,14 +1,8 @@
 ---
-<<<<<<<< HEAD:.claude/skills/review/SKILL.md
 name: review
-description: コードレビューを実施する。"レビューして", "review", "コードレビュー" と言われた場合に使用する。
-allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git show *), Glob, Grep, Read
----
-========
-name: reviewer
 description: >
-  Performs code review on pull requests or diffs.
-  Checks for correctness, security, performance, readability, and design issues.
+  コードレビューを実施する。
+  "レビューして", "review", "コードレビュー" と言われた場合に使用する。
 allowed-tools:
   - Bash(gh pr *)
   - Bash(git diff *)
@@ -18,9 +12,6 @@ allowed-tools:
   - Grep
   - Read
 ---
-
-# reviewer
->>>>>>>> origin/master:.claude/skills/reviewer/SKILL.md
 
 # コードレビューの実施
 

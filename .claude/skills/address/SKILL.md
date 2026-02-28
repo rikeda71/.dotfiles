@@ -1,7 +1,20 @@
 ---
 name: address
-description: PR のレビューコメントに対応する。"レビュー対応", "address comments", "指摘対応" と言われた場合に使用する。
-allowed-tools: Bash(gh pr *), Bash(git diff *), Bash(git log *), Bash(git add *), Bash(git commit *), Bash(git status *), Glob, Grep, Read, Edit, Write
+description: >
+  PR のレビューコメントに対応する。
+  "レビュー対応", "address comments", "指摘対応" と言われた場合に使用する。
+allowed-tools:
+  - Bash(gh pr *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git add *)
+  - Bash(git commit *)
+  - Bash(git status *)
+  - Glob
+  - Grep
+  - Read
+  - Edit
+  - Write
 ---
 
 # PR レビューコメントへの対応

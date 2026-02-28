@@ -1,14 +1,8 @@
 ---
-<<<<<<<< HEAD:.claude/skills/commit/SKILL.md
 name: commit
-description: ステージされた変更からコミットを作成する。"コミットして", "commit", "変更をコミット" と言われた場合に使用する。
-allowed-tools: Bash(git add *), Bash(git commit *), Bash(git diff *), Bash(git log *), Bash(git show *), Bash(git status *), Glob, Grep, Read
----
-========
-name: commit-maker
 description: >
-  Creates git commits from staged changes using Conventional Commits format.
-  Analyzes staged diffs and generates appropriate commit messages.
+  ステージされた変更からコミットを作成する。
+  "コミットして", "commit", "変更をコミット" と言われた場合に使用する。
 allowed-tools:
   - Bash(git add *)
   - Bash(git commit *)
@@ -20,9 +14,6 @@ allowed-tools:
   - Grep
   - Read
 ---
-
-# commit-maker
->>>>>>>> origin/master:.claude/skills/commit-maker/SKILL.md
 
 # Git コミットの作成
 
