@@ -14,7 +14,6 @@
   },
   "includeCoAuthoredBy": false,
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Read",
       "Write",
@@ -24,7 +23,6 @@
       "Task",
       "WebFetch",
       "WebSearch",
-
       "Bash(git status)",
       "Bash(git status *)",
       "Bash(git diff *)",
@@ -38,6 +36,7 @@
       "Bash(git stash *)",
       "Bash(git merge *)",
       "Bash(git rebase *)",
+      "Bash(git push *)",
       "Bash(git pull *)",
       "Bash(git fetch *)",
       "Bash(git remote *)",
@@ -51,7 +50,6 @@
       "Bash(git grep *)",
       "Bash(git shortlog *)",
       "Bash(git describe *)",
-
       "Bash(gh pr *)",
       "Bash(gh issue *)",
       "Bash(gh repo *)",
@@ -62,7 +60,6 @@
       "Bash(gh api *)",
       "Bash(gh gist *)",
       "Bash(gh search *)",
-
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(node *)",
@@ -75,7 +72,6 @@
       "Bash(python3 *)",
       "Bash(cargo *)",
       "Bash(brew *)",
-
       "Bash(make *)",
       "Bash(tsc *)",
       "Bash(eslint *)",
@@ -85,7 +81,6 @@
       "Bash(aws *)",
       "Bash(mysql *)",
       "Bash(ghq *)",
-
       "Bash(ls *)",
       "Bash(ls)",
       "Bash(cat *)",
@@ -126,6 +121,32 @@
       "Bash(open *)",
       "Bash(pbcopy)",
       "Bash(pbpaste)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "model": "opus",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh processing"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -137,32 +158,8 @@
     "gopls-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true
   },
+  "language": "ja",
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "showTurnDuration": true,
-  "language": "ja",
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/validate-bash.sh"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.dotfiles/.claude/hooks/notification.sh"
-          }
-        ]
-      }
-    ]
-  }
+  "showTurnDuration": true
 }

@@ -77,6 +77,11 @@ keybind = ctrl+shift+j=goto_split:down
 keybind = ctrl+shift+k=goto_split:up
 keybind = ctrl+shift+l=goto_split:right
 
+## focus
+keybind = ctrl+shift+right_bracket=goto_split:next
+keybind = ctrl+shift+left_bracket=goto_split:previous
+
+
 ## close
 keybind = ctrl+x=close_surface
 
@@ -85,6 +90,7 @@ keybind = ctrl+comma=resize_split:left,10
 keybind = ctrl+period=resize_split:right,10
 keybind = ctrl+semicolon=resize_split:down,10
 keybind = ctrl+apostrophe=resize_split:up,10
+keybind = ctrl+shift+equal=equalize_splits
 
 # scroll
 keybind = ctrl+shift+u=scroll_page_lines:-3
