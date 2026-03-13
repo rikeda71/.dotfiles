@@ -18,7 +18,7 @@ zsh setup.sh
 
 このリポジトリは macOS 向け dotfiles。設定ファイルを `$HOME` にシンボリックリンクして管理する。
 
-- `setup.sh` — 初期セットアップスクリプト（冪等ではないため再実行注意）
+- `setup.sh` — 初期セットアップスクリプト
 - `Brewfile` — Homebrew パッケージ一覧
 - `.claude/` — Claude Code のグローバル設定（`~/.claude/` にシンリンク）
   - `settings.json` — Claude Code 設定
