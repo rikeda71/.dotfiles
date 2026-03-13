@@ -42,6 +42,11 @@ link_local_skill() {
     return
   fi
 
+  if [ -e "$target" ]; then
+    echo "[$skill_name] target exists but is not a symlink: $target, skipping"
+    return
+  fi
+
   mkdir -p "$SKILLS_DIR"
   ln -s "$source" "$target"
   echo "[$skill_name] linked"
