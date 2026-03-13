@@ -131,7 +131,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
