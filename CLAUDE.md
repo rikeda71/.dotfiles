@@ -11,7 +11,7 @@ zsh setup.sh
 `setup.sh` が行うこと:
 - Homebrew インストール・`Brewfile` から依存パッケージをインストール
 - 各設定ファイルを `$HOME` へシンボリックリンク
-- Claude Code の設定をシンボリックリンク（`settings.json`, `CLAUDE.md`, `commands/`, `agents/`）
+- Claude Code の設定をシンボリックリンク（`settings.json`, `CLAUDE.md`）
 - MCP サーバーの登録・スキルのインストール
 
 ## 構成
