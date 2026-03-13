@@ -13,6 +13,7 @@ allowed-tools:
   - Bash(git log *)
   - Bash(git add *)
   - Bash(git commit *)
+  - Bash(git push *)
   - Bash(git status *)
   - Bash(git rev-parse *)
   - Glob
@@ -24,77 +25,125 @@ allowed-tools:
 
 # PR レビューコメントへの対応
 
-現在のブランチの PR に付いたレビューコメントおよび PR コメントを網羅的に確認し、各指摘に対応する。
+現在のブランチの PR に付いたレビューコメント（コード上の指摘）および PR コメント（PR 全体への指摘）を網羅的に確認し、各指摘に対応する。
 
 ## 手順
 
-### 1. PR とコメントの取得
-
-現在のブランチに紐づく PR を特定し、全コメントを取得する。
+### 1. PR 情報の取得
 
 ```bash
-# PR 番号の確認
-gh pr view --json number,url,title
+gh pr view --json number,url,title,headRefName
+```
 
-# レビューコメント（コード上の指摘）を取得
-gh pr view --json reviewThreads --jq '.reviewThreads[] | {path: .path, line: .line, body: (.comments[0].body), author: (.comments[0].author.login), resolved: .isResolved}'
+owner/repo は url から抽出する。
 
-# PR 全体へのコメントを取得
+### 2. 全コメントの取得
+
+レビューコメントと PR コメントの **両方** を取得し、対応対象を洗い出す。
+
+#### 2a. コード上のレビューコメント（review threads）
+
+`gh pr view --json reviewThreads` は利用できないため、GraphQL API を使う。
+
+```bash
+gh api graphql -f query='
+{
+  repository(owner: "{owner}", name: "{repo}") {
+    pullRequest(number: {pr_number}) {
+      reviewThreads(first: 100) {
+        nodes {
+          isResolved
+          comments(first: 10) {
+            nodes {
+              id
+              databaseId
+              author { login }
+              body
+              path
+              line
+            }
+          }
+        }
+      }
+    }
+  }
+}' --jq '.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false) | {path: .comments.nodes[0].path, line: .comments.nodes[0].line, author: .comments.nodes[0].author.login, comment_id: .comments.nodes[0].databaseId, body: .comments.nodes[0].body, reply_count: (.comments.nodes | length)}'
+```
+
+未解決（`isResolved == false`）のスレッドのみ対応対象とする。
+
+#### 2b. PR コメント（issue comments）
+
+```bash
 gh pr view --json comments --jq '.comments[] | {author: .author.login, body: .body, id: .id}'
 ```
 
-未解決（`resolved: false`）のレビューコメントと、未返信の PR コメントを対応対象とする。
+bot の自動生成サマリ（coderabbitai の Walkthrough 等）は対応対象外。人間のレビュアーまたは bot のコード指摘コメントを対応対象とする。
 
-### 2. 各コメントの評価と対応
+### 3. 対応方針の策定
 
-コメントごとに以下を判断する。
+取得した全コメントを一覧化し、各コメントに対して以下を判断する:
+- **妥当な指摘** → コード修正が必要
+- **妥当でない指摘** → 反論コメントを投稿
 
-#### 指摘が妥当な場合（コードを修正すべき）
+対応方針をユーザーに報告してから修正に着手する。
+
+### 4. 修正の実施
+
+#### 指摘が妥当な場合
 
 1. 該当ファイルを Read で読み込み、指摘箇所を Edit で修正する
-2. 修正をコミットする（ファイル名を指定してステージング）
+2. 関連する修正はまとめて1コミットにしてよい
    ```bash
    git add <修正したファイル>
    git commit -m "fix: <修正内容の要約>"
    ```
-3. commit hash を取得する
-   ```bash
-   git rev-parse HEAD
-   ```
-4. レビューコメントに返信する
-   ```bash
-   # コードコメントへの返信
-   gh api repos/{owner}/{repo}/pulls/{pr_number}/comments/{comment_id}/replies \
-     -f body="修正しました。<commit_hash>"
 
-   # PR コメントへの返信
-   gh pr comment <pr_number> --body "修正しました（<commit_hash>）"
-   ```
+#### 指摘が妥当でない場合
 
-#### 指摘が妥当でない場合（反論する）
+反論コメントを準備する（投稿は push 後にまとめて行う）。
 
-理由を明確にして反論コメントを投稿する。
+### 5. push とコメント返信
+
+全修正が完了したら push し、その後各コメントに返信する。
 
 ```bash
-# コードコメントへの返信
-gh api repos/{owner}/{repo}/pulls/{pr_number}/comments/{comment_id}/replies \
-  -f body="<反論の内容>"
-
-# PR コメントへの返信
-gh pr comment <pr_number> --body "<反論の内容>"
+git push origin <branch>
 ```
 
-### 3. 対応の報告
+#### コード上のレビューコメントへの返信
+
+```bash
+gh api repos/{owner}/{repo}/pulls/{pr_number}/comments -F in_reply_to={comment_id} \
+  -f body="修正しました。{commit_hash}"
+```
+
+#### PR コメントへの返信
+
+```bash
+gh pr comment {pr_number} --body "修正しました（{commit_hash}）"
+```
+
+#### 反論の場合
+
+```bash
+# コードコメントへの反論
+gh api repos/{owner}/{repo}/pulls/{pr_number}/comments -F in_reply_to={comment_id} \
+  -f body="{反論の内容}"
+
+# PR コメントへの反論
+gh pr comment {pr_number} --body "{反論の内容}"
+```
+
+### 6. 対応の報告
 
 全コメントへの対応が完了したら、対応内容をまとめてユーザーに報告する。
 
 ## ルール
 
-- 未解決コメントを漏れなく確認する（`resolved: false` のもの）
-- コミットは明示的に求められた場合のみ自動実行し、それ以外はユーザーに確認する
-- コミットメッセージは日本語または英語でレビュー対応の内容を簡潔に示す
-- `git push` は自動実行しない（ユーザーが確認後に実行する）
+- コード上のレビューコメントと PR コメントの **両方** を漏れなく確認する
+- コミットメッセージは英語でレビュー対応の内容を簡潔に示す
+- 修正完了後は push まで自動実行し、push 後にコメント返信する
 - 反論は根拠を明示し、感情的な表現を避ける
-- owner/repo は `gh pr view --json url` から取得する
 
 $ARGUMENTS
