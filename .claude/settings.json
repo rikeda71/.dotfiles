@@ -76,7 +76,6 @@
       "Bash(tsc *)",
       "Bash(eslint *)",
       "Bash(prettier *)",
-
       "Bash(protoc *)",
       "Bash(aws *)",
       "Bash(mysql *)",
@@ -132,7 +131,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -166,7 +165,8 @@
   "enabledPlugins": {
     "frontend-design@claude-code-plugins": true,
     "gopls-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true
   },
   "language": "ja",
   "alwaysThinkingEnabled": true,
