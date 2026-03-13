@@ -33,7 +33,8 @@ branch=""
 [ -n "$cwd" ] && [ -d "$cwd" ] && branch=$(git -C "$cwd" branch --show-current 2>/dev/null || true)
 
 # ---------- Rate limit via Haiku probe (cached 360s) ----------
-CACHE_FILE="/tmp/claude-usage-cache.json"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/claude"
+CACHE_FILE="$CACHE_DIR/usage-cache.json"
 CACHE_TTL=360
 FIVE_HOUR_UTIL=""
 SEVEN_DAY_UTIL=""
@@ -74,6 +75,7 @@ fetch_usage() {
   [ -z "$h5_util" ] && return 1
 
   # Save to cache as JSON
+  mkdir -p "$CACHE_DIR"
   jq -n \
     --arg h5u "$h5_util" \
     --arg h7u "$h7_util" \
@@ -84,10 +86,8 @@ fetch_usage() {
 
 load_usage() {
   local data="$1"
-  eval "$(echo "$data" | jq -r '
-    "FIVE_HOUR_UTIL=" + (.five_hour_util // empty),
-    "SEVEN_DAY_UTIL=" + (.seven_day_util // empty)
-  ' 2>/dev/null)"
+  FIVE_HOUR_UTIL=$(echo "$data" | jq -r '.five_hour_util // empty' 2>/dev/null)
+  SEVEN_DAY_UTIL=$(echo "$data" | jq -r '.seven_day_util // empty' 2>/dev/null)
 }
 
 USE_CACHE=false
