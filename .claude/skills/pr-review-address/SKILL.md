@@ -115,13 +115,13 @@ git push origin <branch>
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr_number}/comments -F in_reply_to={comment_id} \
-  -f body="修正しました。{commit_hash}"
+  -f body="修正しました。{何をどう修正したかの簡潔な説明}（{commit_hash}）"
 ```
 
 #### PR コメントへの返信
 
 ```bash
-gh pr comment {pr_number} --body "修正しました（{commit_hash}）"
+gh pr comment {pr_number} --body "修正しました。{何をどう修正したかの簡潔な説明}（{commit_hash}）"
 ```
 
 #### 反論の場合
