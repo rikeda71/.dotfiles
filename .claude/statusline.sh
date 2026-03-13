@@ -111,7 +111,7 @@ fi
 # Convert utilization (0.0-1.0) to percentage
 to_pct() {
   local val="$1"
-  if [ -z "$val" ] || [ "$val" = "null" ] || [ "$val" = "0" ]; then
+  if [ -z "$val" ] || [ "$val" = "null" ]; then
     echo "--"
     return
   fi
