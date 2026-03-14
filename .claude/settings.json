@@ -131,6 +131,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
+  "model": "claude-opus-4-6",
   "hooks": {
     "PreToolUse": [
       {
@@ -170,6 +171,5 @@
   "language": "ja",
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "showTurnDuration": true,
-  "model": "opus"
+  "showTurnDuration": true
 }
