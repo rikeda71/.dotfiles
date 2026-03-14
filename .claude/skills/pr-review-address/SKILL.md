@@ -31,9 +31,14 @@ allowed-tools:
 
 ### 1. PR 情報の取得
 
+まず現在のブランチ名を取得し、それを使って PR 情報を取得する。
+
 ```bash
-gh pr view --json number,url,title,headRefName
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+gh pr view "$BRANCH" --json number,url,title,headRefName
 ```
+
+`--repo` フラグを使う場合もブランチ名の指定が必要なため、必ず上記のように `$BRANCH` を渡すこと。
 
 owner/repo は url から抽出する。
 
@@ -113,15 +118,17 @@ git push origin <branch>
 
 #### コード上のレビューコメントへの返信
 
+commit_hash のリンクは `https://github.com/{owner}/{repo}/commit/{commit_hash}` の形式で Markdown リンクにする。
+
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr_number}/comments -F in_reply_to={comment_id} \
-  -f body="修正しました。{何をどう修正したかの簡潔な説明}（{commit_hash}）"
+  -f body="修正しました。{何をどう修正したかの簡潔な説明}（[{short_commit_hash}](https://github.com/{owner}/{repo}/commit/{commit_hash})）"
 ```
 
 #### PR コメントへの返信
 
 ```bash
-gh pr comment {pr_number} --body "修正しました。{何をどう修正したかの簡潔な説明}（{commit_hash}）"
+gh pr comment {pr_number} --body "修正しました。{何をどう修正したかの簡潔な説明}（[{short_commit_hash}](https://github.com/{owner}/{repo}/commit/{commit_hash})）"
 ```
 
 #### 反論の場合
