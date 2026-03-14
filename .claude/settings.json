@@ -131,7 +131,6 @@
     ],
     "defaultMode": "bypassPermissions"
   },
-  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -171,5 +170,6 @@
   "language": "ja",
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "showTurnDuration": true
+  "showTurnDuration": true,
+  "model": "opus"
 }
