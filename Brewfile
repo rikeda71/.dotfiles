@@ -3,9 +3,11 @@ tap "homebrew/bundle"
 # CLI tools
 brew "coreutils"
 brew "difftastic"
+brew "eza"
 brew "fzf"
 brew "gnu-sed"
 brew "jq"
+brew "starship"
 brew "tmux"
 brew "tree"
 brew "wget"
@@ -14,15 +16,12 @@ brew "wget"
 brew "gh"
 brew "ghq"
 brew "git-lfs"
-brew "gitmoji"
 brew "lazygit"
 
 # Editors
-brew "macvim"
 brew "neovim"
 
 # Languages
-brew "asdf"
 brew "go"
 brew "python@3.14"
 brew "rust"

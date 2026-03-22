@@ -6,19 +6,18 @@
 brew bundle
 
 # symbolic links
-DOT_FILES=( .zshrc .tmux.conf .vimrc .vim .ideavimrc .gitconfig )
+DOT_FILES=( .zshrc .tmux.conf .vimrc .vim .ideavimrc .gitconfig .ssh/config )
 
 for file in ${DOT_FILES[@]}
 do
-  if [ ! -e "$HOME/$file" ]; then
-    rm -rf $HOME/$file
-    ln -fs $HOME/.dotfiles/$file $HOME
-  fi
+  ln -fs $HOME/.dotfiles/$file $HOME/$file
 done
 
-# symbolic link of starship config
-curl -sS https://starship.rs/install.sh | sh
+# neovim settings
 mkdir -p ~/.config
+ln -fs ~/.dotfiles/nvim ~/.config/nvim
+
+# symbolic link of starship config
 ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
 
 # ghostty settings

@@ -4,13 +4,9 @@
 [includeIf "gitdir:~/Desktop/ghe/"]
   path = ~/.gitconfig.ghe
 [core]
-  editor = vim -c \"set fenc=utf-8\"
+  editor = nvim -c \"set fenc=utf-8\"
   precomposeunicode = true
   quotepath = false
-[color]
-  diff = auto
-  status = auto
-  branch = auto
 [push]
   default = simple
 [pull]
