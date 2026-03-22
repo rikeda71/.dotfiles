@@ -151,6 +151,18 @@
           }
         ]
       }
+    ],
+    "StopFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.dotfiles/.claude/hooks/ghostty-bg.sh reset",
+            "async": true
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
