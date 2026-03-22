@@ -31,10 +31,10 @@ for window in ['five_hour', 'seven_day']:
     w = rl.get(window, {}) or {}
     pct = w.get('used_percentage')
     if pct is not None:
-        print(f'{window}_pct={int(round(pct * 100))}')
+        print(f'{window}_pct={int(round(pct))}')
     else:
         print(f'{window}_pct=')
-" 2>/dev/null || echo "model=claude\ncwd=\nfive_hour_pct=\nseven_day_pct=")"
+" 2>/dev/null || printf '%s\n' 'model=claude' 'cwd=' 'five_hour_pct=' 'seven_day_pct=')"
 
 # --- Derived fields ---
 dir_name=$(basename "$cwd" 2>/dev/null || echo "")
