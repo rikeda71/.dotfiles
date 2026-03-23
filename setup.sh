@@ -1,66 +1,90 @@
 #!/bin/zsh
 
-# use homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# install from Brewfile
-brew bundle
+DOTFILES="$HOME/.dotfiles"
 
-# symbolic links
+#====================
+# Homebrew
+#====================
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle --file="$DOTFILES/Brewfile"
+
+#====================
+# シンボリックリンク（$HOME 直下）
+#====================
+
 DOT_FILES=( .zshrc .vimrc .vim .ideavimrc .gitconfig .ssh/config )
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
-for file in ${DOT_FILES[@]}
-do
-  ln -fs $HOME/.dotfiles/$file $HOME/$file
+for file in ${DOT_FILES[@]}; do
+  ln -fs "$DOTFILES/$file" "$HOME/$file"
 done
 
-# neovim settings
-mkdir -p ~/.config
-ln -fs ~/.dotfiles/nvim ~/.config/nvim
+#====================
+# ~/.config 配下
+#====================
 
-# starship
-ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
-
-# mise
 mkdir -p ~/.config/mise
-ln -fs ~/.dotfiles/mise/config.toml ~/.config/mise/config.toml
 
-# ghostty settings
-mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"
-ln -fs "$HOME/.dotfiles/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+ln -fs "$DOTFILES/nvim"             ~/.config/nvim
+ln -fs "$DOTFILES/starship.toml"    ~/.config/starship.toml
+ln -fs "$DOTFILES/mise/config.toml" ~/.config/mise/config.toml
 
-# vscode settings
-case "${OSTYPE}" in
-  darwin*)
-    if [ -e ~/Library/Application\ Support/Code/User ]; then
-      ln -fs $HOME/.dotfiles/.vscode/settings.json ~/Library/Application\ Support/Code/User/
-    fi
-    ;;
-esac
+#====================
+# Vim プラグイン
+#====================
 
-curl -flo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-
-case "${OSTYPE}" in
-  linux*)
-    chsh -s $(which zsh)
-    ;;
-esac
+#====================
+# GnuPG
+#====================
 
 mkdir -p ~/.gnupg
-echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
+echo "standard-resolver" > ~/.gnupg/dirmngr.conf
 
-# claude code settings
+#====================
+# Claude Code
+#====================
+
 mkdir -p "$HOME/.claude/mcp-servers"
-ln -fs "$HOME/.dotfiles/.claude/settings.json" "$HOME/.claude/settings.json"
-ln -fs "$HOME/.dotfiles/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-ln -fs "$HOME/.dotfiles/.claude/mcp-servers/package.json" "$HOME/.claude/mcp-servers/package.json"
-chmod +x "$HOME/.dotfiles/.claude/hooks/"*.sh
-chmod +x "$HOME/.dotfiles/.claude/statusline.sh"
+ln -fs "$DOTFILES/.claude/settings.json"            "$HOME/.claude/settings.json"
+ln -fs "$DOTFILES/.claude/CLAUDE.md"                "$HOME/.claude/CLAUDE.md"
+ln -fs "$DOTFILES/.claude/mcp-servers/package.json" "$HOME/.claude/mcp-servers/package.json"
+chmod +x "$DOTFILES/.claude/hooks/"*.sh
+chmod +x "$DOTFILES/.claude/statusline.sh"
 (cd "$HOME/.claude/mcp-servers" && npm install)
-zsh "$HOME/.dotfiles/.claude/install-mcp.sh"
-zsh "$HOME/.dotfiles/.claude/install-skills.sh"
+zsh "$DOTFILES/.claude/install-mcp.sh"
+zsh "$DOTFILES/.claude/install-skills.sh"
 
-source ~/.dotfiles/.zshrc
+#====================
+# macOS 固有
+#====================
+
+case "${OSTYPE}" in
+  darwin*)
+    # macOS 設定
+    zsh "$DOTFILES/macos.sh"
+
+    # Ghostty
+    mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"
+    ln -fs "$DOTFILES/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+
+    # VS Code
+    if [ -e ~/Library/Application\ Support/Code/User ]; then
+      ln -fs "$DOTFILES/.vscode/settings.json" ~/Library/Application\ Support/Code/User/
+    fi
+    ;;
+  linux*)
+    chsh -s "$(which zsh)"
+    ;;
+esac
+
+#====================
+# 完了
+#====================
+
+source "$DOTFILES/.zshrc"
+echo "Setup completed."
