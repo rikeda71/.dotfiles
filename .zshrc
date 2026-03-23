@@ -171,7 +171,7 @@ export GIT_EXTERNAL_DIFF=difft
 . "$HOME/.deno/env"
 
 # Google Cloud SDK
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+[[ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]] && source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 
 # git-wt
 eval "$(git wt --init zsh)"
