@@ -162,13 +162,10 @@ eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.dotfiles/starship.toml
 
 # mise（言語バージョン管理）
-eval "$(~/.local/bin/mise activate zsh)"
+[[ -x ~/.local/bin/mise ]] && eval "$(~/.local/bin/mise activate zsh)"
 
 # difftastic
 export GIT_EXTERNAL_DIFF=difft
-
-# Deno
-. "$HOME/.deno/env"
 
 # Google Cloud SDK
 [[ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]] && source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"

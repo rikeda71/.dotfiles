@@ -8,6 +8,8 @@ brew bundle
 # symbolic links
 DOT_FILES=( .zshrc .tmux.conf .vimrc .vim .ideavimrc .gitconfig .ssh/config )
 
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
 for file in ${DOT_FILES[@]}
 do
   ln -fs $HOME/.dotfiles/$file $HOME/$file
