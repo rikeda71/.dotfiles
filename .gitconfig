@@ -3,6 +3,8 @@
   email = rikeda71@gmail.com
 [includeIf "gitdir:~/Desktop/ghe/"]
   path = ~/.gitconfig.ghe
+[include]
+  path = ~/.gitconfig.local
 [core]
   editor = nvim -c \"set fenc=utf-8\"
   precomposeunicode = true

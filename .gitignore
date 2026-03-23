@@ -7,3 +7,5 @@
 .claude/mcp-servers/node_modules
 .claude/worktrees
 .zshrc.local
+.ssh/config.local
+.gitconfig.local
