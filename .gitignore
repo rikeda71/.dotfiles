@@ -8,3 +8,4 @@
 .claude/worktrees
 .zshrc.local
 .ssh/config.local
+.gitconfig.local
