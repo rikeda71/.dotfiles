@@ -170,13 +170,12 @@ Plug 'Yggdroot/indentLine'
 Plug 'cohama/lexima.vim'
 
 " other
-Plug 'Shougo/vimproc.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 
 Plug 'chase/vim-ansible-yaml'
 Plug 'mechatroner/rainbow_csv'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
