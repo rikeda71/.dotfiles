@@ -6,3 +6,4 @@
 .netrwhist
 .claude/mcp-servers/node_modules
 .claude/worktrees
+.zshrc.local

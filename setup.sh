@@ -6,7 +6,7 @@
 brew bundle
 
 # symbolic links
-DOT_FILES=( .zshrc .tmux.conf .vimrc .vim .ideavimrc .gitconfig .ssh/config )
+DOT_FILES=( .zshrc .vimrc .vim .ideavimrc .gitconfig .ssh/config )
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
@@ -19,8 +19,12 @@ done
 mkdir -p ~/.config
 ln -fs ~/.dotfiles/nvim ~/.config/nvim
 
-# symbolic link of starship config
+# starship
 ln -fs ~/.dotfiles/starship.toml ~/.config/starship.toml
+
+# mise
+mkdir -p ~/.config/mise
+ln -fs ~/.dotfiles/mise/config.toml ~/.config/mise/config.toml
 
 # ghostty settings
 mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"

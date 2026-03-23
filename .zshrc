@@ -175,3 +175,6 @@ eval "$(git wt --init zsh)"
 wt() {
   git wt "$(git wt | tail -n +2 | fzf | awk '{print $(NF-1)}')"
 }
+
+# マシン固有の設定（git 管理外）
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

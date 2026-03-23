@@ -8,7 +8,6 @@ brew "fzf"
 brew "gnu-sed"
 brew "jq"
 brew "starship"
-brew "tmux"
 brew "tree"
 brew "wget"
 
