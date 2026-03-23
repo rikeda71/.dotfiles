@@ -64,8 +64,9 @@ local keymap = vim.keymap.set
 keymap("n", "j", "gj", { silent = true })
 keymap("n", "k", "gk", { silent = true })
 
--- jj で ESC
+-- jj で ESC（日本語入力時の「っj」にも対応）
 keymap("i", "jj", "<ESC>", { silent = true })
+keymap("i", "っj", "<ESC>", { silent = true })
 
 -- ESC 連打でハイライト解除
 keymap("n", "<Esc><Esc>", ":nohlsearch<CR>", { silent = true })
