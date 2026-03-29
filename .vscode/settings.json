@@ -153,5 +153,7 @@
 	},
 	"markdown-preview-enhanced.enableScriptExecution": false,
 	"markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": false,
-	"typescript.tsserver.maxTsServerMemory": 4096
+	"typescript.tsserver.maxTsServerMemory": 4096,
+	"terminal.integrated.fontLigatures.enabled": true,
+	"terminal.integrated.fontFamily": "JetBrainsMono Nerd Font"
 }

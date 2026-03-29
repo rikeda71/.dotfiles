@@ -3,6 +3,7 @@
 .vim/plugged
 .vim/autoload/*
 !.vim/autoload/init/
+.vim/.vim
 .netrwhist
 .claude/mcp-servers/node_modules
 .claude/worktrees
