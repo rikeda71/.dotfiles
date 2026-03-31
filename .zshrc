@@ -131,6 +131,7 @@ esac
 
 typeset -U path PATH
 path=(
+  /run/current-system/sw/bin(N-/)
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
   /usr/bin

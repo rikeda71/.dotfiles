@@ -1,7 +1,7 @@
 { pkgs, username, self, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.enable = false;
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -31,7 +31,7 @@
     google-cloud-sdk
 
     # DB クライアント
-    mysql-client
+    mariadb.client
     postgresql_16
 
     # ビルドツール
@@ -45,6 +45,7 @@
 
   programs.zsh.enable = true;
 
+  system.primaryUser = username;
   users.users.${username} = {
     home = "/Users/${username}";
     shell = pkgs.zsh;
