@@ -146,7 +146,6 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.pulumi/bin:$PATH"
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
-
 #====================
 # ツール初期化
 #====================

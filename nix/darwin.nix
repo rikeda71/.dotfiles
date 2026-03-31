@@ -1,4 +1,4 @@
-{ ... }:
+{ username, ... }:
 
 {
   # ========================
@@ -59,7 +59,7 @@
 
   # Screenshots ディレクトリ作成
   system.activationScripts.postActivation.text = ''
-    mkdir -p "$HOME/Pictures/Screenshots"
+    mkdir -p "/Users/${username}/Pictures/Screenshots"
   '';
 
   # ========================
