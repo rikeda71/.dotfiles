@@ -32,6 +32,10 @@ cd ~/.dotfiles
 ### 3. ビルド・適用
 
 ```shell
+# 初回（darwin-rebuild 未導入時）
+nix run nix-darwin/master#darwin-rebuild -- switch --flake .#personal
+
+# 2回目以降
 darwin-rebuild switch --flake .#personal   # プライベート Mac
 darwin-rebuild switch --flake .#work       # 会社 Mac
 ```
