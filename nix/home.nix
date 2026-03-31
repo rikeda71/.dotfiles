@@ -68,7 +68,7 @@
 
     miseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if command -v mise &>/dev/null; then
-        run mise install --yes || echo "Warning: mise install failed." >&2
+        run mise install --yes
       fi
     '';
 
