@@ -131,6 +131,7 @@ esac
 
 typeset -U path PATH
 path=(
+  /run/current-system/sw/bin(N-/)
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
   /usr/bin
@@ -143,12 +144,8 @@ path=(
 )
 
 export PATH="$HOME/go/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="$HOME/.pulumi/bin:$PATH"
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
-export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
 
 #====================
 # ツール初期化
