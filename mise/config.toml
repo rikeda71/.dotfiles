@@ -4,3 +4,6 @@ java = ["17", "21"]
 node = "24"
 python = "3.13"
 rust = "1.86"
+
+[settings.python]
+precompiled_flavor = "install_only_stripped"
