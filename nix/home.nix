@@ -47,9 +47,6 @@
   home.file.".claude/mcp-servers/package.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/mcp-servers/package.json";
 
-  # GnuPG (standard-resolver: DNS 解決に OS 標準のリゾルバを使用する設定)
-  home.file.".gnupg/dirmngr.conf".text = "standard-resolver\n";
-
   # ========================
   # Activation scripts
   # ========================
@@ -58,11 +55,6 @@
     sshSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.ssh"
       run chmod 700 "$HOME/.ssh"
-    '';
-
-    gnupgSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run mkdir -p "$HOME/.gnupg"
-      run chmod 700 "$HOME/.gnupg"
     '';
 
     # vim-plug インストール (コミット固定)
