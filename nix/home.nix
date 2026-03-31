@@ -43,9 +43,10 @@
   home.file.".claude/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
   home.file.".claude/CLAUDE.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/CLAUDE.md";
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/AGENTS.md";
   home.file.".claude/mcp-servers/package.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/mcp-servers/package.json";
+
 
   # ========================
   # Activation scripts
@@ -62,6 +63,12 @@
       if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
         run ${pkgs.curl}/bin/curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
           https://raw.githubusercontent.com/junegunn/vim-plug/8fd3b0a1b89cba0e1bef8ed702d869786c79faee/plug.vim
+      fi
+    '';
+
+    miseInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if command -v mise &>/dev/null; then
+        run mise install --yes || echo "Warning: mise install failed." >&2
       fi
     '';
 

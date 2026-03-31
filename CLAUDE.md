@@ -20,9 +20,10 @@ darwin-rebuild switch --flake ~/.dotfiles#work       # 会社 Mac
   - `home.nix` — home-manager (dotfile symlinks, activation scripts)
   - `hosts/personal.nix` — プライベート Mac 固有設定
   - `hosts/work.nix` — 会社 Mac 固有設定
+- `AGENTS.md` — AI コーディングルール（Claude Code / Codex CLI 共通）
 - `.claude/` — Claude Code のグローバル設定（`~/.claude/` にシンリンク）
   - `settings.json` — Claude Code 設定
-  - `CLAUDE.md` — AI コーディングルール（`~/.claude/CLAUDE.md` にシンリンク）
+  - `CLAUDE.md` — `../AGENTS.md` への symlink
   - `skills/` — カスタムスキル（`install-skills.sh` でシンリンクを張る）
   - `hooks/` — フック（`validate-bash`, `notification`）
   - `install-mcp.sh` — MCP サーバー登録スクリプト
