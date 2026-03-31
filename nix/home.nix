@@ -47,7 +47,7 @@
   home.file.".claude/mcp-servers/package.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/mcp-servers/package.json";
 
-  # GnuPG
+  # GnuPG (standard-resolver: DNS 解決に OS 標準のリゾルバを使用する設定)
   home.file.".gnupg/dirmngr.conf".text = "standard-resolver\n";
 
   # ========================
@@ -55,33 +55,44 @@
   # ========================
 
   home.activation = {
-    # SSH ディレクトリのパーミッション設定
     sshSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.ssh"
       run chmod 700 "$HOME/.ssh"
     '';
 
-    # vim-plug インストール
+    gnupgSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run mkdir -p "$HOME/.gnupg"
+      run chmod 700 "$HOME/.gnupg"
+    '';
+
+    # vim-plug インストール (コミット固定)
     vimPlug = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
         run ${pkgs.curl}/bin/curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+          https://raw.githubusercontent.com/junegunn/vim-plug/8fd3b0a1b89cba0e1bef8ed702d869786c79faee/plug.vim
       fi
     '';
 
-    # Claude Code セットアップ
     claudeSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude/mcp-servers"
-      run chmod +x "${dotfilesPath}/.claude/hooks/"*.sh 2>/dev/null || true
-      run chmod +x "${dotfilesPath}/.claude/statusline.sh" 2>/dev/null || true
 
-      if [ -f "$HOME/.claude/mcp-servers/package.json" ]; then
-        (cd "$HOME/.claude/mcp-servers" && ${pkgs.nodejs}/bin/npm install) || true
+      if ls "${dotfilesPath}/.claude/hooks/"*.sh >/dev/null 2>&1; then
+        run chmod +x "${dotfilesPath}/.claude/hooks/"*.sh
+      fi
+      if [ -f "${dotfilesPath}/.claude/statusline.sh" ]; then
+        run chmod +x "${dotfilesPath}/.claude/statusline.sh"
+      fi
+
+      if [ -f "$HOME/.claude/mcp-servers/package.json" ] && \
+         [ ! -d "$HOME/.claude/mcp-servers/node_modules" ]; then
+        if ! (cd "$HOME/.claude/mcp-servers" && ${pkgs.nodejs}/bin/npm install); then
+          echo "Warning: npm install for Claude MCP servers failed." >&2
+        fi
       fi
 
       if command -v claude &>/dev/null; then
-        ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-mcp.sh" || true
-        ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-skills.sh" || true
+        run ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-mcp.sh" || true
+        run ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-skills.sh" || true
       fi
     '';
   };

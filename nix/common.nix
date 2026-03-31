@@ -28,6 +28,7 @@
     # インフラ
     awscli2
     cloudflared
+    google-cloud-sdk
 
     # DB クライアント
     mysql-client

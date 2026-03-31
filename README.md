@@ -46,7 +46,7 @@ darwin-rebuild switch --flake .#work       # 会社 Mac
 
 ## 構成
 
-```
+```text
 .dotfiles/
 ├── flake.nix               # Nix flake エントリポイント
 ├── nix/
@@ -81,11 +81,11 @@ darwin-rebuild switch --flake .#work       # 会社 Mac
 |--------|------|-------------|
 | **Nix** | CLI ツール (eza, fzf, gh, neovim, etc.) | `nix/common.nix` |
 | **Homebrew cask** | GUI アプリ (Ghostty, Obsidian, Raycast) | `nix/darwin.nix` |
-| **mise** | 言語ランタイム (Go, Python, Rust, Node, Deno) | `mise/config.toml` |
+| **mise** | 言語ランタイム (Go, Java, Python, Rust, Node) | `mise/config.toml` |
 
 ## Claude Code
 
-MCP サーバー (Sentry, ClickUp, DrawIO, Next Devtools) と各種スキルは `darwin-rebuild switch` 時に自動登録されます。
+MCP サーバー (Sentry, ClickUp, DrawIO, Next Devtools) と各種スキルは `darwin-rebuild switch` 時に自動登録されます（`claude` CLI が PATH 上にある場合のみ）。
 
 Figma MCP は API キーが必要なため手動で登録してください:
 

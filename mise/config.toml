@@ -1,6 +1,6 @@
 [tools]
-deno = "2.2.3"
-go = "latest"
+go = "1.24"
+java = "latest"
 node = "24"
 python = "3.14"
-rust = "latest"
+rust = "1.86"

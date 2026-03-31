@@ -32,7 +32,7 @@ darwin-rebuild switch --flake ~/.dotfiles#work       # 会社 Mac
 
 - **Nix** (`nix/common.nix`): CLI ツール全般
 - **Homebrew cask** (`nix/darwin.nix`): GUI アプリ (ghostty, obsidian, raycast)
-- **mise** (`mise/config.toml`): 言語ランタイム (go, python, rust, node, deno)
+- **mise** (`mise/config.toml`): 言語ランタイム (go, java, python, rust, node)
 
 ## Skills の管理
 

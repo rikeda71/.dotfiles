@@ -1,18 +1,12 @@
 { username, ... }:
 
 {
-  # ========================
-  # macOS システム設定 (macos.sh の置き換え)
-  # ========================
-
   system.defaults = {
-    # トラックパッド
     trackpad = {
       Clicking = true;
       TrackpadThreeFingerDrag = true;
     };
 
-    # キーボード
     NSGlobalDomain = {
       KeyRepeat = 2;
       InitialKeyRepeat = 15;
@@ -20,7 +14,6 @@
       AppleShowAllExtensions = true;
     };
 
-    # Dock
     dock = {
       autohide = true;
       autohide-delay = 0.0;
@@ -29,7 +22,6 @@
       show-recents = false;
     };
 
-    # Finder
     finder = {
       AppleShowAllExtensions = true;
       ShowPathbar = true;
@@ -38,14 +30,12 @@
       FXDefaultSearchScope = "SCcf";
     };
 
-    # スクリーンショット
     screencapture = {
-      location = "~/Pictures/Screenshots";
+      location = "/Users/${username}/Pictures/Screenshots";
       type = "png";
       disable-shadow = true;
     };
 
-    # その他 (defaults write で直接指定が必要なもの)
     CustomUserPreferences = {
       "com.apple.desktopservices" = {
         DSDontWriteNetworkStores = true;
@@ -57,14 +47,9 @@
     };
   };
 
-  # Screenshots ディレクトリ作成
   system.activationScripts.postActivation.text = ''
     mkdir -p "/Users/${username}/Pictures/Screenshots"
   '';
-
-  # ========================
-  # Homebrew (GUI アプリのみ)
-  # ========================
 
   homebrew = {
     enable = true;
