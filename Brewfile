@@ -43,3 +43,5 @@ brew "plantuml"
 
 # Casks
 cask "ghostty"
+cask "obsidian"
+cask "raycast"
