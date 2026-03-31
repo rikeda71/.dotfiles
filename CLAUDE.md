@@ -5,21 +5,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## セットアップ
 
 ```shell
-zsh setup.sh
+darwin-rebuild switch --flake ~/.dotfiles#personal   # プライベート Mac
+darwin-rebuild switch --flake ~/.dotfiles#work       # 会社 Mac
 ```
-
-`setup.sh` が行うこと:
-- Homebrew インストール・`Brewfile` から依存パッケージをインストール
-- 各設定ファイルを `$HOME` へシンボリックリンク
-- Claude Code の設定をシンボリックリンク（`settings.json`, `CLAUDE.md`）
-- MCP サーバーの登録・スキルのインストール
 
 ## 構成
 
-このリポジトリは macOS 向け dotfiles。設定ファイルを `$HOME` にシンボリックリンクして管理する。
+このリポジトリは macOS 向け dotfiles。Nix (nix-darwin + home-manager) で宣言的に管理する。
 
-- `setup.sh` — 初期セットアップスクリプト
-- `Brewfile` — Homebrew パッケージ一覧
+- `flake.nix` — Nix flake エントリポイント
+- `nix/` — Nix 設定モジュール
+  - `common.nix` — 共通パッケージ (CLI ツール)
+  - `darwin.nix` — macOS システム設定 + Homebrew casks
+  - `home.nix` — home-manager (dotfile symlinks, activation scripts)
+  - `hosts/personal.nix` — プライベート Mac 固有設定
+  - `hosts/work.nix` — 会社 Mac 固有設定
 - `.claude/` — Claude Code のグローバル設定（`~/.claude/` にシンリンク）
   - `settings.json` — Claude Code 設定
   - `CLAUDE.md` — AI コーディングルール（`~/.claude/CLAUDE.md` にシンリンク）
@@ -27,6 +27,12 @@ zsh setup.sh
   - `hooks/` — フック（`validate-bash`, `notification`）
   - `install-mcp.sh` — MCP サーバー登録スクリプト
   - `install-skills.sh` — スキルインストール・シンリンクスクリプト
+
+## パッケージ管理の分担
+
+- **Nix** (`nix/common.nix`): CLI ツール全般
+- **Homebrew cask** (`nix/darwin.nix`): GUI アプリ (ghostty, obsidian, raycast)
+- **mise** (`mise/config.toml`): 言語ランタイム (go, python, rust, node, deno)
 
 ## Skills の管理
 
