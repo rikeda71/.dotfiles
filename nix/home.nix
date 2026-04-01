@@ -1,4 +1,4 @@
-{ pkgs, config, lib, username, dotfilesPath, ... }:
+{ pkgs, config, lib, username, dotfilesPath, hostName, ... }:
 
 {
   home.username = username;
@@ -71,6 +71,13 @@
         run mise install --yes
       fi
     '';
+
+    # Codex CLI（nixpkgs 未収録のため npm でインストール、work のみ）
+    codexInstall = lib.mkIf (hostName == "work") (lib.hm.dag.entryAfter [ "miseInstall" ] ''
+      if command -v npm &>/dev/null; then
+        run npm i -g @openai/codex 2>/dev/null || true
+      fi
+    '');
 
     claudeSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude/mcp-servers"

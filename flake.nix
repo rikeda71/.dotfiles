@@ -21,7 +21,7 @@
         user = builtins.getEnv "USER";
       in if sudoUser != "" then sudoUser else user;
       dotfilesPath = "/Users/${username}/.dotfiles";
-      mkDarwinConfig = hostModule: nix-darwin.lib.darwinSystem {
+      mkDarwinConfig = { hostModule, hostName }: nix-darwin.lib.darwinSystem {
         inherit system;
         specialArgs = { inherit username dotfilesPath self; };
         modules = [
@@ -32,7 +32,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit username dotfilesPath; };
+            home-manager.extraSpecialArgs = { inherit username dotfilesPath hostName; };
             home-manager.users.${username} = import ./nix/home.nix;
           }
         ];
@@ -40,8 +40,8 @@
     in
     {
       darwinConfigurations = {
-        personal = mkDarwinConfig ./nix/hosts/personal.nix;
-        work = mkDarwinConfig ./nix/hosts/work.nix;
+        personal = mkDarwinConfig { hostModule = ./nix/hosts/personal.nix; hostName = "personal"; };
+        work = mkDarwinConfig { hostModule = ./nix/hosts/work.nix; hostName = "work"; };
       };
     };
 }
