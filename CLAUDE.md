@@ -33,6 +33,7 @@ sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
   - `hooks/` — フック（`validate-bash`, `notification`）
   - `install-mcp.sh` — MCP サーバー登録スクリプト
   - `install-skills.sh` — スキルインストール・シンリンクスクリプト
+- `raycast/` — Raycast 設定（エクスポートファイル、手動インポートが必要）
 
 ## パッケージ管理の分担
 

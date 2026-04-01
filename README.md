@@ -46,7 +46,13 @@ sudo darwin-rebuild switch --flake .#personal --impure   # プライベート Ma
 sudo darwin-rebuild switch --flake .#work --impure       # 会社 Mac
 ```
 
-これで以下が自動的に行われます:
+### 5. Raycast の設定復元
+
+Raycast を起動し、Settings > Advanced > Import から `raycast/Raycast.rayconfig` をインポートする。
+
+### 自動で行われること
+
+`darwin-rebuild switch` により以下が自動的に行われます:
 
 - CLI ツールのインストール (Nix)
 - GUI アプリのインストール (Homebrew cask)
@@ -76,6 +82,7 @@ sudo darwin-rebuild switch --flake .#work --impure       # 会社 Mac
 ├── mise/                   # mise 言語ランタイム設定
 ├── .vscode/                # VS Code 設定
 ├── .ssh/config             # SSH 設定
+├── raycast/                # Raycast 設定（手動インポート）
 └── .claude/                # Claude Code 設定
     ├── settings.json       # グローバル設定
     ├── CLAUDE.md           # AI コーディングルール
