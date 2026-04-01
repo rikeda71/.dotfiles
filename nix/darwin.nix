@@ -61,6 +61,7 @@
       "ghostty"
       "obsidian"
       "raycast"
+      "visual-studio-code"
     ];
   };
 }
