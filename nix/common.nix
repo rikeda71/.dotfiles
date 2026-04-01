@@ -5,6 +5,9 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    # AI
+    claude-code-bin
+
     # CLI ツール
     coreutils
     difftastic

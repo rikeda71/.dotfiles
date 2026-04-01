@@ -8,8 +8,8 @@
     };
 
     NSGlobalDomain = {
-      KeyRepeat = 2;
-      InitialKeyRepeat = 15;
+      KeyRepeat = 1;
+      InitialKeyRepeat = 10;
       ApplePressAndHoldEnabled = false;
       AppleShowAllExtensions = true;
     };
