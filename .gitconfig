@@ -33,8 +33,6 @@
   root = ~/ghq
 [diff]
 	algorithm = histogram
-[wt]
-	basedir = .worktrees
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
