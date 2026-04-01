@@ -16,7 +16,10 @@
   outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
     let
       system = "aarch64-darwin";
-      username = "rikeda";
+      username = let
+        sudoUser = builtins.getEnv "SUDO_USER";
+        user = builtins.getEnv "USER";
+      in if sudoUser != "" then sudoUser else user;
       dotfilesPath = "/Users/${username}/.dotfiles";
       mkDarwinConfig = hostModule: nix-darwin.lib.darwinSystem {
         inherit system;

@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## セットアップ
 
 ```shell
-darwin-rebuild switch --flake ~/.dotfiles#personal   # プライベート Mac
-darwin-rebuild switch --flake ~/.dotfiles#work       # 会社 Mac
+sudo darwin-rebuild switch --flake ~/.dotfiles#personal --impure   # プライベート Mac
+sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
 ```
 
 ## 構成
