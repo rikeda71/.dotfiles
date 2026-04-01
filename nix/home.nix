@@ -72,6 +72,12 @@
       fi
     '';
 
+    rustSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ -x "${pkgs.rustup}/bin/rustup" ]; then
+        run "${pkgs.rustup}/bin/rustup" default stable 2>/dev/null || true
+      fi
+    '';
+
     # Codex CLI（nixpkgs 未収録のため npm でインストール）
     codexInstall = lib.hm.dag.entryAfter [ "miseInstall" ] ''
       if [ -x "${pkgs.mise}/bin/mise" ]; then
