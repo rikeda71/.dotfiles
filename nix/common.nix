@@ -41,6 +41,7 @@
 
     # ビルドツール
     protobuf
+    rustup
 
     # メディア
     ffmpeg
