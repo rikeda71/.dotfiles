@@ -160,7 +160,7 @@ eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.dotfiles/starship.toml
 
 # mise（言語バージョン管理）
-[[ -x ~/.local/bin/mise ]] && eval "$(~/.local/bin/mise activate zsh)"
+command -v mise &>/dev/null && eval "$(mise activate zsh)"
 
 # difftastic
 export GIT_EXTERNAL_DIFF=difft
