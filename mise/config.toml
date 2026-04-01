@@ -6,4 +6,4 @@ python = "3.13"
 rust = "1.86"
 
 [settings.python]
-precompiled_flavor = "install_only_stripped"
+compile = false

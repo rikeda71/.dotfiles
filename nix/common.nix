@@ -9,6 +9,7 @@
     claude-code-bin
 
     # CLI ツール
+    gnupg
     mise
     coreutils
     difftastic
