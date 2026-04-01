@@ -9,6 +9,7 @@
     claude-code-bin
 
     # CLI ツール
+    mise
     coreutils
     difftastic
     eza
