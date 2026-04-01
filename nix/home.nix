@@ -62,7 +62,7 @@
     vimPlug = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
         run ${pkgs.curl}/bin/curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-          https://raw.githubusercontent.com/junegunn/vim-plug/8fd3b0a1b89cba0e1bef8ed702d869786c79faee/plug.vim
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       fi
     '';
 
