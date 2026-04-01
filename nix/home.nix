@@ -74,8 +74,8 @@
 
     # Codex CLI（nixpkgs 未収録のため npm でインストール）
     codexInstall = lib.hm.dag.entryAfter [ "miseInstall" ] ''
-      if command -v npm &>/dev/null; then
-        run npm i -g @openai/codex 2>/dev/null || true
+      if command -v mise &>/dev/null; then
+        run mise exec node -- npm i -g @openai/codex 2>/dev/null || true
       fi
     '';
 

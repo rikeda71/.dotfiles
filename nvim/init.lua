@@ -110,7 +110,7 @@ require("lazy").setup({
 
   -- 自動括弧補完
   {
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
     event = "InsertEnter",
     opts = {},
   },
