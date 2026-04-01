@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 前提条件
+
+- [Nix](https://nixos.org/)（Determinate Systems installer 推奨）
+- [Homebrew](https://brew.sh/)（nix-darwin の `homebrew.enable = true` が依存）
+
 ## セットアップ
 
 ```shell
