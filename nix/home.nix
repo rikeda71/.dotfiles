@@ -87,10 +87,12 @@
       fi
     '');
 
-    vscodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if command -v code &>/dev/null && [ -f "${dotfilesPath}/.vscode/extensions" ]; then
+    vscodeExtensions = let
+      codeBin = "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code";
+    in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ -x "${codeBin}" ] && [ -f "${dotfilesPath}/.vscode/extensions" ]; then
         while IFS= read -r ext; do
-          code --install-extension "$ext" --force 2>/dev/null || true
+          "${codeBin}" --install-extension "$ext" --force 2>/dev/null || true
         done < "${dotfilesPath}/.vscode/extensions"
       fi
     '';
