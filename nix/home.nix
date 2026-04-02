@@ -55,6 +55,14 @@
   # ========================
 
   home.activation = {
+    localNixSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      local_nix="${dotfilesPath}/nix/hosts/${hostName}-local.nix"
+      template="${dotfilesPath}/nix/hosts/local.nix.template"
+      if [ ! -f "$local_nix" ] && [ -f "$template" ]; then
+        run cp "$template" "$local_nix"
+      fi
+    '';
+
     sshSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.ssh"
       run chmod 700 "$HOME/.ssh"

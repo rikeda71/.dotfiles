@@ -1,0 +1,9 @@
+# Git に反映しないローカル設定
+# homebrew cask や追加パッケージをここに記述する
+# 例:
+#   homebrew.casks = [ "slack" "zoom" ];
+#   environment.systemPackages = with pkgs; [ ripgrep ];
+{ ... }:
+
+{
+}

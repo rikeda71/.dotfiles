@@ -25,6 +25,8 @@ sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
   - `home.nix` — home-manager (dotfile symlinks, activation scripts)
   - `hosts/personal.nix` — プライベート Mac 固有設定
   - `hosts/work.nix` — 会社 Mac 固有設定
+  - `hosts/local.nix.template` — ローカル設定テンプレート
+  - `hosts/{personal,work}-local.nix` — Git 管理外のローカル設定（自動生成）
 - `AGENTS.md` — AI コーディングルール（Claude Code / Codex CLI 共通）
 - `.claude/` — Claude Code のグローバル設定（`~/.claude/` にシンリンク）
   - `settings.json` — Claude Code 設定
@@ -39,7 +41,21 @@ sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
 
 - **Nix** (`nix/common.nix`): CLI ツール全般
 - **Homebrew cask** (`nix/darwin.nix`): GUI アプリ (ghostty, obsidian, raycast)
-- **mise** (`mise/config.toml`): 言語ランタイム (go, java, python, rust, node)
+- **mise** (`mise/config.toml`): 言語ランタイム (go, java, python, node)
+- **rustup** (`nix/common.nix`): Rust toolchain
+
+## ローカル設定（Git 管理外）
+
+`nix/hosts/{personal,work}-local.nix` に Git に反映しないホスト固有の設定を記述できる。初回の `darwin-rebuild switch` 実行時にテンプレート (`nix/hosts/local.nix.template`) から自動生成される。
+
+```nix
+# nix/hosts/work-local.nix の例
+{ ... }:
+
+{
+  homebrew.casks = [ "slack" "zoom" ];
+}
+```
 
 ## Skills の管理
 

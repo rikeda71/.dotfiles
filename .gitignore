@@ -10,3 +10,5 @@
 .zshrc.local
 .ssh/config.local
 .gitconfig.local
+nix/hosts/work-local.nix
+nix/hosts/personal-local.nix
