@@ -42,8 +42,6 @@
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.vscode/keybindings.json";
 
   # Claude Code
-  home.file.".claude/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.claude/settings.json";
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/AGENTS.md";
   home.file.".claude/mcp-servers/package.json".source =
@@ -107,6 +105,11 @@
 
     claudeSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude/mcp-servers"
+
+      # settings.json はコピー（シンリンクだと /model 等の変更が git に反映されるため）
+      if [ -f "${dotfilesPath}/.claude/settings.json" ]; then
+        run cp "${dotfilesPath}/.claude/settings.json" "$HOME/.claude/settings.json"
+      fi
 
       if ls "${dotfilesPath}/.claude/hooks/"*.sh >/dev/null 2>&1; then
         run chmod +x "${dotfilesPath}/.claude/hooks/"*.sh
