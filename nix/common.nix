@@ -44,6 +44,10 @@
     protobuf
     rustup
 
+    # フォント
+    nerd-fonts.hack
+    nerd-fonts.jetbrains-mono
+
     # メディア
     ffmpeg
     imagemagick
