@@ -9,7 +9,7 @@ docker.docker
 drblury.protobuf-vsc
 eamodio.gitlens
 editorconfig.editorconfig
-github.copilot-chat
+github.copilot
 github.github-vscode-theme
 github.vscode-github-actions
 github.vscode-pull-request-github
