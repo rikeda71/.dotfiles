@@ -12,3 +12,6 @@
 .gitconfig.local
 nix/hosts/work-local.nix
 nix/hosts/personal-local.nix
+raycast/Raycast.work.rayconfig
+
+.DS_Store

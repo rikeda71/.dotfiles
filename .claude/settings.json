@@ -127,6 +127,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
+  "model": "us.anthropic.claude-opus-4-6-v1",
   "hooks": {
     "PreToolUse": [
       {
@@ -175,7 +176,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "example-skills@anthropic-agent-skills": true,
     "feature-dev@claude-plugins-official": true,
-    "figma@claude-plugins-official": true
+    "figma@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
   "language": "ja",
   "alwaysThinkingEnabled": true,
