@@ -33,7 +33,7 @@ sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
   - `CLAUDE.md` — `../AGENTS.md` への symlink
   - `skills/` — カスタムスキル（`install-skills.sh` でシンリンクを張る）
   - `hooks/` — フック（`validate-bash`, `notification`）
-  - `install-mcp.sh` — MCP サーバー登録スクリプト
+  - `install-mcp.sh` — MCP サーバー登録スクリプト（`hostName` で personal/work 切替）
   - `install-skills.sh` — スキルインストール・シンリンクスクリプト
 - `raycast/` — Raycast 設定（エクスポートファイル、手動インポートが必要）
 
@@ -56,6 +56,32 @@ sudo darwin-rebuild switch --flake ~/.dotfiles#work --impure       # 会社 Mac
   homebrew.casks = [ "slack" "zoom" ];
 }
 ```
+
+## MCP サーバー
+
+`install-mcp.sh` で登録。`darwin-rebuild switch` 時に自動実行される。
+
+| MCP | 環境 | 必要な環境変数 |
+|-----|------|---------------|
+| drawio | 共通 | — |
+| clickup | personal | — |
+| sentry | personal | — |
+| notion | personal | — |
+| next-devtools | personal | — |
+| auth0 | personal | — |
+| figma | personal | `FIGMA_API_KEY` |
+| datadog | personal | `DD_API_KEY`, `DD_APPLICATION_KEY` |
+
+API キーが必要な MCP は、事前に環境変数をセットしてから rebuild を実行する：
+
+```shell
+export FIGMA_API_KEY="your-key"
+export DD_API_KEY="your-key"
+export DD_APPLICATION_KEY="your-key"
+sudo -E darwin-rebuild switch --flake ~/.dotfiles#personal --impure
+```
+
+または `~/.zshrc.local` に環境変数を記述しておけば、次回以降の rebuild で自動適用される。
 
 ## Skills の管理
 

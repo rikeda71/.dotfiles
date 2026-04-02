@@ -126,7 +126,7 @@
       fi
 
       if command -v claude &>/dev/null; then
-        run ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-mcp.sh" || true
+        run ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-mcp.sh" "${hostName}" || true
         run ${pkgs.zsh}/bin/zsh "${dotfilesPath}/.claude/install-skills.sh" || true
       fi
     '';
