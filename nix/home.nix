@@ -107,6 +107,10 @@
       run mkdir -p "$HOME/.claude/mcp-servers"
 
       # settings.json はコピー（シンリンクだと /model 等の変更が git に反映されるため）
+      # 古いシンリンクが残っていれば削除
+      if [ -L "$HOME/.claude/settings.json" ]; then
+        run rm "$HOME/.claude/settings.json"
+      fi
       if [ -f "${dotfilesPath}/.claude/settings.json" ]; then
         run cp "${dotfilesPath}/.claude/settings.json" "$HOME/.claude/settings.json"
       fi
