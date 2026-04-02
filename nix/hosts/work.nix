@@ -5,6 +5,8 @@
 
   environment.systemPackages = with pkgs; [
     _1password-cli
+    kubectl
+    kustomize
   ];
 
   homebrew.casks = [
