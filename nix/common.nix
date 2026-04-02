@@ -40,6 +40,7 @@
     postgresql_16
 
     # ビルドツール
+    maven
     protobuf
     rustup
 

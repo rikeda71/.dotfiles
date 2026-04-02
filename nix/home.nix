@@ -38,6 +38,8 @@
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty/config";
   home.file."Library/Application Support/Code/User/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.vscode/settings.json";
+  home.file."Library/Application Support/Code/User/keybindings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/.vscode/keybindings.json";
 
   # Claude Code
   home.file.".claude/settings.json".source =
@@ -84,6 +86,14 @@
         run "${pkgs.mise}/bin/mise" exec node -- npm i -g @openai/codex 2>/dev/null || true
       fi
     '');
+
+    vscodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if command -v code &>/dev/null && [ -f "${dotfilesPath}/.vscode/extensions" ]; then
+        while IFS= read -r ext; do
+          code --install-extension "$ext" --force 2>/dev/null || true
+        done < "${dotfilesPath}/.vscode/extensions"
+      fi
+    '';
 
     claudeSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude/mcp-servers"

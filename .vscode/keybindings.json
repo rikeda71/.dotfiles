@@ -1,0 +1,20 @@
+[
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "space ctrl+shift",
+        "command": "issue.suggestRefresh",
+        "when": "suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+shift+space",
+        "command": "-issue.suggestRefresh",
+        "when": "suggestWidgetVisible"
+    }
+]
