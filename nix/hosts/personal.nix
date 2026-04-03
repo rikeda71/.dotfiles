@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, dotfilesPath, ... }:
 
 let
-  localConfig = ./personal-local.nix;
+  localConfig = /. + "${dotfilesPath}/nix/hosts/personal-local.nix";
 in
 {
   imports = if builtins.pathExists localConfig then [ localConfig ] else [];
